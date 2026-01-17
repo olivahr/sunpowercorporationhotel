@@ -24,17 +24,22 @@ body.login-bg{
   display:flex;
   justify-content:center;
   align-items:center;
+  position:relative;
 }
+
+/* Login Modal centrado */
 .modal{
   display:block;
-  position:relative;
-  z-index:1000;
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%, -50%);
   width:90%;
   max-width:400px;
   background:rgba(255,255,255,0.95);
-  padding:2rem;
+  padding:2.5rem;
   border-radius:12px;
-  box-shadow:0 6px 15px rgba(0,0,0,0.2);
+  box-shadow:0 10px 25px rgba(0,0,0,0.3);
 }
 .modal h2{text-align:center;margin-bottom:1.5rem;color:#004080;}
 #loginForm input{width:100%;padding:0.8rem;margin-bottom:1rem;border-radius:8px;border:1px solid #ccc;}
@@ -43,20 +48,36 @@ body.login-bg{
 #loginMessage{text-align:center;margin-top:1rem;font-weight:500;color:red;}
 
 /* CONTENIDO INTERNO */
-.container{display:none;max-width:1000px;margin:0 auto;}
+.container{display:none;max-width:1000px;margin:0 auto;padding-top:80px;}
+
+/* HEADER */
 header{
   display:flex;
-  justify-content:space-between;
+  justify-content:center; /* logo centrado */
   align-items:center;
   padding:1rem 2rem;
-  background:#004080;
+  background:rgba(0,64,128,0.85);
   color:white;
-  position:sticky;
+  position:fixed;
   top:0;
+  width:100%;
   z-index:999;
+  box-shadow:0 2px 10px rgba(0,0,0,0.2);
 }
-header img{height:50px;}
-header nav a{margin-left:1.5rem;font-weight:600;color:white;transition:0.3s;}
+header img{
+  height:60px;
+  opacity:0.9;
+}
+header nav{
+  display:flex;
+  margin-left:2rem;
+}
+header nav a{
+  margin-left:1.5rem;
+  font-weight:600;
+  color:white;
+  transition:0.3s;
+}
 header nav a:hover{color:#ffcc00;}
 
 /* HERO */
@@ -67,6 +88,7 @@ header nav a:hover{color:#ffcc00;}
   display:flex;
   align-items:center;
   justify-content:center;
+  margin-top:80px;
 }
 .hero h1{color:white;font-size:2.5rem;background:rgba(0,0,0,0.5);padding:0.5rem 1rem;border-radius:8px;}
 
@@ -76,18 +98,52 @@ header nav a:hover{color:#ffcc00;}
 .hotel-info p{text-align:center;margin-bottom:1rem;}
 
 /* Habitaciones */
-.room{background:#fff;padding:1rem;border-radius:12px;box-shadow:0 6px 15px rgba(0,0,0,0.1);margin:2rem 0;}
-.room h3{color:#004080;text-align:center;margin-bottom:0.5rem;}
-.slider{position:relative;overflow:hidden;border-radius:12px;margin-top:1rem;}
-.slider-images{display:flex;transition:transform 0.5s ease-in-out;}
-.slider-images img{width:100%;flex-shrink:0;border-radius:12px;}
-.slider-btn{position:absolute;top:50%;transform:translateY(-50%);background:rgba(0,0,0,0.4);border:none;color:white;font-size:2rem;padding:0.5rem 1rem;cursor:pointer;border-radius:6px;}
+.room{
+    background:#fff;
+    padding:1.5rem;
+    border-radius:12px;
+    box-shadow:0 8px 20px rgba(0,0,0,0.1);
+    margin:2rem auto;
+    max-width:600px;
+    text-align:center;
+}
+.room h3{color:#004080;margin-bottom:0.5rem;}
+.slider{
+    position:relative;
+    overflow:hidden;
+    border-radius:12px;
+    margin-top:1rem;
+}
+.slider-images{
+    display:flex;
+    transition:transform 0.5s ease-in-out;
+}
+.slider-images img{
+    width:100%;
+    flex-shrink:0;
+    border-radius:12px;
+    display:block;
+    margin:0 auto;
+}
+.slider-btn{
+    position:absolute;
+    top:50%;
+    transform:translateY(-50%);
+    background:rgba(0,0,0,0.4);
+    border:none;
+    color:white;
+    font-size:2rem;
+    padding:0.5rem 1rem;
+    cursor:pointer;
+    border-radius:6px;
+    z-index:10;
+}
 .slider-btn.left{left:10px;}
 .slider-btn.right{right:10px;}
 .room p{text-align:center;margin-top:0.5rem;font-weight:600;}
 
 /* Formulario de reservas */
-.reservation-form{background:#fff;padding:2rem;border-radius:12px;box-shadow:0 6px 15px rgba(0,0,0,0.1);margin-bottom:2rem;}
+.reservation-form{background:#fff;padding:2rem;border-radius:12px;box-shadow:0 6px 15px rgba(0,0,0,0.1);margin-bottom:2rem;max-width:600px;margin-left:auto;margin-right:auto;}
 .reservation-form h2{text-align:center;color:#004080;margin-bottom:1.5rem;}
 form label{display:block;margin-top:1rem;margin-bottom:0.3rem;font-weight:500;}
 form input,form select{width:100%;padding:0.8rem;border:1px solid #ccc;border-radius:8px;transition:0.3s;}
@@ -97,7 +153,7 @@ form button:hover{background:#00264d;}
 #formMessage{margin-top:1rem;font-weight:500;text-align:center;color:green;}
 
 /* Logout */
-.logout-btn{display:none;text-align:right;padding:1rem;}
+.logout-btn{display:none;text-align:right;padding:1rem; max-width:1000px;margin:0 auto;}
 .logout-btn button{padding:0.5rem 1.2rem;background:#004080;color:white;border:none;border-radius:50px;font-weight:600;cursor:pointer;transition:0.3s;}
 .logout-btn button:hover{background:#00264d;}
 
@@ -265,8 +321,14 @@ document.querySelectorAll('.room').forEach(room=>{
     const images = room.querySelector('.slider-images');
     const slides = images.querySelectorAll('img');
     let index=0;
-    room.querySelector('.slider-btn.left').onclick=()=>{ index=(index>0)?index-1:slides.length-1; images.style.transform=`translateX(-${index*100}%)`; }
-    room.querySelector('.slider-btn.right').onclick=()=>{ index=(index<slides.length-1)?index+1:0; images.style.transform=`translateX(-${index*100}%)`; }
+    room.querySelector('.slider-btn.left').onclick = ()=>{
+        index=(index>0)?index-1:slides.length-1;
+        images.style.transform=`translateX(-${index*100}%)`;
+    }
+    room.querySelector('.slider-btn.right').onclick = ()=>{
+        index=(index<slides.length-1)?index+1:0;
+        images.style.transform=`translateX(-${index*100}%)`;
+    }
 });
 
 // EMAIL + PDF
@@ -306,6 +368,5 @@ document.getElementById('bookingForm').addEventListener('submit', function(e){
     });
 });
 </script>
-
 </body>
 </html>
