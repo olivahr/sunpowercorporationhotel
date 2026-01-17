@@ -1,183 +1,168 @@
-/* ==========================
-   RESET Y TIPOGRAFÍA
-========================== */
-* { box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, sans-serif; }
-body { margin: 0; background: #f2f4f7; color: #111; -webkit-text-size-adjust: 100%; }
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SunPower Corporate Lodging – Executive Inn & Suites</title>
+<link rel="stylesheet" href="style.css">
+<script src="app.js" defer></script>
+</head>
 
-/* ==========================
-   INPUTS & BOTONES MOBILE FIX
-   Evita que haga zoom en móviles
-========================== */
-input, select, textarea, button {
-  font-size: 16px; /* 🔥 clave para que no haga zoom */
-}
+<body>
 
-/* ==========================
-   LOGIN PAGE
-========================== */
-.login-page { min-height: 100vh; display: flex; flex-direction: column; }
-.login-wrapper { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 20px; }
-.login-logo { width: 120px; margin-bottom: 16px; }
-.login-card {
-  width: 100%;
-  max-width: 360px;
-  background: #fff;
-  padding: 20px;
-  border-radius: 16px;
-  box-shadow: 0 10px 30px rgba(0,0,0,.12);
-  text-align: center;
-}
-.subtitle { color: #666; margin-top: 4px; }
-.login-card input {
-  width: 100%;
-  padding: 12px;
-  margin: 8px 0;
-  border-radius: 10px;
-  border: 1px solid #ccc;
-}
-.login-card button {
-  width: 100%;
-  padding: 14px;
-  margin-top: 12px;
-  border: none;
-  border-radius: 12px;
-  background: #0071c2;
-  color: #fff;
-  font-weight: 700;
-  cursor: pointer;
-  transition: 0.3s;
-}
-.login-card button:hover { background: #005a99; }
-.login-note { margin-top: 10px; font-size: 12px; color: #888; }
-
-/* ==========================
-   APP HEADER
-========================== */
-.app-header {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 12px 16px;
-  background: #fff;
-  position: sticky;
-  top: 0;
-  z-index: 100;
-}
-.logo-small { height: 36px; }
-.header-text span { display: block; font-size: 12px; color: #666; }
-.logout-btn {
-  margin-left: auto;
-  padding: 6px 12px;
-  background: #e74c3c;
-  color: #fff;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: 0.3s;
-}
-.logout-btn:hover { background: #c0392b; }
-
-/* ==========================
-   HERO IMAGE
-========================== */
-.hero img {
-  width: 100%;
-  height: 220px;
-  object-fit: cover;
-  border-radius: 12px;
+<script>
+if (sessionStorage.getItem("auth") !== "true") {
+  window.location.href = "index.html";
 }
 
-/* ==========================
-   CARDS DE HOTEL Y HABITACIONES
-========================== */
-.hotel-card, .room-card {
-  background: #fff;
-  margin: 14px;
-  padding: 16px;
-  border-radius: 16px;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+function reserveRoom(event, url){
+  event.preventDefault();
+  const form = event.target;
+  const name = form.querySelector('input[placeholder="Full Name"]').value;
+  const empID = form.querySelector('input[placeholder="Employee ID"]').value;
+  const checkIn = form.querySelector('input[type="date"]').value;
+  
+  // Guardar en localStorage (opcional)
+  const reservation = {name, empID, checkIn, room: form.closest('.room-card').querySelector('h3').innerText};
+  let saved = JSON.parse(localStorage.getItem('reservations')||'[]');
+  saved.push(reservation);
+  localStorage.setItem('reservations', JSON.stringify(saved));
+  
+  // Redirigir a Square
+  window.open(url, "_blank");
 }
-.amenities {
-  list-style: none;
-  padding: 0;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 6px;
+function logout(){
+  sessionStorage.clear();
+  window.location.href = "index.html";
 }
-.room-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-.price { font-weight: 700; }
+</script>
 
-/* ==========================
-   SLIDER DE IMÁGENES
-========================== */
-.slider {
-  display: flex;
-  gap: 10px;
-  overflow-x: auto;
-  margin: 10px 0;
-  scroll-behavior: smooth;
-}
-.slider img {
-  height: 140px;
-  border-radius: 12px;
-  transition: transform 0.3s;
-}
-.slider img:hover { transform: scale(1.05); }
+<header class="app-header booking-header">
+  <div class="header-left">
+    <img src="logo.jpg" class="logo-small" alt="SunPower Logo">
+    <div class="header-text">
+      <strong>SunPower Corporate Lodging</strong>
+      <span>by Executive Inn & Suites</span>
+    </div>
+  </div>
+  <button class="logout-btn" onclick="logout()">Logout</button>
+</header>
 
-/* ==========================
-   FORMULARIOS DE RESERVA
-========================== */
-.reserve-form input, .reserve-form select {
-  width: 100%;
-  padding: 10px;
-  margin: 6px 0;
-  border-radius: 8px;
-  border: 1px solid #ccc;
-  font-size: 16px; /* 🔥 también evita zoom aquí */
-}
-.reserve-form label { font-weight: 600; display: block; margin-top: 8px; }
+<section class="hero">
+  <img src="foto0.jpg" alt="Executive Inn & Suites">
+</section>
 
-/* ==========================
-   BOTONES
-========================== */
-.pay-btn {
-  display: block;
-  margin-top: 10px;
-  padding: 14px;
-  text-align: center;
-  background: #0071c2;
-  color: #fff;
-  border-radius: 12px;
-  text-decoration: none;
-  font-weight: 700;
-  transition: 0.3s;
-  cursor: pointer;
-}
-.pay-btn:hover { background: #005a99; }
-.pay-btn.dark { background: #333; }
-.pay-btn.dark:hover { background: #111; }
+<section class="hotel-card">
+  <h2>Executive Inn & Suites</h2>
+  <p>Approved corporate lodging exclusively for SunPower employees and contractors on work assignments. Comfortable rooms, high-speed Wi-Fi, private bathrooms, free parking, and all amenities needed for a productive stay.</p>
+  
+  <ul class="amenities">
+    <li>Free Parking</li>
+    <li>High-Speed Wi-Fi</li>
+    <li>Air Conditioning</li>
+    <li>Private Bathroom</li>
+    <li>Corporate Use Only</li>
+    <li>No Public Booking</li>
+    <li>Housekeeping Available</li>
+    <li>24/7 Support</li>
+  </ul>
+</section>
 
-/* ==========================
-   FOOTER
-========================== */
-.footer {
-  text-align: center;
-  padding: 18px;
-  font-size: 13px;
-  color: #555;
-  margin-top: 20px;
-}
+<!-- ROOM 1 -->
+<section class="room-card">
+  <div class="room-header">
+    <h3>Standard Room – 1 Bed</h3>
+    <span class="price">$79 / week</span>
+  </div>
 
-/* ==========================
-   MEDIA QUERIES RESPONSIVE
-========================== */
-@media (max-width: 480px) {
-  .slider img { height: 120px; }
-  .login-card { max-width: 90%; padding: 16px; }
-  .reserve-form input { padding: 12px; }
-  .pay-btn { padding: 12px; }
+  <div class="slider-container">
+    <div class="slider">
+      <img src="foto1.jpg" alt="Room 1 photo 1">
+      <img src="foto2.jpg" alt="Room 1 photo 2">
+      <img src="foto5.jpg" alt="Room 1 photo 3">
+    </div>
+    <button class="slider-prev" onclick="slidePrev(this)">‹</button>
+    <button class="slider-next" onclick="slideNext(this)">›</button>
+  </div>
+
+  <div class="room-details">
+    <p>1 Queen Bed, private bathroom, free high-speed Wi-Fi, flat-screen TV, desk, complimentary coffee, air conditioning. Corporate use only.</p>
+  </div>
+
+  <form class="reserve-form" onsubmit="return reserveRoom(event, 'https://square.link/u/rQTpIlWx')">
+    <input type="text" placeholder="Full Name" required>
+    <input type="text" placeholder="Employee ID" required>
+    <label>Check-in</label>
+    <input type="date" required>
+    <label>Check-out</label>
+    <input type="text" value="At the end of the work assignment" disabled>
+    <button type="submit" class="pay-btn">Reserve</button>
+  </form>
+</section>
+
+<!-- ROOM 2 -->
+<section class="room-card">
+  <div class="room-header">
+    <h3>Standard Room – 2 Beds</h3>
+    <span class="price">$89 / week</span>
+  </div>
+
+  <div class="slider-container">
+    <div class="slider">
+      <img src="foto3.jpg" alt="Room 2 photo 1">
+      <img src="foto4.jpg" alt="Room 2 photo 2">
+      <img src="foto6.jpg" alt="Room 2 photo 3">
+    </div>
+    <button class="slider-prev" onclick="slidePrev(this)">‹</button>
+    <button class="slider-next" onclick="slideNext(this)">›</button>
+  </div>
+
+  <div class="room-details">
+    <p>2 Beds, private bathroom, free high-speed Wi-Fi, flat-screen TV, desk, complimentary coffee, air conditioning. Corporate use only.</p>
+  </div>
+
+  <form class="reserve-form" onsubmit="return reserveRoom(event, 'https://square.link/u/WqXjxpmq')">
+    <input type="text" placeholder="Full Name" required>
+    <input type="text" placeholder="Employee ID" required>
+    <label>Check-in</label>
+    <input type="date" required>
+    <label>Check-out</label>
+    <input type="text" value="At the end of the work assignment" disabled>
+    <button type="submit" class="pay-btn dark">Reserve</button>
+  </form>
+</section>
+
+<!-- POLICIES -->
+<section class="security-policy">
+  <div class="policy-card">
+    <h3>Corporate Policies & Security</h3>
+    <ul>
+      <li>All reservations are for SunPower employees and contractors only.</li>
+      <li>Personal data collected is used exclusively for booking and corporate purposes.</li>
+      <li>Rooms are monitored for safety and security.</li>
+      <li>Payments are processed securely via Square.</li>
+      <li>Check-out required at end of work assignment.</li>
+      <li>Corporate usage only: public bookings are not allowed.</li>
+      <li>Employees must comply with SunPower lodging regulations during the stay.</li>
+    </ul>
+    <p>This lodging ensures a safe and productive stay for all employees working away from home office.</p>
+  </div>
+</section>
+
+<footer class="footer">
+© 2026 SunPower Corporation · Corporate Lodging Agreement · Security & Privacy Policies
+</footer>
+
+<script>
+function slideNext(btn){
+  const slider = btn.parentElement.querySelector('.slider');
+  slider.scrollBy({left: slider.offsetWidth, behavior:'smooth'});
 }
+function slidePrev(btn){
+  const slider = btn.parentElement.querySelector('.slider');
+  slider.scrollBy({left: -slider.offsetWidth, behavior:'smooth'});
+}
+</script>
+
+</body>
+</html>
