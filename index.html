@@ -4,61 +4,22 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 <title>SunPower by Executive Inn & Suites</title>
-<style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto}
-body{background:#f4f6f8;color:#222;}
-
-/* ---------- LOGIN ---------- */
-#login{height:100vh;display:flex;align-items:center;justify-content:center;background:#fff;}
-#loginBox{width:90%;max-width:420px;text-align:center;padding:30px;border-radius:20px;box-shadow:0 15px 40px rgba(0,0,0,.25);}
-#loginBox img{width:70%;margin-bottom:20px;}
-#loginBox input{width:100%;padding:14px;margin:10px 0;border-radius:12px;border:1px solid #ccc;font-size:16px;}
-#loginBox button{width:100%;padding:16px;border:none;border-radius:14px;background:#0077cc;color:#fff;font-size:18px;cursor:pointer;}
-
-/* ---------- HEADER ---------- */
-header{background:#003b6f;color:#fff;padding:25px;text-align:center;}
-header h1{font-size:26px}
-header span{font-size:15px;opacity:.9}
-
-/* ---------- ROOMS LIST ---------- */
-.container{max-width:1200px;margin:auto;padding:20px;}
-.roomList{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:25px;}
-.roomCard{background:#fff;border-radius:16px;box-shadow:0 10px 30px rgba(0,0,0,.12);padding:20px;text-align:center;}
-.roomCard img{width:100%;height:200px;object-fit:cover;border-radius:12px;margin-bottom:15px;}
-.roomCard button{margin-top:10px;padding:14px;width:100%;border:none;border-radius:12px;background:#0077cc;color:#fff;font-size:16px;cursor:pointer;}
-
-/* ---------- DETAILS ---------- */
-#details{display:none;margin-top:30px;}
-.gallery img{width:100%;height:360px;object-fit:cover;border-radius:14px;}
-.thumbs{display:flex;gap:10px;margin-top:10px;flex-wrap:wrap;justify-content:center;}
-.thumbs img{width:80px;height:60px;object-fit:cover;border-radius:8px;cursor:pointer;border:2px solid transparent;}
-.thumbs img.active{border-color:#0077cc;}
-
-/* ---------- FORM ---------- */
-#form{display:none;background:#fff;padding:25px;border-radius:16px;box-shadow:0 10px 30px rgba(0,0,0,.12);margin-top:30px;}
-#form input,#form label,#form button{width:100%;margin-top:10px;padding:14px;border-radius:12px;border:1px solid #ccc;font-size:16px;}
-#form button{border:none;background:#28a745;color:#fff;font-size:18px;cursor:pointer;margin-top:20px;}
-
-/* ---------- FOOTER ---------- */
-footer{margin-top:50px;padding:20px;text-align:center;color:#555;font-size:14px;}
-ul{padding-left:20px;margin-top:10px}
-h2,h3{margin-bottom:10px}
-p{margin-bottom:8px;line-height:1.5}
-</style>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
 
 <!-- LOGIN -->
 <div id="login">
   <div id="loginBox">
-    <img src="logo.jpg" alt="SunPower Logo">
+    <img src="images/logo.jpg" alt="SunPower Logo">
     <input id="email" placeholder="Corporate Email">
     <input id="password" type="password" placeholder="Password">
+    <label><input type="checkbox" id="humanCheck"> I am human</label>
     <button onclick="login()">Login</button>
   </div>
 </div>
 
-<!-- APP -->
+<!-- MAIN APP -->
 <div id="app" style="display:none">
 
 <header>
@@ -68,8 +29,7 @@ p{margin-bottom:8px;line-height:1.5}
 
 <div class="container">
 
-<!-- GENERAL INFO -->
-<div class="roomCard">
+<section class="general-info">
 <h2>Property Information</h2>
 <ul>
 <li>Free High-Speed Wi-Fi</li>
@@ -79,13 +39,11 @@ p{margin-bottom:8px;line-height:1.5}
 <li>Secure Access & Surveillance</li>
 <li>Approved SunPower Corporate Lodging</li>
 </ul>
-</div>
+</section>
 
-<!-- ROOMS LIST -->
-<div class="roomList">
-
+<section class="roomList">
 <div class="roomCard">
-<img src="foto1.jpg" alt="1 Bed Room">
+<img src="images/foto1.jpg" alt="1 Bed Room">
 <h3>Standard Room – 1 Bed</h3>
 <p>$79 per work week</p>
 <p>Wi-Fi • Parking • Private Bath • Air Conditioning</p>
@@ -93,108 +51,21 @@ p{margin-bottom:8px;line-height:1.5}
 </div>
 
 <div class="roomCard">
-<img src="foto3.jpg" alt="2 Beds Room">
+<img src="images/foto3.jpg" alt="2 Beds Room">
 <h3>Double Room – 2 Beds</h3>
 <p>$89 per work week</p>
 <p>Wi-Fi • Parking • Private Bath • Air Conditioning</p>
 <button onclick="openDetails('two')">View Details</button>
 </div>
+</section>
 
 </div>
 
-<!-- DETAILS -->
-<div id="details" class="roomCard">
-<h2 id="roomTitle"></h2>
-<div class="gallery">
-<img id="mainImg" src="">
-<div class="thumbs">
-<img id="t1" onclick="swap(this)">
-<img id="t2" onclick="swap(this)">
-</div>
-</div>
-<h3>Room Features</h3>
-<ul id="features"></ul>
-<h3>Policies</h3>
-<ul>
-<li>Check-in: Employee selects time</li>
-<li>Check-out: Until work ends</li>
-<li>No public booking</li>
-<li>Corporate use only</li>
-</ul>
-<button onclick="openForm()">Reserve This Room</button>
-</div>
-
-<!-- FORM -->
-<div id="form">
-<h2>Reservation Information</h2>
-<label>Full Name</label>
-<input id="fullName" placeholder="Full Name">
-<label>Corporate Email</label>
-<input id="corpEmail" placeholder="Corporate Email">
-<label>Employee ID</label>
-<input id="empId" placeholder="Employee ID">
-<label>Check-in Date</label>
-<input type="date" id="checkinDate">
-<label>Check-in Time</label>
-<input type="time" id="checkinTime">
-<button id="payBtn" type="button">Proceed to Payment</button>
-</div>
-
-<!-- FOOTER -->
 <footer>
 <p>© 2026 SunPower by Executive Inn & Suites. All Rights Reserved.</p>
+<p>Corporate Policies & Security Guidelines</p>
 </footer>
 
-</div>
-</div>
-
-<script>
-// LOGIN FUNCIONAL
-const CORREO="empleados@company.com";
-const PASS="SunPower2026";
-function login(){
-  const e=document.getElementById('email').value;
-  const p=document.getElementById('password').value;
-  if(e===CORREO && p===PASS){
-    document.getElementById('login').style.display='none';
-    document.getElementById('app').style.display='block';
-    window.scrollTo(0,0);
-  }else{ alert('Email or password incorrect!'); }
-}
-
-// DETAILS & SLIDER
-let payLink="";
-function openDetails(type){
-  document.getElementById('details').style.display='block';
-  document.getElementById('form').style.display='none';
-  if(type==="one"){
-    document.getElementById('roomTitle').innerText="Standard Room – 1 Bed ($79 / week)";
-    document.getElementById('mainImg').src="foto1.jpg";
-    document.getElementById('t1').src="foto1.jpg"; document.getElementById('t2').src="foto2.jpg";
-    document.getElementById('features').innerHTML="<li>1 Queen Bed</li><li>25 m²</li><li>Private Bathroom</li><li>Wi-Fi, Parking, Air Conditioning</li>";
-    payLink="https://square.link/u/rQTpIlWx";
-  }else{
-    document.getElementById('roomTitle').innerText="Double Room – 2 Beds ($89 / week)";
-    document.getElementById('mainImg').src="foto3.jpg";
-    document.getElementById('t1').src="foto3.jpg"; document.getElementById('t2').src="foto4.jpg";
-    document.getElementById('features').innerHTML="<li>2 Double Beds</li><li>35 m²</li><li>Private Bathroom</li><li>Wi-Fi, Parking, Air Conditioning</li>";
-    payLink="https://square.link/u/WqXjxpmq";
-  }
-}
-
-// THUMBNAIL SWAP
-function swap(img){
-  document.querySelectorAll(".thumbs img").forEach(i=>i.classList.remove("active"));
-  img.classList.add("active");
-  document.getElementById('mainImg').src=img.src;
-}
-
-// OPEN FORM
-function openForm(){
-  document.getElementById('form').style.display='block';
-  document.getElementById('payBtn').onclick=()=>window.open(payLink,"_blank");
-}
-</script>
-
+<script src="app.js"></script>
 </body>
 </html>
