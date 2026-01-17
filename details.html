@@ -10,14 +10,33 @@
 
 <body>
 
-<!-- PROTECCIÓN LOGIN -->
 <script>
 if (sessionStorage.getItem("auth") !== "true") {
   window.location.href = "index.html";
 }
+
+function reserveRoom(event, url){
+  event.preventDefault();
+  const form = event.target;
+  const name = form.querySelector('input[placeholder="Full Name"]').value;
+  const empID = form.querySelector('input[placeholder="Employee ID"]').value;
+  const checkIn = form.querySelector('input[type="date"]').value;
+  
+  // Guardar en localStorage (opcional)
+  const reservation = {name, empID, checkIn, room: form.closest('.room-card').querySelector('h3').innerText};
+  let saved = JSON.parse(localStorage.getItem('reservations')||'[]');
+  saved.push(reservation);
+  localStorage.setItem('reservations', JSON.stringify(saved));
+  
+  // Redirigir a Square
+  window.open(url, "_blank");
+}
+function logout(){
+  sessionStorage.clear();
+  window.location.href = "index.html";
+}
 </script>
 
-<!-- HEADER -->
 <header class="app-header booking-header">
   <div class="header-left">
     <img src="logo.jpg" class="logo-small" alt="SunPower Logo">
@@ -29,17 +48,15 @@ if (sessionStorage.getItem("auth") !== "true") {
   <button class="logout-btn" onclick="logout()">Logout</button>
 </header>
 
-<!-- HERO -->
 <section class="hero">
   <img src="foto0.jpg" alt="Executive Inn & Suites">
 </section>
 
-<!-- HOTEL INFO -->
-<section class="hotel-card booking-hotel-card">
+<section class="hotel-card">
   <h2>Executive Inn & Suites</h2>
-  <p>Approved corporate lodging exclusively for SunPower employees and contractors on work assignments. Comfortable rooms, high-speed Wi-Fi, private bathrooms, free parking, and all the amenities needed for a productive stay.</p>
+  <p>Approved corporate lodging exclusively for SunPower employees and contractors on work assignments. Comfortable rooms, high-speed Wi-Fi, private bathrooms, free parking, and all amenities needed for a productive stay.</p>
   
-  <ul class="amenities booking-amenities">
+  <ul class="amenities">
     <li>Free Parking</li>
     <li>High-Speed Wi-Fi</li>
     <li>Air Conditioning</li>
@@ -52,14 +69,14 @@ if (sessionStorage.getItem("auth") !== "true") {
 </section>
 
 <!-- ROOM 1 -->
-<section class="room-card booking-room">
+<section class="room-card">
   <div class="room-header">
     <h3>Standard Room – 1 Bed</h3>
     <span class="price">$79 / week</span>
   </div>
 
-  <div class="booking-slider-container">
-    <div class="booking-slider">
+  <div class="slider-container">
+    <div class="slider">
       <img src="foto1.jpg" alt="Room 1 photo 1">
       <img src="foto2.jpg" alt="Room 1 photo 2">
       <img src="foto5.jpg" alt="Room 1 photo 3">
@@ -70,7 +87,6 @@ if (sessionStorage.getItem("auth") !== "true") {
 
   <div class="room-details">
     <p>1 Queen Bed, private bathroom, free high-speed Wi-Fi, flat-screen TV, desk, complimentary coffee, air conditioning. Corporate use only.</p>
-    <p>Price: $79 per week. Reservations restricted to SunPower employees and contractors.</p>
   </div>
 
   <form class="reserve-form" onsubmit="return reserveRoom(event, 'https://square.link/u/rQTpIlWx')">
@@ -85,14 +101,14 @@ if (sessionStorage.getItem("auth") !== "true") {
 </section>
 
 <!-- ROOM 2 -->
-<section class="room-card booking-room">
+<section class="room-card">
   <div class="room-header">
     <h3>Standard Room – 2 Beds</h3>
     <span class="price">$89 / week</span>
   </div>
 
-  <div class="booking-slider-container">
-    <div class="booking-slider">
+  <div class="slider-container">
+    <div class="slider">
       <img src="foto3.jpg" alt="Room 2 photo 1">
       <img src="foto4.jpg" alt="Room 2 photo 2">
       <img src="foto6.jpg" alt="Room 2 photo 3">
@@ -103,7 +119,6 @@ if (sessionStorage.getItem("auth") !== "true") {
 
   <div class="room-details">
     <p>2 Beds, private bathroom, free high-speed Wi-Fi, flat-screen TV, desk, complimentary coffee, air conditioning. Corporate use only.</p>
-    <p>Price: $89 per week. Reservations restricted to SunPower employees and contractors.</p>
   </div>
 
   <form class="reserve-form" onsubmit="return reserveRoom(event, 'https://square.link/u/WqXjxpmq')">
@@ -117,7 +132,7 @@ if (sessionStorage.getItem("auth") !== "true") {
   </form>
 </section>
 
-<!-- POLÍTICAS CORPORATIVAS -->
+<!-- POLICIES -->
 <section class="security-policy">
   <div class="policy-card">
     <h3>Corporate Policies & Security</h3>
@@ -138,14 +153,13 @@ if (sessionStorage.getItem("auth") !== "true") {
 © 2026 SunPower Corporation · Corporate Lodging Agreement · Security & Privacy Policies
 </footer>
 
-<!-- SLIDER JS -->
 <script>
 function slideNext(btn){
-  const slider = btn.parentElement.querySelector('.booking-slider');
+  const slider = btn.parentElement.querySelector('.slider');
   slider.scrollBy({left: slider.offsetWidth, behavior:'smooth'});
 }
 function slidePrev(btn){
-  const slider = btn.parentElement.querySelector('.booking-slider');
+  const slider = btn.parentElement.querySelector('.slider');
   slider.scrollBy({left: -slider.offsetWidth, behavior:'smooth'});
 }
 </script>
