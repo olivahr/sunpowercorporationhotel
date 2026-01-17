@@ -6,8 +6,7 @@
 <title>Corporate Reservation - SunPower</title>
 <link rel="stylesheet" href="style.css" />
 <style>
-/* --- Estilo premium para details.html --- */
-body { margin:0; font-family:-apple-system, BlinkMacSystemFont, sans-serif; background:#f2f4f7; color:#111; }
+body { margin:0; font-family:-apple-system,BlinkMacSystemFont,sans-serif; background:#f2f4f7; color:#111; }
 header { display:flex; align-items:center; gap:10px; padding:12px 16px; background:#fff; box-shadow:0 2px 6px rgba(0,0,0,.1);}
 .logo-small { height:36px; }
 header .header-text { display:flex; flex-direction:column; font-size:14px; }
@@ -19,13 +18,14 @@ header .header-text { display:flex; flex-direction:column; font-size:14px; }
 .slider { display:flex; gap:10px; overflow-x:auto; margin:10px 0; }
 .slider img { height:140px; border-radius:12px; }
 .reserve-form { display:flex; flex-direction:column; gap:8px; margin-top:10px; }
-.reserve-form input, #pay-button { padding:10px; border-radius:8px; border:1px solid #ccc; font-size:14px; }
-#pay-button { background:#0071c2; color:#fff; font-weight:700; border:none; cursor:pointer; margin-top:8px; }
-#payment-section { margin-top:10px; }
-.pay-btn { display:block; margin-top:10px; padding:14px; text-align:center; background:#0071c2; color:#fff; border-radius:12px; text-decoration:none; font-weight:700; }
+.reserve-form input, #pay-button-1, #pay-button-2 { padding:10px; border-radius:8px; border:1px solid #ccc; font-size:14px; }
+#pay-button-1, #pay-button-2 { background:#0071c2; color:#fff; font-weight:700; border:none; cursor:pointer; margin-top:8px; }
+#payment-section-1, #payment-section-2 { margin-top:10px; display:none; }
 .footer { text-align:center; padding:18px; font-size:13px; color:#555; margin-top:40px; border-top:1px solid #ddd; }
 </style>
-<script src="https://sandbox.web.squarecdn.com/v1/square.js"></script>
+
+<!-- Stripe JS -->
+<script src="https://js.stripe.com/v3/"></script>
 </head>
 <body>
 
@@ -43,7 +43,7 @@ header .header-text { display:flex; flex-direction:column; font-size:14px; }
 
 <section class="hotel-card">
   <h2>Executive Inn & Suites</h2>
-  <p>Approved corporate lodging for SunPower employees and contractors. Weekly rates available for employees only.</p>
+  <p>Approved corporate lodging for SunPower employees. Weekly rates available for employees only.</p>
   <ul class="amenities">
     <li>Free Parking</li>
     <li>High-Speed Wi-Fi</li>
@@ -60,7 +60,6 @@ header .header-text { display:flex; flex-direction:column; font-size:14px; }
     <h3>Standard Room – 1 Bed</h3>
     <span class="price">$79 / week</span>
   </div>
-
   <div class="slider">
     <img src="foto1.jpg" />
     <img src="foto2.jpg" />
@@ -75,9 +74,9 @@ header .header-text { display:flex; flex-direction:column; font-size:14px; }
       <input type="text" id="empid1" placeholder="Employee ID" required />
       <input type="date" id="checkin1" placeholder="Check-in date" required />
 
-      <div id="payment-section" style="display:none;">
+      <div id="payment-section-1">
         <div id="card-container-1"></div>
-        <button id="pay-button-1">Pay $79</button>
+        <button type="button" id="pay-button-1">Pay $79</button>
       </div>
 
       <button type="button" onclick="startPayment('1', 7900)">Reserve</button>
@@ -91,7 +90,6 @@ header .header-text { display:flex; flex-direction:column; font-size:14px; }
     <h3>Standard Room – 2 Beds</h3>
     <span class="price">$89 / week</span>
   </div>
-
   <div class="slider">
     <img src="foto3.jpg" />
     <img src="foto4.jpg" />
@@ -106,9 +104,9 @@ header .header-text { display:flex; flex-direction:column; font-size:14px; }
       <input type="text" id="empid2" placeholder="Employee ID" required />
       <input type="date" id="checkin2" placeholder="Check-in date" required />
 
-      <div id="payment-section" style="display:none;">
+      <div id="payment-section-2">
         <div id="card-container-2"></div>
-        <button id="pay-button-2">Pay $89</button>
+        <button type="button" id="pay-button-2">Pay $89</button>
       </div>
 
       <button type="button" onclick="startPayment('2', 8900)">Reserve</button>
@@ -117,37 +115,39 @@ header .header-text { display:flex; flex-direction:column; font-size:14px; }
 </section>
 
 <footer class="footer">
-© 2026 SunPower Corporation · Corporate Lodging · Security & Privacy Policies<br>
+©️ 2026 SunPower Corporation · Corporate Lodging · Security & Privacy Policies<br>
 Only for SunPower employees
 </footer>
 
 <script>
-const applicationId = "sq0idp-Ef76V9TIhpzQreCYfKVXsw"; // Production
-const locationId = "default"; // Para tu primera ubicación
+const stripe = Stripe("pk_live_51Sqi7FHT5bkIm6x5SVitLxim4LhIzTKPmLYFeR1HwcLKukM8s5ikkKRrGDyFpUzm2GC7ARf7z3zbRQjCoCkFgh7L00S5kY0ga1");
 
 async function startPayment(roomNumber, amount) {
-  const cardContainerId = `card-container-${roomNumber}`;
-  const payButtonId = `pay-button-${roomNumber}`;
-  document.getElementById(cardContainerId).parentElement.style.display = "block";
+  const sectionId = `payment-section-${roomNumber}`;
+  const containerId = `card-container-${roomNumber}`;
+  const buttonId = `pay-button-${roomNumber}`;
 
-  const payments = Square.payments(applicationId, locationId);
-  const card = await payments.card();
-  await card.attach(`#${cardContainerId}`);
+  document.getElementById(sectionId).style.display = "block";
 
-  document.getElementById(payButtonId).onclick = async () => {
-    const result = await card.tokenize();
-    if(result.status === 'OK') {
-      const name = document.getElementById(`name${roomNumber}`).value;
-      const empid = document.getElementById(`empid${roomNumber}`).value;
-      const checkin = document.getElementById(`checkin${roomNumber}`).value;
+  // Create payment elements
+  const { clientSecret } = await fetch("/create-payment-intent", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ amount }),
+  }).then(r => r.json());
 
-      // Guardar o enviar datos al servidor si quieres
-      alert(`Payment successful!\nName: ${name}\nEmployee ID: ${empid}\nCheck-in: ${checkin}`);
+  const elements = stripe.elements({ clientSecret });
+  const paymentElement = elements.create("payment");
+  paymentElement.mount(`#${containerId}`);
 
-      // Aquí puedes agregar fetch() a tu backend para cobrar realmente
-    } else {
-      alert("Payment failed. Try again.");
-    }
+  document.getElementById(buttonId).onclick = async () => {
+    const result = await stripe.confirmPayment({
+      elements,
+      confirmParams: { return_url: window.location.href },
+    });
+
+    if (result.error) alert(result.error.message);
+    else alert("Payment successful!");
   };
 }
 </script>
