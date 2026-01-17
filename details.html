@@ -2,26 +2,105 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-<title>Room Details - SunPower</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Corporate Reservation</title>
 <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
-<header>
-<h1>SunPower <span>by Executive Inn & Suites</span></h1>
+<header class="main-header">
+  <img src="logo.jpg" class="logo-small">
+  <h2>SunPower <span>by Executive Inn & Suites</span></h2>
 </header>
 
-<div class="container">
+<section class="hero">
+  <img src="foto0.jpg">
+</section>
 
-<section id="details"></section>
-<section id="form"></section>
+<section class="hotel-info">
+  <h3>Executive Inn & Suites</h3>
+  <p>Approved corporate lodging for SunPower employees and contractors.</p>
 
-<footer>
-<p>© 2026 SunPower by Executive Inn & Suites. All Rights Reserved.</p>
-<p>Corporate Policies & Security Guidelines</p>
+  <ul class="amenities">
+    <li>Free Parking</li>
+    <li>High-Speed Wi-Fi</li>
+    <li>Air Conditioning</li>
+    <li>Private Bathroom</li>
+    <li>Corporate Use Only</li>
+    <li>No Public Booking</li>
+  </ul>
+</section>
+
+<hr>
+
+<!-- ROOM 1 -->
+<section class="room-card">
+  <h3>Standard Room – 1 Bed</h3>
+  <p class="price">$79 / week</p>
+
+  <div class="slider">
+    <img src="foto1.jpg">
+    <img src="foto2.jpg">
+  </div>
+
+  <details>
+    <summary>View Details</summary>
+    <p>1 Queen Bed · Private Bathroom · Wi-Fi · Parking</p>
+
+    <form class="reserve-form">
+      <input type="text" placeholder="Full Name" required>
+      <input type="email" placeholder="Corporate Email" required>
+      <input type="text" placeholder="Employee ID" required>
+
+      <label>Check-in Time</label>
+      <input type="time" required>
+
+      <label>Check-out</label>
+      <input type="text" value="At the end of the job" disabled>
+
+      <a href="https://square.link/u/rQTpIlWx" class="pay-btn">
+        Reserve & Pay $79 / week
+      </a>
+    </form>
+  </details>
+</section>
+
+<!-- ROOM 2 -->
+<section class="room-card">
+  <h3>Standard Room – 2 Beds</h3>
+  <p class="price">$89 / week</p>
+
+  <div class="slider">
+    <img src="foto3.jpg">
+    <img src="foto4.jpg">
+  </div>
+
+  <details>
+    <summary>View Details</summary>
+    <p>2 Beds · Private Bathroom · Wi-Fi · Parking</p>
+
+    <form class="reserve-form">
+      <input type="text" placeholder="Full Name" required>
+      <input type="email" placeholder="Corporate Email" required>
+      <input type="text" placeholder="Employee ID" required>
+
+      <label>Check-in Time</label>
+      <input type="time" required>
+
+      <label>Check-out</label>
+      <input type="text" value="At the end of the job" disabled>
+
+      <a href="https://square.link/u/WqXjxpmq" class="pay-btn dark">
+        Reserve & Pay $89 / week
+      </a>
+    </form>
+  </details>
+</section>
+
+<footer class="footer">
+© 2026 SunPower Corporation · Corporate Lodging Agreement · Security & Privacy Policies Apply
 </footer>
 
-<script src="app.js"></script>
 </body>
 </html>
