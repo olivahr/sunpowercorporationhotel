@@ -2,95 +2,109 @@
 * { box-sizing:border-box; margin:0; padding:0; font-family:-apple-system,BlinkMacSystemFont,sans-serif; }
 html, body { height:100%; }
 
-/* ===== LOGIN PAGE ===== */
-.login-page { 
-  min-height:100vh; 
-  display:flex; 
-  flex-direction:column; 
-  align-items:center; 
-  justify-content:center; 
-  background:#f2f4f7; 
-  padding:20px; 
+/* ===== CONTAINER PRINCIPAL LOGIN ===== */
+.container {
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  background:#f2f4f7;
+  padding:20px;
 }
 
-/* ===== LOGO ARRIBA ===== */
-.logo-container { margin-bottom:20px; }
-.login-logo { width:100px; display:block; margin:0 auto; }
+/* ===== LOGO LOGIN ===== */
+.logo-container { margin-bottom:30px; }
+.login-logo { width:120px; height:auto; display:block; }
 
 /* ===== LOGIN CARD ===== */
-.login-card { 
-  width:100%; 
-  max-width:400px; 
-  background:#fff; 
-  padding:40px 30px; 
-  border-radius:16px; 
-  box-shadow:0 10px 30px rgba(0,0,0,0.12); 
-  text-align:center; 
+.login-card {
+  width:100%;
+  max-width:400px;
+  background:#fff;
+  padding:40px 30px;
+  border-radius:16px;
+  box-shadow:0 10px 30px rgba(0,0,0,0.12);
+  text-align:center;
 }
 .login-card h1 { font-size:26px; margin-bottom:8px; }
 .login-card .subtitle { font-size:14px; color:#666; margin-bottom:20px; }
-.login-card input { 
-  width:100%; 
-  padding:14px; 
-  margin:10px 0; 
-  border-radius:10px; 
-  border:1px solid #ccc; 
-  font-size:15px; 
-}
-.login-card button { 
-  width:100%; 
-  padding:16px; 
-  margin-top:16px; 
-  border:none; 
-  border-radius:12px; 
-  background:#0071c2; 
-  color:#fff; 
-  font-weight:700; 
-  font-size:16px; 
-  cursor:pointer; 
-  transition:0.2s; 
-}
+.login-card input { width:100%; padding:14px; margin:10px 0; border-radius:10px; border:1px solid #ccc; font-size:15px; }
+.login-card button { width:100%; padding:16px; margin-top:16px; border:none; border-radius:12px; background:#0071c2; color:#fff; font-weight:700; font-size:16px; cursor:pointer; transition:0.2s; }
 .login-card button:hover { background:#005a9c; }
 
 /* ===== MENSAJITO EMPLEADO ===== */
-.employee-note { 
-  margin-top:16px; 
-  font-size:13px; 
-  color:#333; 
-  text-align:center; 
+.employee-note {
+  margin-top:20px;
+  font-size:13px;
+  color:#333;
+  text-align:center;
 }
 
 /* ===== FOOTER ===== */
-.footer { 
-  margin-top:30px; 
-  font-size:13px; 
-  color:#555; 
-  text-align:center; 
+.footer {
+  margin-top:40px;
+  font-size:13px;
+  color:#555;
+  text-align:center;
   width:100%;
   background:#f2f4f7;
 }
 
-/* ===== HEADER ===== */
-.app-header { display:flex; justify-content:space-between; align-items:center; padding:16px 24px; background:#fff; box-shadow:0 2px 6px rgba(0,0,0,0.1); position:sticky; top:0; z-index:100; }
+/* ===== HEADER APP ===== */
+.app-header {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:16px 24px;
+  background:#fff;
+  box-shadow:0 2px 6px rgba(0,0,0,0.1);
+  position:sticky;
+  top:0;
+  z-index:100;
+}
 .header-left { display:flex; align-items:center; gap:12px; }
 .logo-small { height:40px; }
 .header-text strong { display:block; font-size:18px; }
 .header-text span { font-size:12px; color:#666; }
-.logout-btn { padding:8px 16px; border:none; background:#0071c2; color:#fff; border-radius:8px; cursor:pointer; font-weight:700; }
 
 /* ===== HERO ===== */
 .hero img { width:100%; height:280px; object-fit:cover; border-bottom:1px solid #ddd; }
 
 /* ===== HOTEL CARD ===== */
-.hotel-card { background:#fff; margin:20px; padding:20px; border-radius:12px; box-shadow:0 6px 20px rgba(0,0,0,0.08); }
+.hotel-card {
+  background:#fff;
+  margin:20px;
+  padding:20px;
+  border-radius:12px;
+  box-shadow:0 6px 20px rgba(0,0,0,0.08);
+}
 .hotel-card h2 { font-size:22px; margin-bottom:8px; }
 .hotel-card p { margin-bottom:12px; color:#333; font-size:14px; }
-.hotel-card ul { list-style:none; display:grid; grid-template-columns:repeat(auto-fit,minmax(120px,1fr)); gap:8px; }
-.hotel-card ul li { background:#f2f4f7; padding:6px 10px; border-radius:6px; font-size:13px; text-align:center; transition:0.2s; }
+.hotel-card ul {
+  list-style:none;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(120px,1fr));
+  gap:8px;
+}
+.hotel-card ul li {
+  background:#f2f4f7;
+  padding:6px 10px;
+  border-radius:6px;
+  font-size:13px;
+  text-align:center;
+  transition:0.2s;
+}
 .hotel-card ul li:hover { background:#0071c2; color:#fff; }
 
 /* ===== ROOM CARDS ===== */
-.room-card { background:#fff; margin:20px; padding:20px; border-radius:12px; box-shadow:0 6px 20px rgba(0,0,0,0.08); }
+.room-card {
+  background:#fff;
+  margin:20px;
+  padding:20px;
+  border-radius:12px;
+  box-shadow:0 6px 20px rgba(0,0,0,0.08);
+}
 .room-header { display:flex; justify-content:space-between; align-items:center; margin-bottom:12px; }
 .room-header h3 { font-size:20px; }
 .price { font-weight:700; color:#0071c2; font-size:18px; }
@@ -98,11 +112,17 @@ html, body { height:100%; }
 /* ===== SLIDER ===== */
 .slider-container { position:relative; overflow:hidden; border-radius:12px; margin-bottom:12px; }
 .slider { display:flex; gap:10px; overflow-x:auto; scroll-behavior:smooth; padding-bottom:5px; }
-.slider img { width:100%; max-width:220px; height:140px; border-radius:12px; flex-shrink:0; object-fit:cover; box-shadow:0 2px 6px rgba(0,0,0,0.1); transition:0.3s; }
+.slider img {
+  width:100%;
+  max-width:220px;
+  height:140px;
+  border-radius:12px;
+  flex-shrink:0;
+  object-fit:cover;
+  box-shadow:0 2px 6px rgba(0,0,0,0.1);
+  transition:0.3s;
+}
 .slider img:hover { transform:scale(1.05); }
-.slider-prev, .slider-next { position:absolute; top:50%; transform:translateY(-50%); background:rgba(0,0,0,0.5); color:#fff; border:none; font-size:24px; padding:4px 12px; border-radius:50%; cursor:pointer; z-index:10; }
-.slider-prev { left:8px; }
-.slider-next { right:8px; }
 
 /* ===== ROOM DETAILS ===== */
 .room-details { margin:12px 0; color:#333; font-size:14px; }
