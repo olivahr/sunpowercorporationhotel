@@ -3,52 +3,33 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-<title>Executive Inn & Suites – Corporate Lodging</title>
+<title>Corporate Lodging – Executive Inn & Suites</title>
 <style>
 /* RESET */
 * { margin:0; padding:0; box-sizing:border-box; font-family: Arial, sans-serif; }
 body { background: #f0f0f0; }
 
-/* HEADER FIJO */
-header {
-    position: fixed;
-    top:0; left:0; width:100%;
-    background: rgba(0,0,0,0.8);
-    color:white;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    padding:10px 20px;
-    z-index:1000;
-}
-header h1 { font-size:22px; }
-header nav a {
-    color:white; text-decoration:none; margin-left:20px;
-    font-weight:bold;
-}
-header nav a:hover { text-decoration:underline; }
-
 /* LOGIN */
 #login-container {
     background: rgba(255,255,255,0.95);
-    padding: 50px;
-    border-radius: 12px;
-    width: 350px;
+    padding: 60px 40px 40px 40px;
+    border-radius: 15px;
+    width: 380px;
     text-align: center;
-    box-shadow: 0 0 25px rgba(0,0,0,0.4);
+    box-shadow: 0 0 30px rgba(0,0,0,0.4);
     position: absolute;
     top:50%; left:50%;
     transform: translate(-50%, -50%);
     background-image: url('logo.jpg');
-    background-size: cover;
-    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center top;
 }
 #login-container h1 {
-    margin-bottom: 25px;
-    font-size: 24px;
+    margin-top:220px;
+    margin-bottom:25px;
+    font-size: 22px;
     color: #333;
-    background: rgba(255,255,255,0.85);
-    padding:10px; border-radius:8px;
 }
 #login-container input {
     width: 100%;
@@ -70,7 +51,7 @@ header nav a:hover { text-decoration:underline; }
 /* CONTENIDO INTERNO */
 #main-content {
     display:none;
-    padding:100px 20px 50px 20px;
+    padding:80px 20px 50px 20px;
     max-width:900px;
     margin:auto;
 }
@@ -160,7 +141,8 @@ header nav a:hover { text-decoration:underline; }
 
 /* RESPONSIVE */
 @media (max-width:600px){
-    #login-container { width:90%; padding:30px; }
+    #login-container { width:90%; padding:40px 20px 30px 20px; margin-top:50px; }
+    #login-container h1 { margin-top:150px; font-size:20px; }
     .reserve-form input, .reserve-form select { font-size:14px; padding:10px; }
     .reserve-form button { font-size:14px; padding:12px; }
 }
@@ -168,18 +150,9 @@ header nav a:hover { text-decoration:underline; }
 </head>
 <body>
 
-<!-- HEADER FIJO -->
-<header>
-    <h1>Executive Inn & Suites</h1>
-    <nav>
-        <a href="#rooms">Rooms</a>
-        <a href="#reserve">Reserve</a>
-    </nav>
-</header>
-
 <!-- LOGIN -->
 <div id="login-container">
-    <h1>Corporate Lodging Login</h1>
+    <h1>Login</h1>
     <input type="email" id="login-email" placeholder="Corporate Email">
     <input type="password" id="login-pass" placeholder="Password">
     <button onclick="login()">Login</button>
@@ -278,8 +251,6 @@ function submitReservation(){
 
     // Mostrar mensaje de confirmación
     document.getElementById('confirmation').style.display = 'block';
-
-    // Aquí puedes conectar a backend / enviar correo
     console.log({name,email,checkin,checkout,employee,room});
 }
 </script>
