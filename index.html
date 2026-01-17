@@ -3,38 +3,33 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-<title>Corporate Lodging – Executive Inn & Suites</title>
+<title>SunPower – Executive Inn & Suites</title>
 <style>
-/* RESET */
 * { margin:0; padding:0; box-sizing:border-box; font-family: Arial, sans-serif; }
 body { background: #f0f0f0; }
 
-/* LOGIN */
+/* LOGIN PREMIUM */
 #login-container {
-    background: rgba(255,255,255,0.95);
-    padding: 60px 40px 40px 40px;
-    border-radius: 15px;
-    width: 380px;
-    text-align: center;
-    box-shadow: 0 0 30px rgba(0,0,0,0.4);
     position: absolute;
     top:50%; left:50%;
     transform: translate(-50%, -50%);
-    background-image: url('logo.jpg');
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center top;
+    width: 400px;
+    text-align: center;
 }
 #login-container h1 {
-    margin-top:220px;
-    margin-bottom:25px;
-    font-size: 22px;
-    color: #333;
+    margin-bottom: 20px;
+    font-size: 24px;
+    color:#333;
+}
+#login-logo {
+    width: 250px;
+    margin: 0 auto 20px auto;
+    display: block;
 }
 #login-container input {
     width: 100%;
     padding: 12px;
-    margin: 12px 0;
+    margin: 10px 0;
     border-radius: 8px;
     border:1px solid #ccc;
     font-size:16px;
@@ -42,8 +37,7 @@ body { background: #f0f0f0; }
 #login-container button {
     width:100%; padding:14px;
     border:none; border-radius:8px;
-    background:#0077cc;
-    color:white; font-size:16px;
+    background:#0077cc; color:white; font-size:16px;
     cursor:pointer;
 }
 #login-container button:hover { background:#005fa3; }
@@ -51,12 +45,10 @@ body { background: #f0f0f0; }
 /* CONTENIDO INTERNO */
 #main-content {
     display:none;
-    padding:80px 20px 50px 20px;
+    padding:100px 20px 50px 20px;
     max-width:900px;
     margin:auto;
 }
-
-/* TITULO PRINCIPAL */
 #main-content h2 {
     text-align:center;
     margin-bottom:30px;
@@ -73,11 +65,7 @@ body { background: #f0f0f0; }
     border-radius:12px;
     box-shadow:0 0 20px rgba(0,0,0,0.3);
 }
-.slides img {
-    width:100%;
-    display:none;
-    border-radius:12px;
-}
+.slides img { width:100%; display:none; border-radius:12px; }
 .slides img.active { display:block; }
 
 .btn-pay {
@@ -141,8 +129,8 @@ body { background: #f0f0f0; }
 
 /* RESPONSIVE */
 @media (max-width:600px){
-    #login-container { width:90%; padding:40px 20px 30px 20px; margin-top:50px; }
-    #login-container h1 { margin-top:150px; font-size:20px; }
+    #login-container { width:90%; padding:0; }
+    #login-logo { width:180px; }
     .reserve-form input, .reserve-form select { font-size:14px; padding:10px; }
     .reserve-form button { font-size:14px; padding:12px; }
 }
@@ -150,9 +138,10 @@ body { background: #f0f0f0; }
 </head>
 <body>
 
-<!-- LOGIN -->
+<!-- LOGIN PREMIUM -->
 <div id="login-container">
-    <h1>Login</h1>
+    <img src="logo.jpg" id="login-logo" alt="SunPower Logo">
+    <h1>SunPower – Executive Inn & Suites</h1>
     <input type="email" id="login-email" placeholder="Corporate Email">
     <input type="password" id="login-pass" placeholder="Password">
     <button onclick="login()">Login</button>
@@ -205,9 +194,9 @@ body { background: #f0f0f0; }
 </div>
 
 <script>
-// LOGIN SIMPLE
-const CORREO = "corporate@company.com";
-const PASS = "123456";
+// LOGIN PREMIUM
+const CORREO = "empleados@company.com";
+const PASS = "SunPower2026";
 
 function login(){
     const email = document.getElementById('login-email').value;
@@ -221,7 +210,7 @@ function login(){
     }
 }
 
-// SLIDER SIMPLE
+// SLIDERS
 function initSlider(sliderId){
     const slides = document.querySelectorAll('#'+sliderId+' .slides img');
     let index = 0;
@@ -235,7 +224,7 @@ function initSlider(sliderId){
 initSlider('slider1');
 initSlider('slider2');
 
-// FORMULARIO DE RESERVA SIMULADO
+// RESERVA SIMULADA
 function submitReservation(){
     const name = document.getElementById('full-name').value;
     const email = document.getElementById('corporate-email').value;
@@ -248,9 +237,7 @@ function submitReservation(){
         alert('Please fill all fields.');
         return;
     }
-
-    // Mostrar mensaje de confirmación
-    document.getElementById('confirmation').style.display = 'block';
+    document.getElementById('confirmation').style.display='block';
     console.log({name,email,checkin,checkout,employee,room});
 }
 </script>
