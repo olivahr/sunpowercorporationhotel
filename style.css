@@ -1,168 +1,77 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SunPower Corporate Lodging – Executive Inn & Suites</title>
-<link rel="stylesheet" href="style.css">
-<script src="app.js" defer></script>
-</head>
+/* ===== RESET ===== */
+* { box-sizing: border-box; margin:0; padding:0; font-family:-apple-system, BlinkMacSystemFont, sans-serif; }
+body { background:#f2f4f7; color:#111; line-height:1.5; }
 
-<body>
-
-<script>
-if (sessionStorage.getItem("auth") !== "true") {
-  window.location.href = "index.html";
+/* ===== HEADER ===== */
+.app-header { 
+  display:flex; justify-content:space-between; align-items:center; padding:16px 24px; 
+  background:#fff; box-shadow:0 2px 6px rgba(0,0,0,0.1); position:sticky; top:0; z-index:100;
 }
+.header-left { display:flex; align-items:center; gap:12px; }
+.logo-small { height:40px; }
+.header-text strong { display:block; font-size:18px; }
+.header-text span { font-size:12px; color:#666; }
+.logout-btn { padding:8px 16px; border:none; background:#0071c2; color:#fff; border-radius:8px; cursor:pointer; font-weight:700; }
 
-function reserveRoom(event, url){
-  event.preventDefault();
-  const form = event.target;
-  const name = form.querySelector('input[placeholder="Full Name"]').value;
-  const empID = form.querySelector('input[placeholder="Employee ID"]').value;
-  const checkIn = form.querySelector('input[type="date"]').value;
-  
-  // Guardar en localStorage (opcional)
-  const reservation = {name, empID, checkIn, room: form.closest('.room-card').querySelector('h3').innerText};
-  let saved = JSON.parse(localStorage.getItem('reservations')||'[]');
-  saved.push(reservation);
-  localStorage.setItem('reservations', JSON.stringify(saved));
-  
-  // Redirigir a Square
-  window.open(url, "_blank");
+/* ===== HERO ===== */
+.hero img { width:100%; height:280px; object-fit:cover; border-bottom:1px solid #ddd; }
+
+/* ===== HOTEL CARD ===== */
+.hotel-card { background:#fff; margin:20px; padding:20px; border-radius:12px; box-shadow:0 6px 20px rgba(0,0,0,0.08); }
+.hotel-card h2 { font-size:22px; margin-bottom:8px; }
+.hotel-card p { margin-bottom:12px; color:#333; font-size:14px; }
+.hotel-card ul { list-style:none; display:grid; grid-template-columns:repeat(auto-fit,minmax(120px,1fr)); gap:8px; }
+.hotel-card ul li { background:#f2f4f7; padding:6px 10px; border-radius:6px; font-size:13px; text-align:center; transition:0.2s; }
+.hotel-card ul li:hover { background:#0071c2; color:#fff; }
+
+/* ===== ROOM CARDS ===== */
+.room-card { background:#fff; margin:20px; padding:20px; border-radius:12px; box-shadow:0 6px 20px rgba(0,0,0,0.08); }
+.room-header { display:flex; justify-content:space-between; align-items:center; margin-bottom:12px; }
+.room-header h3 { font-size:20px; }
+.price { font-weight:700; color:#0071c2; font-size:18px; }
+
+/* ===== SLIDER ===== */
+.slider-container { position:relative; overflow:hidden; border-radius:12px; margin-bottom:12px; }
+.slider { display:flex; gap:10px; overflow-x:auto; scroll-behavior:smooth; padding-bottom:5px; }
+.slider img { width:100%; max-width:220px; height:140px; border-radius:12px; flex-shrink:0; object-fit:cover; box-shadow:0 2px 6px rgba(0,0,0,0.1); transition:0.3s; }
+.slider img:hover { transform:scale(1.05); }
+.slider-prev, .slider-next { 
+  position:absolute; top:50%; transform:translateY(-50%); background:rgba(0,0,0,0.5);
+  color:#fff; border:none; font-size:24px; padding:4px 12px; border-radius:50%; cursor:pointer; z-index:10;
 }
-function logout(){
-  sessionStorage.clear();
-  window.location.href = "index.html";
+.slider-prev { left:8px; }
+.slider-next { right:8px; }
+
+/* ===== ROOM DETAILS ===== */
+.room-details { margin:12px 0; color:#333; font-size:14px; }
+
+/* ===== RESERVE FORM ===== */
+.reserve-form { display:flex; flex-direction:column; gap:10px; margin-top:8px; }
+.reserve-form input, .reserve-form select { padding:10px; border-radius:8px; border:1px solid #ccc; font-size:14px; width:100%; }
+.reserve-form label { font-size:13px; font-weight:600; margin-top:6px; }
+.pay-btn { padding:14px; border:none; border-radius:10px; background:#0071c2; color:#fff; font-weight:700; cursor:pointer; margin-top:6px; transition:0.2s; width:100%; }
+.pay-btn:hover { background:#005a9c; }
+.pay-btn.dark { background:#333; }
+.pay-btn.dark:hover { background:#111; }
+
+/* ===== POLICIES / SECURITY ===== */
+.security-policy { margin:20px; }
+.policy-card { background:#fff; padding:20px; border-radius:12px; box-shadow:0 6px 20px rgba(0,0,0,0.08); }
+.policy-card h3 { font-size:18px; margin-bottom:10px; text-align:center; color:#0071c2; }
+.policy-card ul { list-style:disc; padding-left:20px; margin-bottom:10px; color:#333; }
+.policy-card ul li { margin-bottom:6px; font-size:14px; }
+.policy-card p { font-size:14px; color:#555; }
+
+/* ===== FOOTER ===== */
+.footer { text-align:center; padding:18px; font-size:13px; color:#555; background:#f2f4f7; margin-top:20px; }
+
+/* ===== MEDIA QUERIES ===== */
+@media(max-width:768px){
+  .hotel-card ul { grid-template-columns:repeat(auto-fit,minmax(100px,1fr)); }
+  .slider img { max-width:160px; height:100px; }
+  .header-text strong { font-size:16px; }
+  .room-header h3 { font-size:18px; }
+  .reserve-form input, .reserve-form select { font-size:13px; }
+  .pay-btn { font-size:14px; }
+  .policy-card h3 { font-size:16px; }
 }
-</script>
-
-<header class="app-header booking-header">
-  <div class="header-left">
-    <img src="logo.jpg" class="logo-small" alt="SunPower Logo">
-    <div class="header-text">
-      <strong>SunPower Corporate Lodging</strong>
-      <span>by Executive Inn & Suites</span>
-    </div>
-  </div>
-  <button class="logout-btn" onclick="logout()">Logout</button>
-</header>
-
-<section class="hero">
-  <img src="foto0.jpg" alt="Executive Inn & Suites">
-</section>
-
-<section class="hotel-card">
-  <h2>Executive Inn & Suites</h2>
-  <p>Approved corporate lodging exclusively for SunPower employees and contractors on work assignments. Comfortable rooms, high-speed Wi-Fi, private bathrooms, free parking, and all amenities needed for a productive stay.</p>
-  
-  <ul class="amenities">
-    <li>Free Parking</li>
-    <li>High-Speed Wi-Fi</li>
-    <li>Air Conditioning</li>
-    <li>Private Bathroom</li>
-    <li>Corporate Use Only</li>
-    <li>No Public Booking</li>
-    <li>Housekeeping Available</li>
-    <li>24/7 Support</li>
-  </ul>
-</section>
-
-<!-- ROOM 1 -->
-<section class="room-card">
-  <div class="room-header">
-    <h3>Standard Room – 1 Bed</h3>
-    <span class="price">$79 / week</span>
-  </div>
-
-  <div class="slider-container">
-    <div class="slider">
-      <img src="foto1.jpg" alt="Room 1 photo 1">
-      <img src="foto2.jpg" alt="Room 1 photo 2">
-      <img src="foto5.jpg" alt="Room 1 photo 3">
-    </div>
-    <button class="slider-prev" onclick="slidePrev(this)">‹</button>
-    <button class="slider-next" onclick="slideNext(this)">›</button>
-  </div>
-
-  <div class="room-details">
-    <p>1 Queen Bed, private bathroom, free high-speed Wi-Fi, flat-screen TV, desk, complimentary coffee, air conditioning. Corporate use only.</p>
-  </div>
-
-  <form class="reserve-form" onsubmit="return reserveRoom(event, 'https://square.link/u/rQTpIlWx')">
-    <input type="text" placeholder="Full Name" required>
-    <input type="text" placeholder="Employee ID" required>
-    <label>Check-in</label>
-    <input type="date" required>
-    <label>Check-out</label>
-    <input type="text" value="At the end of the work assignment" disabled>
-    <button type="submit" class="pay-btn">Reserve</button>
-  </form>
-</section>
-
-<!-- ROOM 2 -->
-<section class="room-card">
-  <div class="room-header">
-    <h3>Standard Room – 2 Beds</h3>
-    <span class="price">$89 / week</span>
-  </div>
-
-  <div class="slider-container">
-    <div class="slider">
-      <img src="foto3.jpg" alt="Room 2 photo 1">
-      <img src="foto4.jpg" alt="Room 2 photo 2">
-      <img src="foto6.jpg" alt="Room 2 photo 3">
-    </div>
-    <button class="slider-prev" onclick="slidePrev(this)">‹</button>
-    <button class="slider-next" onclick="slideNext(this)">›</button>
-  </div>
-
-  <div class="room-details">
-    <p>2 Beds, private bathroom, free high-speed Wi-Fi, flat-screen TV, desk, complimentary coffee, air conditioning. Corporate use only.</p>
-  </div>
-
-  <form class="reserve-form" onsubmit="return reserveRoom(event, 'https://square.link/u/WqXjxpmq')">
-    <input type="text" placeholder="Full Name" required>
-    <input type="text" placeholder="Employee ID" required>
-    <label>Check-in</label>
-    <input type="date" required>
-    <label>Check-out</label>
-    <input type="text" value="At the end of the work assignment" disabled>
-    <button type="submit" class="pay-btn dark">Reserve</button>
-  </form>
-</section>
-
-<!-- POLICIES -->
-<section class="security-policy">
-  <div class="policy-card">
-    <h3>Corporate Policies & Security</h3>
-    <ul>
-      <li>All reservations are for SunPower employees and contractors only.</li>
-      <li>Personal data collected is used exclusively for booking and corporate purposes.</li>
-      <li>Rooms are monitored for safety and security.</li>
-      <li>Payments are processed securely via Square.</li>
-      <li>Check-out required at end of work assignment.</li>
-      <li>Corporate usage only: public bookings are not allowed.</li>
-      <li>Employees must comply with SunPower lodging regulations during the stay.</li>
-    </ul>
-    <p>This lodging ensures a safe and productive stay for all employees working away from home office.</p>
-  </div>
-</section>
-
-<footer class="footer">
-© 2026 SunPower Corporation · Corporate Lodging Agreement · Security & Privacy Policies
-</footer>
-
-<script>
-function slideNext(btn){
-  const slider = btn.parentElement.querySelector('.slider');
-  slider.scrollBy({left: slider.offsetWidth, behavior:'smooth'});
-}
-function slidePrev(btn){
-  const slider = btn.parentElement.querySelector('.slider');
-  slider.scrollBy({left: -slider.offsetWidth, behavior:'smooth'});
-}
-</script>
-
-</body>
-</html>
