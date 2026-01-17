@@ -10,37 +10,25 @@
 
 <body class="login-page">
 
-  <main class="login-wrapper">
-    <img src="logo.jpg" class="login-logo" alt="SunPower" />
+<div class="login-wrapper">
+  <img src="logo.jpg" class="login-logo" alt="SunPower" />
 
-    <section class="login-card">
-      <h1>SunPower</h1>
-      <p class="subtitle">Corporate Lodging Portal</p>
+  <div class="login-card">
+    <h1>SunPower</h1>
+    <p class="subtitle">Corporate Lodging Portal</p>
 
-      <form onsubmit="event.preventDefault(); login();">
-        <input
-          id="email"
-          type="email"
-          placeholder="empleados@company.com"
-          autocomplete="username"
-          required
-        />
-        <input
-          id="password"
-          type="password"
-          placeholder="Password"
-          autocomplete="current-password"
-          required
-        />
+    <input id="email" type="email" placeholder="Corporate Email" required />
+    <input id="password" type="password" placeholder="Password" required />
 
-        <button type="submit">Sign In</button>
-      </form>
-    </section>
-  </main>
+    <button onclick="login()">Sign In</button>
 
-  <footer class="footer">
-    © 2026 SunPower Corporation · Authorized Personnel Only
-  </footer>
+    <p class="login-note">Only authorized SunPower employees can access</p>
+  </div>
+</div>
+
+<footer class="footer">
+© 2026 SunPower Corporation · Authorized Personnel Only
+</footer>
 
 </body>
 </html>
