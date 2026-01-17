@@ -7,30 +7,40 @@
 <link rel="stylesheet" href="style.css" />
 <script src="app.js" defer></script>
 </head>
+
 <body class="login-page">
 
-<div class="login-wrapper">
-  <img src="logo.jpg" class="login-logo" alt="SunPower" />
+  <main class="login-wrapper">
+    <img src="logo.jpg" class="login-logo" alt="SunPower" />
 
-  <div class="login-card">
-    <h1>SunPower</h1>
-    <p class="subtitle">Corporate Lodging Portal</p>
+    <section class="login-card">
+      <h1>SunPower</h1>
+      <p class="subtitle">Corporate Lodging Portal</p>
 
-    <input id="email" type="email" placeholder="empleados@company.com" />
-    <input id="password" type="password" placeholder="Password" />
+      <form onsubmit="event.preventDefault(); login();">
+        <input
+          id="email"
+          type="email"
+          placeholder="empleados@company.com"
+          autocomplete="username"
+          required
+        />
+        <input
+          id="password"
+          type="password"
+          placeholder="Password"
+          autocomplete="current-password"
+          required
+        />
 
-    <div class="captcha">
-      <span id="captcha-question"></span>
-      <input id="captcha-answer" type="number" placeholder="Answer" />
-    </div>
+        <button type="submit">Sign In</button>
+      </form>
+    </section>
+  </main>
 
-    <button onclick="login()">Sign In</button>
-  </div>
-</div>
-
-<footer class="footer">
-© 2026 SunPower Corporation · Authorized Personnel Only
-</footer>
+  <footer class="footer">
+    © 2026 SunPower Corporation · Authorized Personnel Only
+  </footer>
 
 </body>
 </html>
