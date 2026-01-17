@@ -2,12 +2,11 @@
 * { box-sizing:border-box; margin:0; padding:0; font-family:-apple-system,BlinkMacSystemFont,sans-serif; }
 html, body { height:100%; }
 
-/* ===== PAGE WRAPPER PARA LOGIN Y FOOTER ===== */
+/* ===== PAGE WRAPPER ===== */
 .page-wrapper {
   min-height:100vh;
   display:flex;
   flex-direction:column;
-  justify-content:space-between; /* empuja footer abajo */
 }
 
 /* ===== CONTAINER LOGIN ===== */
@@ -16,6 +15,7 @@ html, body { height:100%; }
   flex-direction:column;
   align-items:center;
   justify-content:center;
+  flex:1; /* toma todo el espacio disponible */
   padding:20px;
 }
 
@@ -42,7 +42,7 @@ html, body { height:100%; }
 /* ===== MENSAJITO EMPLEADO ===== */
 .employee-note { margin-top:20px; font-size:13px; color:#333; text-align:center; }
 
-/* ===== FOOTER ===== */
+/* ===== FOOTER PEGADO ABAJO ===== */
 .footer {
   font-size:13px;
   color:#555;
@@ -50,6 +50,7 @@ html, body { height:100%; }
   padding:12px 0;
   background:#f2f4f7;
   width:100%;
+  margin-top:auto; /* empuja al fondo */
 }
 
 /* ===== HEADER APP ===== */
@@ -152,7 +153,7 @@ html, body { height:100%; }
   .login-card input { font-size:14px; padding:12px; }
   .login-card button { font-size:15px; padding:14px; }
   .employee-note { font-size:12px; }
-  .footer { font-size:12px; margin-top:40px; }
+  .footer { font-size:12px; }
 
   .hotel-card ul { grid-template-columns:repeat(auto-fit,minmax(100px,1fr)); }
   .slider img { max-width:160px; height:100px; }
