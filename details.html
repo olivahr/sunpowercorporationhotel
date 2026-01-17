@@ -2,111 +2,153 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Corporate Reservation</title>
-<link rel="stylesheet" href="style.css" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SunPower Corporate Lodging – Executive Inn & Suites</title>
+<link rel="stylesheet" href="style.css">
 <script src="app.js" defer></script>
 </head>
 
 <body>
 
+<!-- PROTECCIÓN LOGIN -->
 <script>
 if (sessionStorage.getItem("auth") !== "true") {
   window.location.href = "index.html";
 }
 </script>
 
-<header class="app-header">
-  <img src="logo.jpg" class="logo-small" alt="SunPower" />
-  <div class="header-text">
-    <strong>SunPower</strong>
-    <span>by Executive Inn & Suites</span>
+<!-- HEADER -->
+<header class="app-header booking-header">
+  <div class="header-left">
+    <img src="logo.jpg" class="logo-small" alt="SunPower Logo">
+    <div class="header-text">
+      <strong>SunPower Corporate Lodging</strong>
+      <span>by Executive Inn & Suites</span>
+    </div>
   </div>
   <button class="logout-btn" onclick="logout()">Logout</button>
 </header>
 
+<!-- HERO -->
 <section class="hero">
-  <img src="foto0.jpg" alt="Hotel" />
+  <img src="foto0.jpg" alt="Executive Inn & Suites">
 </section>
 
-<section class="hotel-card">
+<!-- HOTEL INFO -->
+<section class="hotel-card booking-hotel-card">
   <h2>Executive Inn & Suites</h2>
-  <p>Approved corporate lodging for SunPower employees and contractors.</p>
-  <ul class="amenities">
+  <p>Approved corporate lodging exclusively for SunPower employees and contractors on work assignments. Comfortable rooms, high-speed Wi-Fi, private bathrooms, free parking, and all the amenities needed for a productive stay.</p>
+  
+  <ul class="amenities booking-amenities">
     <li>Free Parking</li>
     <li>High-Speed Wi-Fi</li>
     <li>Air Conditioning</li>
     <li>Private Bathroom</li>
     <li>Corporate Use Only</li>
     <li>No Public Booking</li>
+    <li>Housekeeping Available</li>
+    <li>24/7 Support</li>
   </ul>
 </section>
 
 <!-- ROOM 1 -->
-<section class="room-card">
+<section class="room-card booking-room">
   <div class="room-header">
     <h3>Standard Room – 1 Bed</h3>
     <span class="price">$79 / week</span>
   </div>
 
-  <div class="slider">
-    <img src="foto1.jpg" />
-    <img src="foto2.jpg" />
+  <div class="booking-slider-container">
+    <div class="booking-slider">
+      <img src="foto1.jpg" alt="Room 1 photo 1">
+      <img src="foto2.jpg" alt="Room 1 photo 2">
+      <img src="foto5.jpg" alt="Room 1 photo 3">
+    </div>
+    <button class="slider-prev" onclick="slidePrev(this)">‹</button>
+    <button class="slider-next" onclick="slideNext(this)">›</button>
   </div>
 
-  <details>
-    <summary>View details</summary>
-    <p>1 Queen Bed · Private Bathroom · Wi-Fi · Free Parking · Corporate Use Only</p>
-    <p>Price: $79 per week</p>
-    <p>Reservation only for SunPower employees and contractors</p>
+  <div class="room-details">
+    <p>1 Queen Bed, private bathroom, free high-speed Wi-Fi, flat-screen TV, desk, complimentary coffee, air conditioning. Corporate use only.</p>
+    <p>Price: $79 per week. Reservations restricted to SunPower employees and contractors.</p>
+  </div>
 
-    <form class="reserve-form" onsubmit="return reserveRoom(event, 'https://square.link/u/rQTpIlWx')">
-      <input type="text" placeholder="Full Name" required />
-      <input type="text" placeholder="Employee ID" required />
-      <label>Check-in</label>
-      <input type="date" required />
-      <label>Check-out</label>
-      <input type="text" value="At the end of the job" disabled />
-
-      <button type="submit" class="pay-btn">Reserve</button>
-    </form>
-  </details>
+  <form class="reserve-form" onsubmit="return reserveRoom(event, 'https://square.link/u/rQTpIlWx')">
+    <input type="text" placeholder="Full Name" required>
+    <input type="text" placeholder="Employee ID" required>
+    <label>Check-in</label>
+    <input type="date" required>
+    <label>Check-out</label>
+    <input type="text" value="At the end of the work assignment" disabled>
+    <button type="submit" class="pay-btn">Reserve</button>
+  </form>
 </section>
 
 <!-- ROOM 2 -->
-<section class="room-card">
+<section class="room-card booking-room">
   <div class="room-header">
     <h3>Standard Room – 2 Beds</h3>
     <span class="price">$89 / week</span>
   </div>
 
-  <div class="slider">
-    <img src="foto3.jpg" />
-    <img src="foto4.jpg" />
+  <div class="booking-slider-container">
+    <div class="booking-slider">
+      <img src="foto3.jpg" alt="Room 2 photo 1">
+      <img src="foto4.jpg" alt="Room 2 photo 2">
+      <img src="foto6.jpg" alt="Room 2 photo 3">
+    </div>
+    <button class="slider-prev" onclick="slidePrev(this)">‹</button>
+    <button class="slider-next" onclick="slideNext(this)">›</button>
   </div>
 
-  <details>
-    <summary>View details</summary>
-    <p>2 Beds · Private Bathroom · Wi-Fi · Free Parking · Corporate Use Only</p>
-    <p>Price: $89 per week</p>
-    <p>Reservation only for SunPower employees and contractors</p>
+  <div class="room-details">
+    <p>2 Beds, private bathroom, free high-speed Wi-Fi, flat-screen TV, desk, complimentary coffee, air conditioning. Corporate use only.</p>
+    <p>Price: $89 per week. Reservations restricted to SunPower employees and contractors.</p>
+  </div>
 
-    <form class="reserve-form" onsubmit="return reserveRoom(event, 'https://square.link/u/WqXjxpmq')">
-      <input type="text" placeholder="Full Name" required />
-      <input type="text" placeholder="Employee ID" required />
-      <label>Check-in</label>
-      <input type="date" required />
-      <label>Check-out</label>
-      <input type="text" value="At the end of the job" disabled />
+  <form class="reserve-form" onsubmit="return reserveRoom(event, 'https://square.link/u/WqXjxpmq')">
+    <input type="text" placeholder="Full Name" required>
+    <input type="text" placeholder="Employee ID" required>
+    <label>Check-in</label>
+    <input type="date" required>
+    <label>Check-out</label>
+    <input type="text" value="At the end of the work assignment" disabled>
+    <button type="submit" class="pay-btn dark">Reserve</button>
+  </form>
+</section>
 
-      <button type="submit" class="pay-btn dark">Reserve</button>
-    </form>
-  </details>
+<!-- POLÍTICAS CORPORATIVAS -->
+<section class="security-policy">
+  <div class="policy-card">
+    <h3>Corporate Policies & Security</h3>
+    <ul>
+      <li>All reservations are for SunPower employees and contractors only.</li>
+      <li>Personal data collected is used exclusively for booking and corporate purposes.</li>
+      <li>Rooms are monitored for safety and security.</li>
+      <li>Payments are processed securely via Square.</li>
+      <li>Check-out required at end of work assignment.</li>
+      <li>Corporate usage only: public bookings are not allowed.</li>
+      <li>Employees must comply with SunPower lodging regulations during the stay.</li>
+    </ul>
+    <p>This lodging ensures a safe and productive stay for all employees working away from home office.</p>
+  </div>
 </section>
 
 <footer class="footer">
-© 2026 SunPower Corporation · Corporate Lodging Agreement
+© 2026 SunPower Corporation · Corporate Lodging Agreement · Security & Privacy Policies
 </footer>
+
+<!-- SLIDER JS -->
+<script>
+function slideNext(btn){
+  const slider = btn.parentElement.querySelector('.booking-slider');
+  slider.scrollBy({left: slider.offsetWidth, behavior:'smooth'});
+}
+function slidePrev(btn){
+  const slider = btn.parentElement.querySelector('.booking-slider');
+  slider.scrollBy({left: -slider.offsetWidth, behavior:'smooth'});
+}
+</script>
 
 </body>
 </html>
