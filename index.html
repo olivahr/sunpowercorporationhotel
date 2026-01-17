@@ -2,70 +2,36 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-<title>SunPower by Executive Inn & Suites</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SunPower Corporate Lodging</title>
 <link rel="stylesheet" href="style.css">
+<script src="app.js" defer></script>
 </head>
-<body>
 
-<!-- LOGIN -->
-<div id="login">
-  <div id="loginBox">
-    <img src="images/logo.jpg" alt="SunPower Logo">
-    <input id="email" placeholder="Corporate Email">
-    <input id="password" type="password" placeholder="Password">
-    <label><input type="checkbox" id="humanCheck"> I am human</label>
-    <button onclick="login()">Login</button>
+<body class="login-body">
+
+<div class="login-bg">
+  <img src="logo.jpg" class="login-logo-bg">
+</div>
+
+<div class="login-container">
+  <h1>SunPower</h1>
+  <p>Corporate Lodging Portal</p>
+
+  <input type="email" id="email" placeholder="empleados@company.com">
+  <input type="password" id="password" placeholder="Password">
+
+  <div class="captcha">
+    <span id="captcha-question"></span>
+    <input type="number" id="captcha-answer" placeholder="Answer">
   </div>
+
+  <button onclick="login()">Access Portal</button>
 </div>
 
-<!-- MAIN APP -->
-<div id="app" style="display:none">
-
-<header>
-<h1>SunPower <span>by Executive Inn & Suites</span></h1>
-<span>Corporate Lodging Portal</span>
-</header>
-
-<div class="container">
-
-<section class="general-info">
-<h2>Property Information</h2>
-<ul>
-<li>Free High-Speed Wi-Fi</li>
-<li>On-site Parking</li>
-<li>24/7 Front Desk</li>
-<li>Weekly Corporate Rates</li>
-<li>Secure Access & Surveillance</li>
-<li>Approved SunPower Corporate Lodging</li>
-</ul>
-</section>
-
-<section class="roomList">
-<div class="roomCard">
-<img src="images/foto1.jpg" alt="1 Bed Room">
-<h3>Standard Room – 1 Bed</h3>
-<p>$79 per work week</p>
-<p>Wi-Fi • Parking • Private Bath • Air Conditioning</p>
-<button onclick="openDetails('one')">View Details</button>
-</div>
-
-<div class="roomCard">
-<img src="images/foto3.jpg" alt="2 Beds Room">
-<h3>Double Room – 2 Beds</h3>
-<p>$89 per work week</p>
-<p>Wi-Fi • Parking • Private Bath • Air Conditioning</p>
-<button onclick="openDetails('two')">View Details</button>
-</div>
-</section>
-
-</div>
-
-<footer>
-<p>© 2026 SunPower by Executive Inn & Suites. All Rights Reserved.</p>
-<p>Corporate Policies & Security Guidelines</p>
+<footer class="footer">
+© 2026 SunPower Corporation · Authorized Personnel Only
 </footer>
 
-<script src="app.js"></script>
 </body>
 </html>
