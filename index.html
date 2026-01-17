@@ -11,8 +11,13 @@
 <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
 
 <style>
+/* RESET */
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Arial',sans-serif;}
 body{background:#f5f7fa;color:#333;line-height:1.6;scroll-behavior:smooth;}
+a{text-decoration:none;color:inherit;}
+ul{list-style:none;}
+
+/* LOGIN */
 body.login-bg{
   background: url('logo.jpg') center/cover no-repeat;
   height:100vh;
@@ -20,28 +25,58 @@ body.login-bg{
   justify-content:center;
   align-items:center;
 }
-
-/* Login Modal */
-.modal{display:block;position:relative;z-index:1000;width:90%;max-width:400px;background:rgba(255,255,255,0.95);padding:2rem;border-radius:12px;box-shadow:0 6px 15px rgba(0,0,0,0.2);}
+.modal{
+  display:block;
+  position:relative;
+  z-index:1000;
+  width:90%;
+  max-width:400px;
+  background:rgba(255,255,255,0.95);
+  padding:2rem;
+  border-radius:12px;
+  box-shadow:0 6px 15px rgba(0,0,0,0.2);
+}
 .modal h2{text-align:center;margin-bottom:1.5rem;color:#004080;}
 #loginForm input{width:100%;padding:0.8rem;margin-bottom:1rem;border-radius:8px;border:1px solid #ccc;}
 #loginForm button{width:100%;padding:0.8rem;border-radius:50px;background:#004080;color:white;border:none;font-weight:600;font-size:1rem;cursor:pointer;transition:0.3s;}
 #loginForm button:hover{background:#00264d;}
 #loginMessage{text-align:center;margin-top:1rem;font-weight:500;color:red;}
 
-/* Contenedor oculto hasta login */
-.container{max-width:900px;margin:3rem auto;padding:1rem;display:none;}
+/* CONTENIDO INTERNO */
+.container{display:none;max-width:1000px;margin:0 auto;}
+header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:1rem 2rem;
+  background:#004080;
+  color:white;
+  position:sticky;
+  top:0;
+  z-index:999;
+}
+header img{height:50px;}
+header nav a{margin-left:1.5rem;font-weight:600;color:white;transition:0.3s;}
+header nav a:hover{color:#ffcc00;}
 
-/* Logout Button */
-.logout-btn{display:none;margin:1rem auto;text-align:center;}
-.logout-btn button{padding:0.8rem 1.5rem;background:#004080;color:white;border:none;border-radius:50px;cursor:pointer;transition:0.3s;font-weight:600;}
-.logout-btn button:hover{background:#00264d;}
+/* HERO */
+.hero{
+  width:100%;
+  height:300px;
+  background: url('foto0.jpg') center/cover no-repeat;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+.hero h1{color:white;font-size:2.5rem;background:rgba(0,0,0,0.5);padding:0.5rem 1rem;border-radius:8px;}
 
 /* Hotel Info */
-.hotel-info{margin-bottom:2rem;}
+.hotel-info{padding:2rem;}
 .hotel-info h2{color:#004080;font-size:2rem;margin-bottom:1rem;text-align:center;}
 .hotel-info p{text-align:center;margin-bottom:1rem;}
-.room{background:#fff;padding:1rem;border-radius:12px;box-shadow:0 6px 15px rgba(0,0,0,0.1);margin-bottom:2rem;}
+
+/* Habitaciones */
+.room{background:#fff;padding:1rem;border-radius:12px;box-shadow:0 6px 15px rgba(0,0,0,0.1);margin:2rem 0;}
 .room h3{color:#004080;text-align:center;margin-bottom:0.5rem;}
 .slider{position:relative;overflow:hidden;border-radius:12px;margin-top:1rem;}
 .slider-images{display:flex;transition:transform 0.5s ease-in-out;}
@@ -49,8 +84,9 @@ body.login-bg{
 .slider-btn{position:absolute;top:50%;transform:translateY(-50%);background:rgba(0,0,0,0.4);border:none;color:white;font-size:2rem;padding:0.5rem 1rem;cursor:pointer;border-radius:6px;}
 .slider-btn.left{left:10px;}
 .slider-btn.right{right:10px;}
+.room p{text-align:center;margin-top:0.5rem;font-weight:600;}
 
-/* Reservation Form */
+/* Formulario de reservas */
 .reservation-form{background:#fff;padding:2rem;border-radius:12px;box-shadow:0 6px 15px rgba(0,0,0,0.1);margin-bottom:2rem;}
 .reservation-form h2{text-align:center;color:#004080;margin-bottom:1.5rem;}
 form label{display:block;margin-top:1rem;margin-bottom:0.3rem;font-weight:500;}
@@ -60,12 +96,18 @@ form button{margin-top:1.5rem;width:100%;padding:1rem;background:#004080;color:w
 form button:hover{background:#00264d;}
 #formMessage{margin-top:1rem;font-weight:500;text-align:center;color:green;}
 
-footer{text-align:center;padding:2rem 1rem;color:#666;font-size:0.9rem;}
+/* Logout */
+.logout-btn{display:none;text-align:right;padding:1rem;}
+.logout-btn button{padding:0.5rem 1.2rem;background:#004080;color:white;border:none;border-radius:50px;font-weight:600;cursor:pointer;transition:0.3s;}
+.logout-btn button:hover{background:#00264d;}
+
+/* Footer */
+footer{text-align:center;padding:2rem 1rem;color:#666;font-size:0.9rem;background:#f1f1f1;}
 </style>
 </head>
-<body>
+<body class="login-bg">
 
-<!-- Login Modal -->
+<!-- LOGIN -->
 <div class="modal" id="loginModal">
     <h2>Employee Login</h2>
     <form id="loginForm">
@@ -76,50 +118,67 @@ footer{text-align:center;padding:2rem 1rem;color:#666;font-size:0.9rem;}
     <p id="loginMessage"></p>
 </div>
 
-<!-- Contenido Corporativo -->
+<!-- CONTENIDO -->
 <div class="container">
+
+    <!-- HEADER -->
+    <header>
+        <img src="logo.jpg" alt="Logo">
+        <nav>
+            <a href="#hotel">Hotel</a>
+            <a href="#rooms">Rooms</a>
+            <a href="#reservation">Reservation</a>
+        </nav>
+    </header>
 
     <!-- Logout -->
     <div class="logout-btn">
         <button id="logoutBtn">Logout</button>
     </div>
 
+    <!-- HERO -->
+    <section class="hero">
+        <h1>SunPower Corporate Lodging</h1>
+    </section>
+
     <!-- Hotel Info -->
-    <section class="hotel-info">
+    <section class="hotel-info" id="hotel">
         <h2>Executive Inn & Suites</h2>
         <p>123 Corporate Blvd, Houston, TX 77002</p>
         <p>This property is part of SunPower Corporation’s approved lodging network.</p>
     </section>
 
-    <!-- Habitaciones -->
-    <div class="room">
-        <h3>1 Bed Room</h3>
-        <div class="slider">
-            <div class="slider-images">
-                <img src="foto1.jpg" alt="1 Bed Room - photo1">
-                <img src="foto2.jpg" alt="1 Bed Room - photo2">
+    <!-- Rooms -->
+    <section id="rooms">
+        <div class="room">
+            <h3>1 Bed Room</h3>
+            <div class="slider">
+                <div class="slider-images">
+                    <img src="foto1.jpg" alt="1 Bed Room - photo1">
+                    <img src="foto2.jpg" alt="1 Bed Room - photo2">
+                </div>
+                <button class="slider-btn left"><i class="fa fa-chevron-left"></i></button>
+                <button class="slider-btn right"><i class="fa fa-chevron-right"></i></button>
             </div>
-            <button class="slider-btn left"><i class="fa fa-chevron-left"></i></button>
-            <button class="slider-btn right"><i class="fa fa-chevron-right"></i></button>
+            <p>Standard Room – $79/night</p>
         </div>
-        <p style="text-align:center;margin-top:0.5rem;">Standard Room – $79/night</p>
-    </div>
 
-    <div class="room">
-        <h3>2 Beds Room</h3>
-        <div class="slider">
-            <div class="slider-images">
-                <img src="foto3.jpg" alt="2 Beds Room - photo1">
-                <img src="foto4.jpg" alt="2 Beds Room - photo2">
+        <div class="room">
+            <h3>2 Beds Room</h3>
+            <div class="slider">
+                <div class="slider-images">
+                    <img src="foto3.jpg" alt="2 Beds Room - photo1">
+                    <img src="foto4.jpg" alt="2 Beds Room - photo2">
+                </div>
+                <button class="slider-btn left"><i class="fa fa-chevron-left"></i></button>
+                <button class="slider-btn right"><i class="fa fa-chevron-right"></i></button>
             </div>
-            <button class="slider-btn left"><i class="fa fa-chevron-left"></i></button>
-            <button class="slider-btn right"><i class="fa fa-chevron-right"></i></button>
+            <p>Double Room – $89/night</p>
         </div>
-        <p style="text-align:center;margin-top:0.5rem;">Double Room – $89/night</p>
-    </div>
+    </section>
 
     <!-- Reservation Form -->
-    <section class="reservation-form">
+    <section class="reservation-form" id="reservation">
         <h2>Reserve Your Stay</h2>
         <form id="bookingForm">
             <label for="fullName">Full Name</label>
@@ -154,17 +213,15 @@ footer{text-align:center;padding:2rem 1rem;color:#666;font-size:0.9rem;}
 <footer>© 2026 SunPower Corporate Lodging. All rights reserved.</footer>
 
 <script>
-// ✅ Datos de acceso único
+// LOGIN
 const masterEmail = "empleados@company.com";
 const masterPassword = "SunPower2026";
-
 const modal = document.getElementById('loginModal');
 const loginForm = document.getElementById('loginForm');
 const loginMessage = document.getElementById('loginMessage');
 const container = document.querySelector('.container');
 const logoutBtn = document.getElementById('logoutBtn');
 
-// Función de login
 function loginUser(email, password){
     if(email === masterEmail && password === masterPassword){
         sessionStorage.setItem('loggedIn','true');
@@ -176,7 +233,6 @@ function loginUser(email, password){
     }
 }
 
-// Mostrar portal
 function showPortal(){
     modal.style.display = 'none';
     container.style.display = 'block';
@@ -184,7 +240,6 @@ function showPortal(){
     document.body.classList.remove('login-bg');
 }
 
-// Logout
 logoutBtn.addEventListener('click', function(){
     sessionStorage.removeItem('loggedIn');
     container.style.display = 'none';
@@ -192,14 +247,12 @@ logoutBtn.addEventListener('click', function(){
     document.body.classList.add('login-bg');
 });
 
-// Verificar sesión al cargar
 window.addEventListener('load', function(){
     if(sessionStorage.getItem('loggedIn') === 'true'){
         showPortal();
     }
 });
 
-// Login Form
 loginForm.addEventListener('submit', function(e){
     e.preventDefault();
     const email = document.getElementById('empEmail').value;
@@ -207,10 +260,18 @@ loginForm.addEventListener('submit', function(e){
     loginUser(email,password);
 });
 
-// Inicializar EmailJS
+// SLIDER
+document.querySelectorAll('.room').forEach(room=>{
+    const images = room.querySelector('.slider-images');
+    const slides = images.querySelectorAll('img');
+    let index=0;
+    room.querySelector('.slider-btn.left').onclick=()=>{ index=(index>0)?index-1:slides.length-1; images.style.transform=`translateX(-${index*100}%)`; }
+    room.querySelector('.slider-btn.right').onclick=()=>{ index=(index<slides.length-1)?index+1:0; images.style.transform=`translateX(-${index*100}%)`; }
+});
+
+// EMAIL + PDF
 emailjs.init("TU_USER_ID"); // Reemplaza con tu userID EmailJS
 
-// Reservation Form: Email + PDF
 document.getElementById('bookingForm').addEventListener('submit', function(e){
     e.preventDefault();
     const name = document.getElementById('fullName').value;
@@ -220,7 +281,6 @@ document.getElementById('bookingForm').addEventListener('submit', function(e){
     const checkout = document.getElementById('checkout').value;
     const project = document.getElementById('projectID').value;
 
-    // Generar PDF
     const { jsPDF } = window.jspdf;
     const doc = new jsPDF();
     doc.setFontSize(16);
@@ -233,7 +293,6 @@ document.getElementById('bookingForm').addEventListener('submit', function(e){
     doc.text(`Check-out: ${checkout}`, 20, 80);
     doc.text(`Project/Job ID: ${project}`, 20, 90);
 
-    // Enviar email via EmailJS
     const formData = { name, email, room, checkin, checkout, project };
     emailjs.send("TU_SERVICE_ID","TU_TEMPLATE_ID",formData)
     .then(response=>{
@@ -246,15 +305,7 @@ document.getElementById('bookingForm').addEventListener('submit', function(e){
         document.getElementById('formMessage').innerText="Error sending reservation. Try again.";
     });
 });
-
-// Slider funcional para cada room
-document.querySelectorAll('.room').forEach(room=>{
-    const images = room.querySelector('.slider-images');
-    const slides = images.querySelectorAll('img');
-    let index=0;
-    room.querySelector('.slider-btn.left').onclick=()=>{ index=(index>0)?index-1:slides.length-1; images.style.transform=`translateX(-${index*100}%)`; }
-    room.querySelector('.slider-btn.right').onclick=()=>{ index=(index<slides.length-1)?index+1:0; images.style.transform=`translateX(-${index*100}%)`; }
-});
 </script>
+
 </body>
 </html>
