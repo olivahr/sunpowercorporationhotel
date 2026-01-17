@@ -2,371 +2,287 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SunPower Corporate Lodging</title>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-<!-- Librerías para PDF y EmailJS -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
-
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<title>Executive Inn & Suites – Corporate Lodging</title>
 <style>
 /* RESET */
-*{margin:0;padding:0;box-sizing:border-box;font-family:'Arial',sans-serif;}
-body{background:#f5f7fa;color:#333;line-height:1.6;scroll-behavior:smooth;}
-a{text-decoration:none;color:inherit;}
-ul{list-style:none;}
+* { margin:0; padding:0; box-sizing:border-box; font-family: Arial, sans-serif; }
+body { background: #f0f0f0; }
+
+/* HEADER FIJO */
+header {
+    position: fixed;
+    top:0; left:0; width:100%;
+    background: rgba(0,0,0,0.8);
+    color:white;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:10px 20px;
+    z-index:1000;
+}
+header h1 { font-size:22px; }
+header nav a {
+    color:white; text-decoration:none; margin-left:20px;
+    font-weight:bold;
+}
+header nav a:hover { text-decoration:underline; }
 
 /* LOGIN */
-body.login-bg{
-  background: url('logo.jpg') center/cover no-repeat;
-  height:100vh;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  position:relative;
+#login-container {
+    background: rgba(255,255,255,0.95);
+    padding: 50px;
+    border-radius: 12px;
+    width: 350px;
+    text-align: center;
+    box-shadow: 0 0 25px rgba(0,0,0,0.4);
+    position: absolute;
+    top:50%; left:50%;
+    transform: translate(-50%, -50%);
+    background-image: url('logo.jpg');
+    background-size: cover;
+    background-position: center;
 }
-
-/* Login Modal centrado */
-.modal{
-  display:block;
-  position:absolute;
-  top:50%;
-  left:50%;
-  transform:translate(-50%, -50%);
-  width:90%;
-  max-width:400px;
-  background:rgba(255,255,255,0.95);
-  padding:2.5rem;
-  border-radius:12px;
-  box-shadow:0 10px 25px rgba(0,0,0,0.3);
+#login-container h1 {
+    margin-bottom: 25px;
+    font-size: 24px;
+    color: #333;
+    background: rgba(255,255,255,0.85);
+    padding:10px; border-radius:8px;
 }
-.modal h2{text-align:center;margin-bottom:1.5rem;color:#004080;}
-#loginForm input{width:100%;padding:0.8rem;margin-bottom:1rem;border-radius:8px;border:1px solid #ccc;}
-#loginForm button{width:100%;padding:0.8rem;border-radius:50px;background:#004080;color:white;border:none;font-weight:600;font-size:1rem;cursor:pointer;transition:0.3s;}
-#loginForm button:hover{background:#00264d;}
-#loginMessage{text-align:center;margin-top:1rem;font-weight:500;color:red;}
+#login-container input {
+    width: 100%;
+    padding: 12px;
+    margin: 12px 0;
+    border-radius: 8px;
+    border:1px solid #ccc;
+    font-size:16px;
+}
+#login-container button {
+    width:100%; padding:14px;
+    border:none; border-radius:8px;
+    background:#0077cc;
+    color:white; font-size:16px;
+    cursor:pointer;
+}
+#login-container button:hover { background:#005fa3; }
 
 /* CONTENIDO INTERNO */
-.container{display:none;max-width:1000px;margin:0 auto;padding-top:80px;}
+#main-content {
+    display:none;
+    padding:100px 20px 50px 20px;
+    max-width:900px;
+    margin:auto;
+}
 
-/* HEADER */
-header{
-  display:flex;
-  justify-content:center; /* logo centrado */
-  align-items:center;
-  padding:1rem 2rem;
-  background:rgba(0,64,128,0.85);
-  color:white;
-  position:fixed;
-  top:0;
-  width:100%;
-  z-index:999;
-  box-shadow:0 2px 10px rgba(0,0,0,0.2);
-}
-header img{
-  height:60px;
-  opacity:0.9;
-}
-header nav{
-  display:flex;
-  margin-left:2rem;
-}
-header nav a{
-  margin-left:1.5rem;
-  font-weight:600;
-  color:white;
-  transition:0.3s;
-}
-header nav a:hover{color:#ffcc00;}
-
-/* HERO */
-.hero{
-  width:100%;
-  height:300px;
-  background: url('foto0.jpg') center/cover no-repeat;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  margin-top:80px;
-}
-.hero h1{color:white;font-size:2.5rem;background:rgba(0,0,0,0.5);padding:0.5rem 1rem;border-radius:8px;}
-
-/* Hotel Info */
-.hotel-info{padding:2rem;}
-.hotel-info h2{color:#004080;font-size:2rem;margin-bottom:1rem;text-align:center;}
-.hotel-info p{text-align:center;margin-bottom:1rem;}
-
-/* Habitaciones */
-.room{
-    background:#fff;
-    padding:1.5rem;
-    border-radius:12px;
-    box-shadow:0 8px 20px rgba(0,0,0,0.1);
-    margin:2rem auto;
-    max-width:600px;
+/* TITULO PRINCIPAL */
+#main-content h2 {
     text-align:center;
+    margin-bottom:30px;
+    color:#333;
 }
-.room h3{color:#004080;margin-bottom:0.5rem;}
-.slider{
-    position:relative;
+
+/* ROOM SLIDER */
+.room { margin-bottom:50px; text-align:center; }
+.slider {
+    position: relative;
+    max-width: 100%;
+    margin:auto;
     overflow:hidden;
     border-radius:12px;
-    margin-top:1rem;
+    box-shadow:0 0 20px rgba(0,0,0,0.3);
 }
-.slider-images{
-    display:flex;
-    transition:transform 0.5s ease-in-out;
-}
-.slider-images img{
+.slides img {
     width:100%;
-    flex-shrink:0;
+    display:none;
     border-radius:12px;
-    display:block;
-    margin:0 auto;
 }
-.slider-btn{
-    position:absolute;
-    top:50%;
-    transform:translateY(-50%);
-    background:rgba(0,0,0,0.4);
-    border:none;
+.slides img.active { display:block; }
+
+.btn-pay {
+    margin-top:15px;
+    padding:12px 25px;
+    background:#28a745;
     color:white;
-    font-size:2rem;
-    padding:0.5rem 1rem;
+    border:none;
+    border-radius:8px;
+    font-size:16px;
     cursor:pointer;
-    border-radius:6px;
-    z-index:10;
+    text-decoration:none;
+    display:inline-block;
 }
-.slider-btn.left{left:10px;}
-.slider-btn.right{right:10px;}
-.room p{text-align:center;margin-top:0.5rem;font-weight:600;}
+.btn-pay:hover { background:#1e7e34; }
 
-/* Formulario de reservas */
-.reservation-form{background:#fff;padding:2rem;border-radius:12px;box-shadow:0 6px 15px rgba(0,0,0,0.1);margin-bottom:2rem;max-width:600px;margin-left:auto;margin-right:auto;}
-.reservation-form h2{text-align:center;color:#004080;margin-bottom:1.5rem;}
-form label{display:block;margin-top:1rem;margin-bottom:0.3rem;font-weight:500;}
-form input,form select{width:100%;padding:0.8rem;border:1px solid #ccc;border-radius:8px;transition:0.3s;}
-form input:focus,form select:focus{border-color:#004080;outline:none;}
-form button{margin-top:1.5rem;width:100%;padding:1rem;background:#004080;color:white;border:none;border-radius:50px;font-size:1rem;cursor:pointer;transition:0.3s;font-weight:600;}
-form button:hover{background:#00264d;}
-#formMessage{margin-top:1rem;font-weight:500;text-align:center;color:green;}
+/* FORMULARIO RESERVA */
+.reserve-form {
+    background:#f5f5f5;
+    padding:25px;
+    border-radius:12px;
+    box-shadow:0 0 15px rgba(0,0,0,0.2);
+}
+.reserve-form h3 {
+    text-align:center;
+    margin-bottom:20px;
+    color:#333;
+}
+.reserve-form input, .reserve-form select {
+    width:100%;
+    padding:12px;
+    margin:10px 0;
+    border-radius:8px;
+    border:1px solid #ccc;
+    font-size:16px;
+}
+.reserve-form button {
+    width:100%;
+    padding:14px;
+    margin-top:10px;
+    border:none;
+    border-radius:8px;
+    background:#0077cc;
+    color:white;
+    font-size:16px;
+    cursor:pointer;
+}
+.reserve-form button:hover { background:#005fa3; }
 
-/* Logout */
-.logout-btn{display:none;text-align:right;padding:1rem; max-width:1000px;margin:0 auto;}
-.logout-btn button{padding:0.5rem 1.2rem;background:#004080;color:white;border:none;border-radius:50px;font-weight:600;cursor:pointer;transition:0.3s;}
-.logout-btn button:hover{background:#00264d;}
+/* CONFIRMACION */
+#confirmation {
+    display:none;
+    text-align:center;
+    margin-top:20px;
+    padding:20px;
+    background:#d4edda;
+    color:#155724;
+    border-radius:8px;
+    border:1px solid #c3e6cb;
+}
 
-/* Footer */
-footer{text-align:center;padding:2rem 1rem;color:#666;font-size:0.9rem;background:#f1f1f1;}
+/* RESPONSIVE */
+@media (max-width:600px){
+    #login-container { width:90%; padding:30px; }
+    .reserve-form input, .reserve-form select { font-size:14px; padding:10px; }
+    .reserve-form button { font-size:14px; padding:12px; }
+}
 </style>
 </head>
-<body class="login-bg">
+<body>
+
+<!-- HEADER FIJO -->
+<header>
+    <h1>Executive Inn & Suites</h1>
+    <nav>
+        <a href="#rooms">Rooms</a>
+        <a href="#reserve">Reserve</a>
+    </nav>
+</header>
 
 <!-- LOGIN -->
-<div class="modal" id="loginModal">
-    <h2>Employee Login</h2>
-    <form id="loginForm">
-        <input type="email" id="empEmail" placeholder="empleados@company.com" required>
-        <input type="password" id="empPassword" placeholder="Enter password" required>
-        <button type="submit">Login</button>
-    </form>
-    <p id="loginMessage"></p>
+<div id="login-container">
+    <h1>Corporate Lodging Login</h1>
+    <input type="email" id="login-email" placeholder="Corporate Email">
+    <input type="password" id="login-pass" placeholder="Password">
+    <button onclick="login()">Login</button>
 </div>
 
-<!-- CONTENIDO -->
-<div class="container">
+<!-- CONTENIDO INTERNO -->
+<div id="main-content">
+    <h2>Corporate Lodging – Executive Inn & Suites</h2>
+    <img src="foto0.jpg" alt="Hotel" style="width:100%; border-radius:12px; margin-bottom:30px;">
 
-    <!-- HEADER -->
-    <header>
-        <img src="logo.jpg" alt="Logo">
-        <nav>
-            <a href="#hotel">Hotel</a>
-            <a href="#rooms">Rooms</a>
-            <a href="#reservation">Reservation</a>
-        </nav>
-    </header>
-
-    <!-- Logout -->
-    <div class="logout-btn">
-        <button id="logoutBtn">Logout</button>
+    <!-- HABITACION 1 CAMA -->
+    <div class="room" id="rooms">
+        <h3>Standard Room – 1 Bed</h3>
+        <div class="slider" id="slider1">
+            <div class="slides">
+                <img src="foto1.jpg" class="active">
+                <img src="foto2.jpg">
+            </div>
+        </div>
+        <a href="https://square.link/u/rQTpIlWx" target="_blank" class="btn-pay">Pay $79</a>
     </div>
 
-    <!-- HERO -->
-    <section class="hero">
-        <h1>SunPower Corporate Lodging</h1>
-    </section>
-
-    <!-- Hotel Info -->
-    <section class="hotel-info" id="hotel">
-        <h2>Executive Inn & Suites</h2>
-        <p>123 Corporate Blvd, Houston, TX 77002</p>
-        <p>This property is part of SunPower Corporation’s approved lodging network.</p>
-    </section>
-
-    <!-- Rooms -->
-    <section id="rooms">
-        <div class="room">
-            <h3>1 Bed Room</h3>
-            <div class="slider">
-                <div class="slider-images">
-                    <img src="foto1.jpg" alt="1 Bed Room - photo1">
-                    <img src="foto2.jpg" alt="1 Bed Room - photo2">
-                </div>
-                <button class="slider-btn left"><i class="fa fa-chevron-left"></i></button>
-                <button class="slider-btn right"><i class="fa fa-chevron-right"></i></button>
+    <!-- HABITACION 2 CAMAS -->
+    <div class="room">
+        <h3>Double Room – 2 Beds</h3>
+        <div class="slider" id="slider2">
+            <div class="slides">
+                <img src="foto3.jpg" class="active">
+                <img src="foto4.jpg">
             </div>
-            <p>Standard Room – $79/night</p>
         </div>
+        <a href="https://square.link/u/WqXjxpmq" target="_blank" class="btn-pay">Pay $89</a>
+    </div>
 
-        <div class="room">
-            <h3>2 Beds Room</h3>
-            <div class="slider">
-                <div class="slider-images">
-                    <img src="foto3.jpg" alt="2 Beds Room - photo1">
-                    <img src="foto4.jpg" alt="2 Beds Room - photo2">
-                </div>
-                <button class="slider-btn left"><i class="fa fa-chevron-left"></i></button>
-                <button class="slider-btn right"><i class="fa fa-chevron-right"></i></button>
-            </div>
-            <p>Double Room – $89/night</p>
-        </div>
-    </section>
-
-    <!-- Reservation Form -->
-    <section class="reservation-form" id="reservation">
-        <h2>Reserve Your Stay</h2>
-        <form id="bookingForm">
-            <label for="fullName">Full Name</label>
-            <input type="text" id="fullName" required>
-
-            <label for="email">Corporate Email</label>
-            <input type="email" id="email" placeholder="you@company.com" required>
-
-            <label for="roomType">Room Type</label>
-            <select id="roomType" required>
-                <option value="">Select Room</option>
-                <option value="1bed">1 Bed Room - $79/night</option>
-                <option value="2bed">2 Beds Room - $89/night</option>
-            </select>
-
-            <label for="checkin">Check-in Date</label>
-            <input type="date" id="checkin" required>
-
-            <label for="checkout">Check-out Date</label>
-            <input type="date" id="checkout" required>
-
-            <label for="projectID">Project / Job ID (Optional)</label>
-            <input type="text" id="projectID">
-
-            <button type="submit">Submit Reservation</button>
-        </form>
-        <p id="formMessage"></p>
-    </section>
-
+    <!-- FORMULARIO RESERVA -->
+    <div class="reserve-form" id="reserve">
+        <h3>Reserve Your Stay</h3>
+        <input type="text" id="full-name" placeholder="Full Name">
+        <input type="email" id="corporate-email" placeholder="Corporate Email">
+        <input type="date" id="checkin" placeholder="Check-In Date">
+        <input type="date" id="checkout" placeholder="Check-Out Date">
+        <input type="text" id="employee-id" placeholder="Employee ID">
+        <select id="room-select">
+            <option value="1bed">Standard Room – 1 Bed</option>
+            <option value="2bed">Double Room – 2 Beds</option>
+        </select>
+        <button onclick="submitReservation()">Submit Reservation</button>
+        <div id="confirmation">Your reservation has been submitted! Check your email for details.</div>
+    </div>
 </div>
 
-<footer>© 2026 SunPower Corporate Lodging. All rights reserved.</footer>
-
 <script>
-// LOGIN
-const masterEmail = "empleados@company.com";
-const masterPassword = "SunPower2026";
-const modal = document.getElementById('loginModal');
-const loginForm = document.getElementById('loginForm');
-const loginMessage = document.getElementById('loginMessage');
-const container = document.querySelector('.container');
-const logoutBtn = document.getElementById('logoutBtn');
+// LOGIN SIMPLE
+const CORREO = "corporate@company.com";
+const PASS = "123456";
 
-function loginUser(email, password){
-    if(email === masterEmail && password === masterPassword){
-        sessionStorage.setItem('loggedIn','true');
-        showPortal();
-        return true;
-    } else{
-        loginMessage.innerText = "Correo o contraseña incorrectos.";
-        return false;
+function login(){
+    const email = document.getElementById('login-email').value;
+    const pass = document.getElementById('login-pass').value;
+    if(email===CORREO && pass===PASS){
+        document.getElementById('login-container').style.display='none';
+        document.getElementById('main-content').style.display='block';
+        window.scrollTo(0,0);
+    } else {
+        alert('Email or password incorrect!');
     }
 }
 
-function showPortal(){
-    modal.style.display = 'none';
-    container.style.display = 'block';
-    logoutBtn.parentElement.style.display='block';
-    document.body.classList.remove('login-bg');
+// SLIDER SIMPLE
+function initSlider(sliderId){
+    const slides = document.querySelectorAll('#'+sliderId+' .slides img');
+    let index = 0;
+    setInterval(() => {
+        slides[index].classList.remove('active');
+        index = (index+1)%slides.length;
+        slides[index].classList.add('active');
+    }, 3000);
 }
 
-logoutBtn.addEventListener('click', function(){
-    sessionStorage.removeItem('loggedIn');
-    container.style.display = 'none';
-    modal.style.display = 'block';
-    document.body.classList.add('login-bg');
-});
+initSlider('slider1');
+initSlider('slider2');
 
-window.addEventListener('load', function(){
-    if(sessionStorage.getItem('loggedIn') === 'true'){
-        showPortal();
-    }
-});
-
-loginForm.addEventListener('submit', function(e){
-    e.preventDefault();
-    const email = document.getElementById('empEmail').value;
-    const password = document.getElementById('empPassword').value;
-    loginUser(email,password);
-});
-
-// SLIDER
-document.querySelectorAll('.room').forEach(room=>{
-    const images = room.querySelector('.slider-images');
-    const slides = images.querySelectorAll('img');
-    let index=0;
-    room.querySelector('.slider-btn.left').onclick = ()=>{
-        index=(index>0)?index-1:slides.length-1;
-        images.style.transform=`translateX(-${index*100}%)`;
-    }
-    room.querySelector('.slider-btn.right').onclick = ()=>{
-        index=(index<slides.length-1)?index+1:0;
-        images.style.transform=`translateX(-${index*100}%)`;
-    }
-});
-
-// EMAIL + PDF
-emailjs.init("TU_USER_ID"); // Reemplaza con tu userID EmailJS
-
-document.getElementById('bookingForm').addEventListener('submit', function(e){
-    e.preventDefault();
-    const name = document.getElementById('fullName').value;
-    const email = document.getElementById('email').value;
-    const room = document.getElementById('roomType').value;
+// FORMULARIO DE RESERVA SIMULADO
+function submitReservation(){
+    const name = document.getElementById('full-name').value;
+    const email = document.getElementById('corporate-email').value;
     const checkin = document.getElementById('checkin').value;
     const checkout = document.getElementById('checkout').value;
-    const project = document.getElementById('projectID').value;
+    const employee = document.getElementById('employee-id').value;
+    const room = document.getElementById('room-select').value;
 
-    const { jsPDF } = window.jspdf;
-    const doc = new jsPDF();
-    doc.setFontSize(16);
-    doc.text("SunPower Corporate Lodging Reservation", 20, 20);
-    doc.setFontSize(12);
-    doc.text(`Name: ${name}`, 20, 40);
-    doc.text(`Email: ${email}`, 20, 50);
-    doc.text(`Room Type: ${room}`, 20, 60);
-    doc.text(`Check-in: ${checkin}`, 20, 70);
-    doc.text(`Check-out: ${checkout}`, 20, 80);
-    doc.text(`Project/Job ID: ${project}`, 20, 90);
+    if(!name || !email || !checkin || !checkout || !employee){
+        alert('Please fill all fields.');
+        return;
+    }
 
-    const formData = { name, email, room, checkin, checkout, project };
-    emailjs.send("TU_SERVICE_ID","TU_TEMPLATE_ID",formData)
-    .then(response=>{
-        console.log("Email enviado!", response.status, response.text);
-        document.getElementById('formMessage').innerText="Reservation submitted successfully! PDF ready to download.";
-        doc.save(`${name}_reservation.pdf`);
-        document.getElementById('bookingForm').reset();
-    }, error=>{
-        console.error("Error enviando email:", error);
-        document.getElementById('formMessage').innerText="Error sending reservation. Try again.";
-    });
-});
+    // Mostrar mensaje de confirmación
+    document.getElementById('confirmation').style.display = 'block';
+
+    // Aquí puedes conectar a backend / enviar correo
+    console.log({name,email,checkin,checkout,employee,room});
+}
 </script>
+
 </body>
 </html>
