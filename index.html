@@ -5,115 +5,121 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>SunPower Corporate Lodging</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<!-- Librerías para PDF y EmailJS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Arial',sans-serif;}
 body{background:#f5f7fa;color:#333;line-height:1.6;scroll-behavior:smooth;}
-header{position:relative;height:80vh;background:url('hero-hotel.jpg') center/cover no-repeat;display:flex;justify-content:center;align-items:center;text-align:center;color:white;}
-header::after{content:"";position:absolute;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.5);}
-header .hero-content{position:relative; z-index:2; max-width:800px;}
-header h1{font-size:3rem;margin-bottom:1rem;}
-header p{font-size:1.2rem;margin-bottom:2rem;}
-header a.button{background:#ffcc00;color:#004080;padding:1rem 2rem;border-radius:50px;text-decoration:none;font-weight:600;transition:0.3s;}
-header a.button:hover{background:#e6b800;}
-nav{background:#003366;display:flex;justify-content:center;padding:0.7rem 0;position:sticky;top:0;z-index:10;}
-nav a{color:white;text-decoration:none;margin:0 1.5rem;font-weight:600;transition:0.3s;}
-nav a:hover{color:#ffcc00;}
-.container{max-width:1100px;margin:3rem auto;padding:1rem;display:none;} /* Oculto hasta login */
-.hotel-info{display:flex;flex-wrap:wrap;gap:2rem;align-items:center;}
-.hotel-info img{flex:1 1 450px;border-radius:12px;}
-.hotel-details{flex:1 1 450px;}
-.hotel-details h2{color:#004080;font-size:2rem;margin-bottom:1rem;}
-.hotel-details p{margin-bottom:0.7rem;font-size:1rem;}
-.hotel-details ul{list-style:none;padding:0;margin-top:1rem;}
-.hotel-details li{margin-bottom:0.5rem;font-weight:500;}
-.hotel-details li i{color:#004080;margin-right:0.5rem;}
-.slider{position:relative;overflow:hidden;border-radius:12px;margin:2rem 0;display:none;} /* Oculto hasta login */
+body.login-bg{
+  background: url('logo.jpg') center/cover no-repeat;
+  height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+
+/* Login Modal */
+.modal{display:block;position:relative;z-index:1000;width:90%;max-width:400px;background:rgba(255,255,255,0.95);padding:2rem;border-radius:12px;box-shadow:0 6px 15px rgba(0,0,0,0.2);}
+.modal h2{text-align:center;margin-bottom:1.5rem;color:#004080;}
+#loginForm input{width:100%;padding:0.8rem;margin-bottom:1rem;border-radius:8px;border:1px solid #ccc;}
+#loginForm button{width:100%;padding:0.8rem;border-radius:50px;background:#004080;color:white;border:none;font-weight:600;font-size:1rem;cursor:pointer;transition:0.3s;}
+#loginForm button:hover{background:#00264d;}
+#loginMessage{text-align:center;margin-top:1rem;font-weight:500;color:red;}
+
+/* Contenedor oculto hasta login */
+.container{max-width:900px;margin:3rem auto;padding:1rem;display:none;}
+
+/* Logout Button */
+.logout-btn{display:none;margin:1rem auto;text-align:center;}
+.logout-btn button{padding:0.8rem 1.5rem;background:#004080;color:white;border:none;border-radius:50px;cursor:pointer;transition:0.3s;font-weight:600;}
+.logout-btn button:hover{background:#00264d;}
+
+/* Hotel Info */
+.hotel-info{margin-bottom:2rem;}
+.hotel-info h2{color:#004080;font-size:2rem;margin-bottom:1rem;text-align:center;}
+.hotel-info p{text-align:center;margin-bottom:1rem;}
+.room{background:#fff;padding:1rem;border-radius:12px;box-shadow:0 6px 15px rgba(0,0,0,0.1);margin-bottom:2rem;}
+.room h3{color:#004080;text-align:center;margin-bottom:0.5rem;}
+.slider{position:relative;overflow:hidden;border-radius:12px;margin-top:1rem;}
 .slider-images{display:flex;transition:transform 0.5s ease-in-out;}
 .slider-images img{width:100%;flex-shrink:0;border-radius:12px;}
 .slider-btn{position:absolute;top:50%;transform:translateY(-50%);background:rgba(0,0,0,0.4);border:none;color:white;font-size:2rem;padding:0.5rem 1rem;cursor:pointer;border-radius:6px;}
 .slider-btn.left{left:10px;}
 .slider-btn.right{right:10px;}
-.reservation-form{background:#fff;padding:2rem;border-radius:12px;box-shadow:0 6px 15px rgba(0,0,0,0.1);margin:2rem 0;display:none;} /* Oculto hasta login */
+
+/* Reservation Form */
+.reservation-form{background:#fff;padding:2rem;border-radius:12px;box-shadow:0 6px 15px rgba(0,0,0,0.1);margin-bottom:2rem;}
 .reservation-form h2{text-align:center;color:#004080;margin-bottom:1.5rem;}
 form label{display:block;margin-top:1rem;margin-bottom:0.3rem;font-weight:500;}
 form input,form select{width:100%;padding:0.8rem;border:1px solid #ccc;border-radius:8px;transition:0.3s;}
 form input:focus,form select:focus{border-color:#004080;outline:none;}
 form button{margin-top:1.5rem;width:100%;padding:1rem;background:#004080;color:white;border:none;border-radius:50px;font-size:1rem;cursor:pointer;transition:0.3s;font-weight:600;}
 form button:hover{background:#00264d;}
-#formMessage{margin-top:1rem;font-weight:500;text-align:center;}
+#formMessage{margin-top:1rem;font-weight:500;text-align:center;color:green;}
+
 footer{text-align:center;padding:2rem 1rem;color:#666;font-size:0.9rem;}
-.modal{display:block;position:fixed;z-index:1000;left:0;top:0;width:100%;height:100%;background-color:rgba(0,0,0,0.5);}
-.modal-content{background:#fff;margin:10% auto;padding:2rem;border-radius:12px;width:90%;max-width:400px;position:relative;animation:fadeIn 0.5s;}
-@keyframes fadeIn{from{opacity:0;transform:translateY(-20px);}to{opacity:1;transform:translateY(0);}}
-#loginForm input{margin-bottom:1rem;padding:0.7rem;border-radius:8px;border:1px solid #ccc;width:100%;}
-#loginForm button{width:100%;padding:0.8rem;border-radius:50px;background:#004080;color:white;border:none;font-weight:600;font-size:1rem;cursor:pointer;transition:0.3s;}
-#loginForm button:hover{background:#00264d;}
-#loginMessage{text-align:center;margin-top:1rem;font-weight:500;}
 </style>
 </head>
 <body>
 
-<!-- Hero -->
-<header>
-    <div class="hero-content">
-        <h1>SunPower Corporate Lodging</h1>
-        <p>Private lodging for employees and contractors.</p>
-    </div>
-</header>
-
-<!-- Nav -->
-<nav>
-    <a href="#hotel">Hotel Info</a>
-    <a href="#gallery">Gallery</a>
-    <a href="#reserve">Reserve</a>
-</nav>
-
 <!-- Login Modal -->
-<div id="loginModal" class="modal">
-  <div class="modal-content">
+<div class="modal" id="loginModal">
     <h2>Employee Login</h2>
     <form id="loginForm">
-      <label>Corporate Email</label>
-      <input type="email" id="empEmail" placeholder="empleados@company.com" required>
-      <label>Password</label>
-      <input type="password" id="empPassword" placeholder="Enter password" required>
-      <button type="submit">Login</button>
+        <input type="email" id="empEmail" placeholder="empleados@company.com" required>
+        <input type="password" id="empPassword" placeholder="Enter password" required>
+        <button type="submit">Login</button>
     </form>
     <p id="loginMessage"></p>
-  </div>
 </div>
 
-<!-- Contenido Corporativo (oculto hasta login) -->
+<!-- Contenido Corporativo -->
 <div class="container">
+
+    <!-- Logout -->
+    <div class="logout-btn">
+        <button id="logoutBtn">Logout</button>
+    </div>
+
     <!-- Hotel Info -->
-    <section class="hotel-info" id="hotel">
-        <img src="hotel-photo1.jpg" alt="Executive Inn & Suites">
-        <div class="hotel-details">
-            <h2>Executive Inn & Suites</h2>
-            <p>123 Corporate Blvd, Houston, TX 77002</p>
-            <p>This property is part of SunPower Corporation’s approved lodging network.</p>
-            <ul>
-                <li><i class="fa fa-wifi"></i> Free Wi-Fi</li>
-                <li><i class="fa fa-coffee"></i> Breakfast included</li>
-                <li><i class="fa fa-dumbbell"></i> Fitness center</li>
-                <li><i class="fa fa-concierge-bell"></i> 24/7 Front Desk</li>
-            </ul>
-        </div>
+    <section class="hotel-info">
+        <h2>Executive Inn & Suites</h2>
+        <p>123 Corporate Blvd, Houston, TX 77002</p>
+        <p>This property is part of SunPower Corporation’s approved lodging network.</p>
     </section>
 
-    <!-- Gallery Slider -->
-    <section class="slider" id="gallery">
-        <div class="slider-images">
-            <img src="gallery1.jpg" alt="Hotel Area 1">
-            <img src="gallery2.jpg" alt="Hotel Area 2">
-            <img src="gallery3.jpg" alt="Hotel Area 3">
+    <!-- Habitaciones -->
+    <div class="room">
+        <h3>1 Bed Room</h3>
+        <div class="slider">
+            <div class="slider-images">
+                <img src="foto1.jpg" alt="1 Bed Room - photo1">
+                <img src="foto2.jpg" alt="1 Bed Room - photo2">
+            </div>
+            <button class="slider-btn left"><i class="fa fa-chevron-left"></i></button>
+            <button class="slider-btn right"><i class="fa fa-chevron-right"></i></button>
         </div>
-        <button class="slider-btn left"><i class="fa fa-chevron-left"></i></button>
-        <button class="slider-btn right"><i class="fa fa-chevron-right"></i></button>
-    </section>
+        <p style="text-align:center;margin-top:0.5rem;">Standard Room – $79/night</p>
+    </div>
+
+    <div class="room">
+        <h3>2 Beds Room</h3>
+        <div class="slider">
+            <div class="slider-images">
+                <img src="foto3.jpg" alt="2 Beds Room - photo1">
+                <img src="foto4.jpg" alt="2 Beds Room - photo2">
+            </div>
+            <button class="slider-btn left"><i class="fa fa-chevron-left"></i></button>
+            <button class="slider-btn right"><i class="fa fa-chevron-right"></i></button>
+        </div>
+        <p style="text-align:center;margin-top:0.5rem;">Double Room – $89/night</p>
+    </div>
 
     <!-- Reservation Form -->
-    <section class="reservation-form" id="reserve">
+    <section class="reservation-form">
         <h2>Reserve Your Stay</h2>
         <form id="bookingForm">
             <label for="fullName">Full Name</label>
@@ -125,8 +131,8 @@ footer{text-align:center;padding:2rem 1rem;color:#666;font-size:0.9rem;}
             <label for="roomType">Room Type</label>
             <select id="roomType" required>
                 <option value="">Select Room</option>
-                <option value="standard">Standard Room - $79/night</option>
-                <option value="double">Double Room - $89/night</option>
+                <option value="1bed">1 Bed Room - $79/night</option>
+                <option value="2bed">2 Beds Room - $89/night</option>
             </select>
 
             <label for="checkin">Check-in Date</label>
@@ -142,6 +148,7 @@ footer{text-align:center;padding:2rem 1rem;color:#666;font-size:0.9rem;}
         </form>
         <p id="formMessage"></p>
     </section>
+
 </div>
 
 <footer>© 2026 SunPower Corporate Lodging. All rights reserved.</footer>
@@ -155,27 +162,55 @@ const modal = document.getElementById('loginModal');
 const loginForm = document.getElementById('loginForm');
 const loginMessage = document.getElementById('loginMessage');
 const container = document.querySelector('.container');
-const slider = document.querySelector('.slider');
-const reserveForm = document.querySelector('.reservation-form');
+const logoutBtn = document.getElementById('logoutBtn');
 
-// Login único
+// Función de login
+function loginUser(email, password){
+    if(email === masterEmail && password === masterPassword){
+        sessionStorage.setItem('loggedIn','true');
+        showPortal();
+        return true;
+    } else{
+        loginMessage.innerText = "Correo o contraseña incorrectos.";
+        return false;
+    }
+}
+
+// Mostrar portal
+function showPortal(){
+    modal.style.display = 'none';
+    container.style.display = 'block';
+    logoutBtn.parentElement.style.display='block';
+    document.body.classList.remove('login-bg');
+}
+
+// Logout
+logoutBtn.addEventListener('click', function(){
+    sessionStorage.removeItem('loggedIn');
+    container.style.display = 'none';
+    modal.style.display = 'block';
+    document.body.classList.add('login-bg');
+});
+
+// Verificar sesión al cargar
+window.addEventListener('load', function(){
+    if(sessionStorage.getItem('loggedIn') === 'true'){
+        showPortal();
+    }
+});
+
+// Login Form
 loginForm.addEventListener('submit', function(e){
     e.preventDefault();
     const email = document.getElementById('empEmail').value;
     const password = document.getElementById('empPassword').value;
-
-    if(email === masterEmail && password === masterPassword){
-        modal.style.display = 'none';
-        container.style.display = 'block';
-        slider.style.display = 'block';
-        reserveForm.style.display = 'block';
-    } else{
-        loginMessage.style.color = 'red';
-        loginMessage.innerText = "Correo o contraseña incorrectos.";
-    }
+    loginUser(email,password);
 });
 
-// Reservation Form
+// Inicializar EmailJS
+emailjs.init("TU_USER_ID"); // Reemplaza con tu userID EmailJS
+
+// Reservation Form: Email + PDF
 document.getElementById('bookingForm').addEventListener('submit', function(e){
     e.preventDefault();
     const name = document.getElementById('fullName').value;
@@ -185,20 +220,41 @@ document.getElementById('bookingForm').addEventListener('submit', function(e){
     const checkout = document.getElementById('checkout').value;
     const project = document.getElementById('projectID').value;
 
-    console.log("Reservation submitted:", { name, email, room, checkin, checkout, project });
-    document.getElementById('formMessage').style.color='green';
-    document.getElementById('formMessage').innerText="Reservation submitted successfully! Our team will contact you.";
-    document.getElementById('bookingForm').reset();
+    // Generar PDF
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF();
+    doc.setFontSize(16);
+    doc.text("SunPower Corporate Lodging Reservation", 20, 20);
+    doc.setFontSize(12);
+    doc.text(`Name: ${name}`, 20, 40);
+    doc.text(`Email: ${email}`, 20, 50);
+    doc.text(`Room Type: ${room}`, 20, 60);
+    doc.text(`Check-in: ${checkin}`, 20, 70);
+    doc.text(`Check-out: ${checkout}`, 20, 80);
+    doc.text(`Project/Job ID: ${project}`, 20, 90);
+
+    // Enviar email via EmailJS
+    const formData = { name, email, room, checkin, checkout, project };
+    emailjs.send("TU_SERVICE_ID","TU_TEMPLATE_ID",formData)
+    .then(response=>{
+        console.log("Email enviado!", response.status, response.text);
+        document.getElementById('formMessage').innerText="Reservation submitted successfully! PDF ready to download.";
+        doc.save(`${name}_reservation.pdf`);
+        document.getElementById('bookingForm').reset();
+    }, error=>{
+        console.error("Error enviando email:", error);
+        document.getElementById('formMessage').innerText="Error sending reservation. Try again.";
+    });
 });
 
-// Slider
-const sliderImages = document.querySelector('.slider-images');
-const slides = document.querySelectorAll('.slider-images img');
-let index=0;
-const total=slides.length;
-document.querySelector('.slider-btn.left').onclick=()=>{ index=(index>0)?index-1:total-1; sliderImages.style.transform=`translateX(-${index*100}%)`; }
-document.querySelector('.slider-btn.right').onclick=()=>{ index=(index<total-1)?index+1:0; sliderImages.style.transform=`translateX(-${index*100}%)`; }
+// Slider funcional para cada room
+document.querySelectorAll('.room').forEach(room=>{
+    const images = room.querySelector('.slider-images');
+    const slides = images.querySelectorAll('img');
+    let index=0;
+    room.querySelector('.slider-btn.left').onclick=()=>{ index=(index>0)?index-1:slides.length-1; images.style.transform=`translateX(-${index*100}%)`; }
+    room.querySelector('.slider-btn.right').onclick=()=>{ index=(index<slides.length-1)?index+1:0; images.style.transform=`translateX(-${index*100}%)`; }
+});
 </script>
-
 </body>
 </html>
