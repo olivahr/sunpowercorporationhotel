@@ -1,13 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>SunPower Corporate Lodging – Executive Inn & Suites</title>
 <link rel="stylesheet" href="style.css">
 <script src="app.js" defer></script>
 </head>
-
 <body>
 
 <script>
@@ -15,6 +14,7 @@ if (sessionStorage.getItem("auth") !== "true") {
   window.location.href = "index.html";
 }
 
+// Reservar habitación
 function reserveRoom(event, url){
   event.preventDefault();
   const form = event.target;
@@ -22,7 +22,12 @@ function reserveRoom(event, url){
   const empID = form.querySelector('input[placeholder="Employee ID"]').value;
   const checkIn = form.querySelector('input[type="date"]').value;
 
-  const reservation = {name, empID, checkIn, room: form.closest('.room-card').querySelector('h3').innerText};
+  const reservation = {
+    name,
+    empID,
+    checkIn,
+    room: form.closest('.room-card').querySelector('h3').innerText
+  };
   let saved = JSON.parse(localStorage.getItem('reservations')||'[]');
   saved.push(reservation);
   localStorage.setItem('reservations', JSON.stringify(saved));
@@ -30,6 +35,7 @@ function reserveRoom(event, url){
   window.open(url, "_blank");
 }
 
+// Logout
 function logout(){
   sessionStorage.clear();
   window.location.href = "index.html";
@@ -53,7 +59,7 @@ function logout(){
 
 <section class="hotel-card">
   <h2>Executive Inn & Suites</h2>
-  <p>Approved corporate lodging exclusively for SunPower employees and contractors on work assignments. Comfortable rooms, high-speed Wi-Fi, private bathrooms, free parking, and all amenities needed for a productive stay.</p>
+  <p>Approved corporate lodging exclusively for SunPower employees and contractors. Comfortable rooms, high-speed Wi-Fi, private bathrooms, free parking, and all amenities needed for a productive stay.</p>
   
   <ul class="amenities">
     <li>Free Parking</li>
@@ -131,20 +137,20 @@ function logout(){
   </form>
 </section>
 
-<!-- POLÍTICAS CORPORATIVAS – CUADRADO PREMIUM -->
+<!-- POLÍTICAS CORPORATIVAS -->
 <section class="security-policy">
   <div class="policy-card">
     <h3>Política de Seguridad y Corporativa</h3>
     <ul>
-      <li>Reservas exclusivamente para empleados y contratistas de SunPower.</li>
-      <li>Los datos personales se usan solo para fines de reservación corporativa.</li>
-      <li>Habitaciones monitoreadas para seguridad y control.</li>
-      <li>Pagos procesados de manera segura vía Square.</li>
-      <li>Check-out obligatorio al finalizar la asignación de trabajo.</li>
-      <li>Uso exclusivo corporativo: no se permiten reservas públicas.</li>
-      <li>Los empleados deben cumplir con las normas de alojamiento durante la estadía.</li>
+      <li>Reservas solo para empleados y contratistas SunPower.</li>
+      <li>Datos personales solo para reservas corporativas.</li>
+      <li>Habitaciones monitoreadas para seguridad.</li>
+      <li>Pagos seguros vía Square.</li>
+      <li>Check-out al finalizar asignación laboral.</li>
+      <li>Uso corporativo exclusivo.</li>
+      <li>Cumplir normas de alojamiento durante la estadía.</li>
     </ul>
-    <p>Este alojamiento garantiza una estadía segura y productiva para todos los empleados fuera de la oficina principal.</p>
+    <p>Garantizamos una estadía segura y productiva para empleados fuera de oficina.</p>
   </div>
 </section>
 
