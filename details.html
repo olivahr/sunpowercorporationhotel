@@ -21,23 +21,22 @@ function reserveRoom(event, url){
   const name = form.querySelector('input[placeholder="Full Name"]').value;
   const empID = form.querySelector('input[placeholder="Employee ID"]').value;
   const checkIn = form.querySelector('input[type="date"]').value;
-  
-  // Guardar en localStorage (opcional)
+
   const reservation = {name, empID, checkIn, room: form.closest('.room-card').querySelector('h3').innerText};
   let saved = JSON.parse(localStorage.getItem('reservations')||'[]');
   saved.push(reservation);
   localStorage.setItem('reservations', JSON.stringify(saved));
-  
-  // Redirigir a Square
+
   window.open(url, "_blank");
 }
+
 function logout(){
   sessionStorage.clear();
   window.location.href = "index.html";
 }
 </script>
 
-<header class="app-header booking-header">
+<header class="app-header">
   <div class="header-left">
     <img src="logo.jpg" class="logo-small" alt="SunPower Logo">
     <div class="header-text">
@@ -86,7 +85,7 @@ function logout(){
   </div>
 
   <div class="room-details">
-    <p>1 Queen Bed, private bathroom, free high-speed Wi-Fi, flat-screen TV, desk, complimentary coffee, air conditioning. Corporate use only.</p>
+    <p>1 Queen Bed · Private Bathroom · Wi-Fi · Flat-screen TV · Desk · Coffee · Air Conditioning</p>
   </div>
 
   <form class="reserve-form" onsubmit="return reserveRoom(event, 'https://square.link/u/rQTpIlWx')">
@@ -118,7 +117,7 @@ function logout(){
   </div>
 
   <div class="room-details">
-    <p>2 Beds, private bathroom, free high-speed Wi-Fi, flat-screen TV, desk, complimentary coffee, air conditioning. Corporate use only.</p>
+    <p>2 Beds · Private Bathroom · Wi-Fi · Flat-screen TV · Desk · Coffee · Air Conditioning</p>
   </div>
 
   <form class="reserve-form" onsubmit="return reserveRoom(event, 'https://square.link/u/WqXjxpmq')">
@@ -132,20 +131,20 @@ function logout(){
   </form>
 </section>
 
-<!-- POLICIES -->
+<!-- POLÍTICAS CORPORATIVAS – CUADRADO PREMIUM -->
 <section class="security-policy">
   <div class="policy-card">
-    <h3>Corporate Policies & Security</h3>
+    <h3>Política de Seguridad y Corporativa</h3>
     <ul>
-      <li>All reservations are for SunPower employees and contractors only.</li>
-      <li>Personal data collected is used exclusively for booking and corporate purposes.</li>
-      <li>Rooms are monitored for safety and security.</li>
-      <li>Payments are processed securely via Square.</li>
-      <li>Check-out required at end of work assignment.</li>
-      <li>Corporate usage only: public bookings are not allowed.</li>
-      <li>Employees must comply with SunPower lodging regulations during the stay.</li>
+      <li>Reservas exclusivamente para empleados y contratistas de SunPower.</li>
+      <li>Los datos personales se usan solo para fines de reservación corporativa.</li>
+      <li>Habitaciones monitoreadas para seguridad y control.</li>
+      <li>Pagos procesados de manera segura vía Square.</li>
+      <li>Check-out obligatorio al finalizar la asignación de trabajo.</li>
+      <li>Uso exclusivo corporativo: no se permiten reservas públicas.</li>
+      <li>Los empleados deben cumplir con las normas de alojamiento durante la estadía.</li>
     </ul>
-    <p>This lodging ensures a safe and productive stay for all employees working away from home office.</p>
+    <p>Este alojamiento garantiza una estadía segura y productiva para todos los empleados fuera de la oficina principal.</p>
   </div>
 </section>
 
@@ -163,6 +162,5 @@ function slidePrev(btn){
   slider.scrollBy({left: -slider.offsetWidth, behavior:'smooth'});
 }
 </script>
-
 </body>
 </html>
