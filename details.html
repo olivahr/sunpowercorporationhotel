@@ -3,32 +3,18 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Corporate Reservation - SunPower</title>
-<style>
-body { margin:0; font-family:-apple-system, BlinkMacSystemFont, sans-serif; background:#f2f4f7; color:#111; }
-header { display:flex; align-items:center; gap:10px; padding:12px 16px; background:#fff; box-shadow:0 2px 6px rgba(0,0,0,.1);}
-.logo-small { height:36px; }
-header .header-text { display:flex; flex-direction:column; font-size:14px; }
-.hero img { width:100%; height:220px; object-fit:cover; border-radius:12px; margin-bottom:14px; }
-.hotel-card, .room-card { background:#fff; margin:14px; padding:16px; border-radius:16px; box-shadow:0 4px 12px rgba(0,0,0,.08);}
-.amenities { list-style:none; padding:0; display:grid; grid-template-columns:1fr 1fr; gap:6px; }
-.room-header { display:flex; justify-content:space-between; align-items:center; }
-.price { font-weight:700; }
-.slider { display:flex; gap:10px; overflow-x:auto; margin:10px 0; }
-.slider img { height:140px; border-radius:12px; }
-.reserve-form { display:flex; flex-direction:column; gap:8px; margin-top:10px; }
-.reserve-form input, .pay-btn { padding:10px; border-radius:8px; border:1px solid #ccc; font-size:14px; }
-.pay-btn { background:#0071c2; color:#fff; font-weight:700; border:none; cursor:pointer; margin-top:8px; text-align:center; text-decoration:none; display:block; }
-.footer { text-align:center; padding:18px; font-size:13px; color:#555; margin-top:40px; border-top:1px solid #ddd; }
-</style>
+<title>Corporate Reservation</title>
+<link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-<header>
-  <img src="logo.jpg" class="logo-small" alt="SunPower" />
-  <div class="header-text">
-    <strong>SunPower</strong>
-    <span>by Executive Inn & Suites</span>
+<header class="app-header">
+  <div class="header-left">
+    <img src="logo.jpg" class="logo-small" alt="SunPower" />
+    <div class="header-text">
+      <strong>SunPower</strong>
+      <span>by Executive Inn & Suites</span>
+    </div>
   </div>
 </header>
 
@@ -38,7 +24,8 @@ header .header-text { display:flex; flex-direction:column; font-size:14px; }
 
 <section class="hotel-card">
   <h2>Executive Inn & Suites</h2>
-  <p>Approved corporate lodging for SunPower employees and contractors. Weekly rates available for employees only.</p>
+  <p>Approved corporate lodging for SunPower employees and contractors.</p>
+
   <ul class="amenities">
     <li>Free Parking</li>
     <li>High-Speed Wi-Fi</li>
@@ -56,25 +43,26 @@ header .header-text { display:flex; flex-direction:column; font-size:14px; }
     <span class="price">$79 / week</span>
   </div>
 
-  <div class="slider">
-    <img src="foto1.jpg" />
-    <img src="foto2.jpg" />
+  <div class="slider-container">
+    <div class="slider">
+      <img src="foto1.jpg" />
+      <img src="foto2.jpg" />
+    </div>
   </div>
 
-  <details>
-    <summary>View details & Reserve</summary>
+  <div class="room-details">
     <p>1 Queen Bed · Private Bathroom · Wi-Fi · Parking</p>
-
     <form class="reserve-form">
       <input type="text" placeholder="Full Name" required />
       <input type="text" placeholder="Employee ID" required />
+      <label>Check-in date</label>
       <input type="date" required />
-
-      <a class="pay-btn" href="https://buy.stripe.com/aFaaEXdJK82Ygyyc8UfEk01" target="_blank">
-        RESERVE & PAY $79
-      </a>
+      <label>Check-out</label>
+      <input type="text" value="At the end of the job" disabled />
+      <!-- LINK DE PAGO STRIPE -->
+      <a class="pay-btn" href="https://buy.stripe.com/aFaaEXdJK82Ygyyc8UfEk01" target="_blank">Reserve & Pay $79</a>
     </form>
-  </details>
+  </div>
 </section>
 
 <!-- ROOM 2 -->
@@ -84,30 +72,43 @@ header .header-text { display:flex; flex-direction:column; font-size:14px; }
     <span class="price">$89 / week</span>
   </div>
 
-  <div class="slider">
-    <img src="foto3.jpg" />
-    <img src="foto4.jpg" />
+  <div class="slider-container">
+    <div class="slider">
+      <img src="foto3.jpg" />
+      <img src="foto4.jpg" />
+    </div>
   </div>
 
-  <details>
-    <summary>View details & Reserve</summary>
+  <div class="room-details">
     <p>2 Beds · Private Bathroom · Wi-Fi · Parking</p>
-
     <form class="reserve-form">
       <input type="text" placeholder="Full Name" required />
       <input type="text" placeholder="Employee ID" required />
+      <label>Check-in date</label>
       <input type="date" required />
-
-      <a class="pay-btn" href="https://buy.stripe.com/6oU9ATaxy3MIaaa8WIfEk02" target="_blank">
-        RESERVE & PAY $89
-      </a>
+      <label>Check-out</label>
+      <input type="text" value="At the end of the job" disabled />
+      <!-- LINK DE PAGO STRIPE -->
+      <a class="pay-btn dark" href="https://buy.stripe.com/6oU9ATaxy3MIaaa8WIfEk02" target="_blank">Reserve & Pay $89</a>
     </form>
-  </details>
+  </div>
+</section>
+
+<!-- POLICIES -->
+<section class="security-policy">
+  <div class="policy-card">
+    <h3>Corporate Security & Privacy Policies</h3>
+    <ul>
+      <li>Access limited to SunPower employees and contractors.</li>
+      <li>All personal information is securely stored.</li>
+      <li>Reservation data is private and confidential.</li>
+    </ul>
+    <p>Please adhere to all corporate lodging guidelines while staying.</p>
+  </div>
 </section>
 
 <footer class="footer">
-©️ 2026 SunPower Corporation · Corporate Lodging · Security & Privacy Policies<br>
-Only for SunPower employees
+  © 2026 SunPower Corporation · Corporate Lodging Agreement
 </footer>
 
 </body>
