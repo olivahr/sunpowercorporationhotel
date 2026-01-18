@@ -6,7 +6,6 @@
 <title>Corporate Reservation - SunPower</title>
 <link rel="stylesheet" href="style.css" />
 <style>
-/* --- Estilo premium para details.html --- */
 body { margin:0; font-family:-apple-system, BlinkMacSystemFont, sans-serif; background:#f2f4f7; color:#111; }
 header { display:flex; align-items:center; gap:10px; padding:12px 16px; background:#fff; box-shadow:0 2px 6px rgba(0,0,0,.1);}
 .logo-small { height:36px; }
@@ -25,10 +24,7 @@ header .header-text { display:flex; flex-direction:column; font-size:14px; }
 .pay-btn { display:block; margin-top:10px; padding:14px; text-align:center; background:#0071c2; color:#fff; border-radius:12px; text-decoration:none; font-weight:700; }
 .footer { text-align:center; padding:18px; font-size:13px; color:#555; margin-top:40px; border-top:1px solid #ddd; }
 </style>
-
-<!-- Carga Stripe Public Key -->
 <script src="https://js.stripe.com/v3/"></script>
-
 </head>
 <body>
 
@@ -73,17 +69,13 @@ header .header-text { display:flex; flex-direction:column; font-size:14px; }
     <summary>View details & Reserve</summary>
     <p>1 Queen Bed · Private Bathroom · Wi-Fi · Parking</p>
 
-    <form class="reserve-form">
+    <form class="reserve-form" id="form1">
       <input type="text" id="name1" placeholder="Full Name" required />
       <input type="text" id="empid1" placeholder="Employee ID" required />
       <input type="date" id="checkin1" placeholder="Check-in date" required />
 
-      <div id="payment-section-1" style="display:none;">
-        <div id="card-element-1"></div>
-        <button type="button" id="pay-button-1">Pay $79</button>
-      </div>
-
-      <button type="button" onclick="showPayment(1)">Reserve</button>
+      <div id="card-element-1" style="margin-top:10px;"></div>
+      <button type="submit" id="pay-button-1">Pay $79</button>
     </form>
   </details>
 </section>
@@ -104,17 +96,13 @@ header .header-text { display:flex; flex-direction:column; font-size:14px; }
     <summary>View details & Reserve</summary>
     <p>2 Beds · Private Bathroom · Wi-Fi · Parking</p>
 
-    <form class="reserve-form">
+    <form class="reserve-form" id="form2">
       <input type="text" id="name2" placeholder="Full Name" required />
       <input type="text" id="empid2" placeholder="Employee ID" required />
       <input type="date" id="checkin2" placeholder="Check-in date" required />
 
-      <div id="payment-section-2" style="display:none;">
-        <div id="card-element-2"></div>
-        <button type="button" id="pay-button-2">Pay $89</button>
-      </div>
-
-      <button type="button" onclick="showPayment(2)">Reserve</button>
+      <div id="card-element-2" style="margin-top:10px;"></div>
+      <button type="submit" id="pay-button-2">Pay $89</button>
     </form>
   </details>
 </section>
@@ -125,26 +113,43 @@ Only for SunPower employees
 </footer>
 
 <script>
-const stripe = Stripe("pk_live_51Sqi7FHT5bkIm6x5SVitLxim4LhIzTKPmLYFeR1HwcLKukM8s5ikkKRrGDyFpUzm2GC7ARf7z3zbRQjCoCkFgh7L00S5kY0ga1");
+const stripe = Stripe("pk_live_51Sqi7FHT5bkIm6x5SVitLxim4LhIzTKPmLYFeR1HwcLKukM8s5ikkKRrGDyFpUzm2GC7ARf7z3zbRQjCoCkFgh7L00S5kY0ga1"); // Public Key
 
-function showPayment(roomNumber){
-  document.getElementById(`payment-section-${roomNumber}`).style.display = "block";
-  
-  const payButton = document.getElementById(`pay-button-${roomNumber}`);
-  payButton.onclick = async () => {
-    const name = document.getElementById(`name${roomNumber}`).value;
-    const empid = document.getElementById(`empid${roomNumber}`).value;
-    const checkin = document.getElementById(`checkin${roomNumber}`).value;
+// Crear Elements
+const elements1 = stripe.elements();
+const card1 = elements1.create('card');
+card1.mount('#card-element-1');
 
-    if(!name || !empid || !checkin){
-      alert("Please fill all fields.");
-      return;
+const elements2 = stripe.elements();
+const card2 = elements2.create('card');
+card2.mount('#card-element-2');
+
+// Función genérica para manejar pagos
+function handlePayment(formId, card, amount) {
+  const form = document.getElementById(formId);
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    // Crear PaymentIntent en el server
+    const res = await fetch("https://sunpowercorporationhotel-1.onrender.com/create-payment-intent", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ amount })
+    });
+    const data = await res.json();
+
+    const result = await stripe.confirmCardPayment(data.clientSecret, { payment_method: { card } });
+    if(result.error){
+      alert(result.error.message);
+    } else {
+      if(result.paymentIntent.status === 'succeeded'){
+        alert("Payment successful!");
+      }
     }
-
-    // Aquí normalmente llamarías tu backend que procesa el pago
-    alert(`Payment for room ${roomNumber} initiated!\nName: ${name}\nEmployee ID: ${empid}\nCheck-in: ${checkin}`);
-  };
+  });
 }
+
+handlePayment("form1", card1, 7900); // $79
+handlePayment("form2", card2, 8900); // $89
 </script>
 
 </body>
