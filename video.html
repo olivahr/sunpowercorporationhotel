@@ -1,45 +1,84 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SunPower Safety Video</title>
-<link rel="stylesheet" href="style.css">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Safety & Training Video</title>
+<link rel="stylesheet" href="style.css" />
 </head>
 
-<body class="video-page">
+<body>
 
-<!-- 🔹 Flujo interno: esta página se carga después del login y antes de details.html -->
-
-<header class="login-header">
-  <img src="logo.jpg" alt="SunPower Logo">
-</header>
-
-<main class="login-main">
-  <div class="login-box">
-    <h1>Welcome to SunPower Corporate Training</h1>
-    <p>Please review the safety and work policies before proceeding.</p>
-
-    <div class="video-instructions">
-      <p>Watch the short <strong>2:35 minute video</strong> about warehouse safety, company rules, and job instructions.</p>
-    </div>
-
-    <div class="video-buttons">
-      <!-- Botón para abrir video de YouTube -->
-      <a href="https://www.youtube.com/watch?v=TU_VIDEO_ID" target="_blank" class="pay-btn">
-        Watch Video
-      </a>
-
-      <!-- Botón de continuar hacia details.html -->
-      <a href="details.html" class="pay-btn dark">
-        Continue
-      </a>
+<header class="app-header">
+  <div class="header-left">
+    <img src="logo.jpg" class="logo-small" alt="SunPower" />
+    <div class="header-text">
+      <strong>SunPower</strong>
+      <span>Corporate Safety & Training</span>
     </div>
   </div>
-</main>
+</header>
 
-<footer class="login-footer">
-  ©️ 2026 SunPower Corporation · All Rights Reserved
+<!-- CONTENIDO PRINCIPAL -->
+<section class="hotel-card">
+  <h2>Mandatory Safety & Work Training</h2>
+
+  <p style="font-size:13px; margin-top:6px;">
+    Before continuing with your assignment and lodging reservation,
+    all employees and contractors must review the official safety and
+    work procedures video.
+  </p>
+
+  <ul class="amenities" style="margin-top:10px;">
+    <li>Workplace safety rules</li>
+    <li>On-site conduct & compliance</li>
+    <li>Housing & corporate policies</li>
+    <li>Job responsibility overview</li>
+  </ul>
+</section>
+
+<!-- BLOQUE VIDEO -->
+<section class="room-card">
+  <div class="room-details">
+
+    <p style="font-size:12px; margin-bottom:10px;">
+      This training video is approximately <strong>2 minutes and 35 seconds</strong>.
+      Please ensure you watch the full video before proceeding.
+    </p>
+
+    <!-- BOTÓN VIDEO -->
+    <a 
+      class="pay-btn dark"
+      href="https://www.youtube.com/watch?v=TU_VIDEO_ID"
+      target="_blank"
+    >
+      Watch Training Video
+    </a>
+
+    <p style="font-size:11px; color:#666; margin-top:8px; text-align:center;">
+      The video will open in a new tab.
+    </p>
+
+  </div>
+</section>
+
+<!-- CONTINUAR -->
+<section class="room-card">
+  <div class="room-details">
+
+    <p style="font-size:12px; margin-bottom:10px;">
+      Once you have completed the video, you may continue to the next step.
+    </p>
+
+    <a class="pay-btn" href="details.html">
+      Continue
+    </a>
+
+  </div>
+</section>
+
+<footer class="footer">
+  ©️ 2026 SunPower Corporation · Corporate Training Portal
 </footer>
 
 </body>
