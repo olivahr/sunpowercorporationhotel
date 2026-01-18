@@ -5,25 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Corporate Reservation</title>
 <link rel="stylesheet" href="style.css" />
-<script>
-// Opcional: bloquear pagos hasta que vean el video
-window.onload = function() {
-  const watched = localStorage.getItem('videoWatched');
-  const reserveBtns = document.querySelectorAll('.pay-btn');
-  if (!watched) {
-    reserveBtns.forEach(btn => {
-      btn.style.pointerEvents = 'none';
-      btn.style.opacity = '0.5';
-    });
-    // Solo advertencia para que sepan que deben ver el video
-    console.log('Please watch the Safety Video first.');
-  }
-}
-
-function markVideoWatched() {
-  localStorage.setItem('videoWatched', 'true');
-}
-</script>
 </head>
 
 <body>
@@ -50,13 +31,6 @@ function markVideoWatched() {
     <li>Corporate Use Only</li>
     <li>No Public Booking</li>
   </ul>
-</section>
-
-<!-- VIDEO INFO -->
-<section class="video-container">
-  <h1>Safety & Work Instructions</h1>
-  <p>Please review the company safety guidelines before reserving your room.</p>
-  <a class="video-btn" href="video.html" target="_blank" onclick="markVideoWatched()">Watch Video</a>
 </section>
 
 <!-- ROOM 1 -->
@@ -164,7 +138,6 @@ function markVideoWatched() {
       <li>Payments are securely processed via Square.</li>
       <li>No payment information is stored on this website.</li>
       <li>All transactions are encrypted and PCI-compliant.</li>
-      <li>Video instructions must be reviewed before reservation.</li>
     </ul>
     <p>
       By proceeding, you confirm compliance with SunPower corporate lodging
@@ -174,7 +147,7 @@ function markVideoWatched() {
 </section>
 
 <footer class="footer">
-  ©️ 2026 SunPower Corporation · Corporate Lodging Agreement
+  © 2026 SunPower Corporation · Corporate Lodging Agreement
 </footer>
 
 </body>
