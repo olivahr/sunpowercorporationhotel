@@ -1,16 +1,22 @@
+/* RESET TOTAL PARA EVITAR ZOOM */
 * {
-  box-sizing: border-box;
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 14px; /* 🔥 CLAVE: todo parte de aquí */
 }
 
 body {
-  font-family: system-ui, -apple-system, sans-serif;
+  font-family: Arial, Helvetica, sans-serif;
   background: #f2f4f7;
   color: #111;
+  line-height: 1.4;
 }
 
-/* ===== LOGIN ===== */
+/* ================= LOGIN ================= */
 .login-page {
   min-height: 100vh;
   display: flex;
@@ -19,11 +25,12 @@ body {
 
 .login-header {
   text-align: center;
-  padding: 40px 0 20px;
+  padding: 24px 0 10px;
 }
 
 .login-header img {
-  max-width: 140px;
+  width: 110px;   /* 🔥 ANTES ESTABA ENORME */
+  height: auto;
 }
 
 .login-main {
@@ -36,53 +43,55 @@ body {
 .login-box {
   background: #fff;
   width: 100%;
-  max-width: 360px;
-  padding: 28px;
-  border-radius: 16px;
+  max-width: 320px; /* 🔥 MÁS PEQUEÑO */
+  padding: 22px;
+  border-radius: 12px;
   text-align: center;
-  box-shadow: 0 10px 30px rgba(0,0,0,.15);
+  box-shadow: 0 8px 20px rgba(0,0,0,.12);
 }
 
 .login-box h1 {
-  font-size: 20px;
+  font-size: 18px;
   margin-bottom: 6px;
 }
 
 .login-box p {
-  font-size: 13px;
+  font-size: 12px;
   color: #666;
-  margin-bottom: 20px;
+  margin-bottom: 14px;
 }
 
 .login-box input {
   width: 100%;
-  padding: 12px;
-  margin-bottom: 12px;
-  border-radius: 8px;
+  padding: 10px;
+  font-size: 13px;
+  margin-bottom: 10px;
+  border-radius: 6px;
   border: 1px solid #ccc;
 }
 
 .login-box button {
   width: 100%;
-  padding: 12px;
-  border: none;
+  padding: 10px;
+  font-size: 14px;
   background: #0071c2;
   color: #fff;
-  border-radius: 8px;
-  font-weight: 700;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
 }
 
 .login-footer {
   text-align: center;
-  font-size: 12px;
+  font-size: 11px;
   color: #777;
-  padding-bottom: 20px;
+  padding: 12px 0;
 }
 
-/* ===== MAIN ===== */
+/* ================= HEADER ================= */
 .app-header {
   background: #fff;
-  padding: 14px;
+  padding: 10px 14px;
   border-bottom: 1px solid #ddd;
 }
 
@@ -92,52 +101,107 @@ body {
 }
 
 .logo-small {
-  height: 36px;
-  margin-right: 10px;
+  height: 30px; /* 🔥 LOGO CONTROLADO */
+  margin-right: 8px;
 }
 
+.header-left strong {
+  font-size: 14px;
+}
+
+.header-left span {
+  font-size: 11px;
+  color: #666;
+  display: block;
+}
+
+/* ================= HERO ================= */
 .hero img {
   width: 100%;
-  max-height: 240px;
+  height: 200px;  /* 🔥 LIMITADO */
   object-fit: cover;
 }
 
+/* ================= CARDS ================= */
 .hotel-card,
 .room-card,
 .policy-card {
   background: #fff;
-  margin: 16px;
-  padding: 16px;
-  border-radius: 14px;
+  margin: 14px;
+  padding: 14px;
+  border-radius: 12px;
+}
+
+.hotel-card h2 {
+  font-size: 18px;
+  margin-bottom: 6px;
+}
+
+.hotel-card p {
+  font-size: 13px;
 }
 
 .amenities {
-  margin-top: 10px;
+  margin-top: 8px;
   padding-left: 18px;
+  font-size: 12px;
 }
 
+/* ================= ROOMS ================= */
 .room-header {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 10px;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.room-header h3 {
+  font-size: 15px;
+}
+
+.room-header span {
+  font-size: 13px;
+  font-weight: bold;
 }
 
 .slider img {
   width: 100%;
-  border-radius: 10px;
+  height: 160px; /* 🔥 NO MÁS FOTOS GIGANTES */
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 6px;
+}
+
+.room-details p {
+  font-size: 12px;
   margin-bottom: 8px;
 }
 
+.room-details label {
+  font-size: 11px;
+}
+
+.room-details input {
+  width: 100%;
+  padding: 8px;
+  font-size: 12px;
+  margin-bottom: 8px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+/* ================= BOTONES ================= */
 .pay-btn {
   display: block;
-  margin-top: 14px;
-  padding: 12px;
+  margin-top: 10px;
+  padding: 10px;
+  font-size: 13px; /* 🔥 BOTÓN NORMAL */
   text-align: center;
   background: #28a745;
   color: #fff;
-  border-radius: 8px;
+  border-radius: 6px;
   text-decoration: none;
-  font-weight: 700;
+  font-weight: bold;
 }
 
 .pay-btn.dark {
@@ -145,15 +209,16 @@ body {
 }
 
 .square-note {
-  font-size: 11px;
+  font-size: 10px;
   color: #666;
-  margin-top: 6px;
+  margin-top: 4px;
   text-align: center;
 }
 
+/* ================= FOOTER ================= */
 .footer {
   text-align: center;
-  font-size: 12px;
+  font-size: 11px;
   color: #777;
-  margin: 20px 0;
+  margin: 16px 0;
 }
