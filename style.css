@@ -1,224 +1,122 @@
-/* RESET TOTAL PARA EVITAR ZOOM */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Corporate Reservation</title>
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
 
-html {
-  font-size: 14px; /* 🔥 CLAVE: todo parte de aquí */
-}
+<header class="app-header">
+  <div class="header-left">
+    <img src="logo.jpg" class="logo-small" alt="SunPower" />
+    <div class="header-text">
+      <strong>SunPower</strong>
+      <span>by Executive Inn & Suites</span>
+    </div>
+  </div>
+</header>
 
-body {
-  font-family: Arial, Helvetica, sans-serif;
-  background: #f2f4f7;
-  color: #111;
-  line-height: 1.4;
-}
+<section class="hero">
+  <img src="foto0.jpg" alt="Hotel" />
+</section>
 
-/* ================= LOGIN ================= */
-.login-page {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-}
+<section class="hotel-card">
+  <h2>Executive Inn & Suites</h2>
+  <p>Approved corporate lodging for SunPower employees and contractors.</p>
 
-.login-header {
-  text-align: center;
-  padding: 24px 0 10px;
-}
+  <ul class="amenities">
+    <li>Free Parking</li>
+    <li>High-Speed Wi-Fi</li>
+    <li>Air Conditioning</li>
+    <li>Private Bathroom</li>
+    <li>Corporate Use Only</li>
+    <li>No Public Booking</li>
+  </ul>
+</section>
 
-.login-header img {
-  width: 110px;   /* 🔥 ANTES ESTABA ENORME */
-  height: auto;
-}
+<!-- VIDEO INFO -->
+<section class="video-container">
+  <h1>Safety & Work Instructions</h1>
+  <p>Please review the company safety guidelines before reserving your room.</p>
+  <a class="video-btn" href="video.html" target="_blank">Watch Video</a>
+</section>
 
-.login-main {
-  flex: 1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
+<!-- ROOM 1 -->
+<section class="room-card">
+  <div class="room-header">
+    <h3>Standard Room – 1 Bed</h3>
+    <span class="price">$79 / week</span>
+  </div>
 
-.login-box {
-  background: #fff;
-  width: 100%;
-  max-width: 320px; /* 🔥 MÁS PEQUEÑO */
-  padding: 22px;
-  border-radius: 12px;
-  text-align: center;
-  box-shadow: 0 8px 20px rgba(0,0,0,.12);
-}
+  <div class="slider-container">
+    <div class="slider">
+      <img src="foto1.jpg" />
+      <img src="foto2.jpg" />
+    </div>
+  </div>
 
-.login-box h1 {
-  font-size: 18px;
-  margin-bottom: 6px;
-}
+  <div class="room-details">
+    <p>1 Queen Bed · Private Bathroom · Wi-Fi · Parking</p>
+    <form class="reserve-form">
+      <input type="text" placeholder="Full Name" required />
+      <input type="text" placeholder="Employee ID" required />
+      <label>Check-in date</label>
+      <input type="date" required />
+      <label>Check-out</label>
+      <input type="text" value="At the end of the job" disabled />
+      <!-- LINK DE PAGO SQUARE -->
+      <a class="pay-btn" href="https://square.link/u/rQTpIlWx" target="_blank">Reserve & Pay $79</a>
+    </form>
+  </div>
+</section>
 
-.login-box p {
-  font-size: 12px;
-  color: #666;
-  margin-bottom: 14px;
-}
+<!-- ROOM 2 -->
+<section class="room-card">
+  <div class="room-header">
+    <h3>Standard Room – 2 Beds</h3>
+    <span class="price">$89 / week</span>
+  </div>
 
-.login-box input {
-  width: 100%;
-  padding: 10px;
-  font-size: 13px;
-  margin-bottom: 10px;
-  border-radius: 6px;
-  border: 1px solid #ccc;
-}
+  <div class="slider-container">
+    <div class="slider">
+      <img src="foto3.jpg" />
+      <img src="foto4.jpg" />
+    </div>
+  </div>
 
-.login-box button {
-  width: 100%;
-  padding: 10px;
-  font-size: 14px;
-  background: #0071c2;
-  color: #fff;
-  border: none;
-  border-radius: 6px;
-  font-weight: bold;
-}
+  <div class="room-details">
+    <p>2 Beds · Private Bathroom · Wi-Fi · Parking</p>
+    <form class="reserve-form">
+      <input type="text" placeholder="Full Name" required />
+      <input type="text" placeholder="Employee ID" required />
+      <label>Check-in date</label>
+      <input type="date" required />
+      <label>Check-out</label>
+      <input type="text" value="At the end of the job" disabled />
+      <!-- LINK DE PAGO SQUARE -->
+      <a class="pay-btn dark" href="https://square.link/u/WqXjxpmq" target="_blank">Reserve & Pay $89</a>
+    </form>
+  </div>
+</section>
 
-.login-footer {
-  text-align: center;
-  font-size: 11px;
-  color: #777;
-  padding: 12px 0;
-}
+<!-- POLICIES -->
+<section class="security-policy">
+  <div class="policy-card">
+    <h3>Corporate Security & Privacy Policies</h3>
+    <ul>
+      <li>Access limited to SunPower employees and contractors.</li>
+      <li>All personal information is securely stored.</li>
+      <li>Reservation data is private and confidential.</li>
+    </ul>
+    <p>Please adhere to all corporate lodging guidelines while staying.</p>
+  </div>
+</section>
 
-/* ================= HEADER ================= */
-.app-header {
-  background: #fff;
-  padding: 10px 14px;
-  border-bottom: 1px solid #ddd;
-}
+<footer class="footer">
+  © 2026 SunPower Corporation · Corporate Lodging Agreement
+</footer>
 
-.header-left {
-  display: flex;
-  align-items: center;
-}
-
-.logo-small {
-  height: 30px; /* 🔥 LOGO CONTROLADO */
-  margin-right: 8px;
-}
-
-.header-left strong {
-  font-size: 14px;
-}
-
-.header-left span {
-  font-size: 11px;
-  color: #666;
-  display: block;
-}
-
-/* ================= HERO ================= */
-.hero img {
-  width: 100%;
-  height: 200px;  /* 🔥 LIMITADO */
-  object-fit: cover;
-}
-
-/* ================= CARDS ================= */
-.hotel-card,
-.room-card,
-.policy-card {
-  background: #fff;
-  margin: 14px;
-  padding: 14px;
-  border-radius: 12px;
-}
-
-.hotel-card h2 {
-  font-size: 18px;
-  margin-bottom: 6px;
-}
-
-.hotel-card p {
-  font-size: 13px;
-}
-
-.amenities {
-  margin-top: 8px;
-  padding-left: 18px;
-  font-size: 12px;
-}
-
-/* ================= ROOMS ================= */
-.room-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 8px;
-}
-
-.room-header h3 {
-  font-size: 15px;
-}
-
-.room-header span {
-  font-size: 13px;
-  font-weight: bold;
-}
-
-.slider img {
-  width: 100%;
-  height: 160px; /* 🔥 NO MÁS FOTOS GIGANTES */
-  object-fit: cover;
-  border-radius: 8px;
-  margin-bottom: 6px;
-}
-
-.room-details p {
-  font-size: 12px;
-  margin-bottom: 8px;
-}
-
-.room-details label {
-  font-size: 11px;
-}
-
-.room-details input {
-  width: 100%;
-  padding: 8px;
-  font-size: 12px;
-  margin-bottom: 8px;
-  border-radius: 6px;
-  border: 1px solid #ccc;
-}
-
-/* ================= BOTONES ================= */
-.pay-btn {
-  display: block;
-  margin-top: 10px;
-  padding: 10px;
-  font-size: 13px; /* 🔥 BOTÓN NORMAL */
-  text-align: center;
-  background: #28a745;
-  color: #fff;
-  border-radius: 6px;
-  text-decoration: none;
-  font-weight: bold;
-}
-
-.pay-btn.dark {
-  background: #333;
-}
-
-.square-note {
-  font-size: 10px;
-  color: #666;
-  margin-top: 4px;
-  text-align: center;
-}
-
-/* ================= FOOTER ================= */
-.footer {
-  text-align: center;
-  font-size: 11px;
-  color: #777;
-  margin: 16px 0;
-}
+</body>
+</html>
