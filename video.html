@@ -1,90 +1,78 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Mandatory Safety Training</title>
-<link rel="stylesheet" href="style.css" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mandatory Training</title>
+<link rel="stylesheet" href="style.css">
 </head>
 
-<body>
+<body class="video-page">
 
 <header class="app-header">
-  <div class="header-left">
-    <img src="logo.jpg" class="logo-small" alt="SunPower" />
-    <div class="header-text">
-      <strong>SunPower</strong>
-      <span>Corporate Safety Training</span>
+  <div class="header-left" style="justify-content:center;">
+    <img src="logo.jpg" class="logo-small" alt="SunPower Logo">
+    <div class="header-text" style="text-align:center;">
+      <strong>SunPower Corporation</strong>
+      <span>Mandatory Safety & Training</span>
     </div>
   </div>
 </header>
 
-<main style="padding: 20px; text-align: center;">
+<main class="video-main" style="display:flex; justify-content:center; align-items:flex-start; flex-direction:column; padding: 20px;">
 
-  <section class="hotel-card">
-    <h2>Mandatory Safety & Compliance Training</h2>
-    <p style="font-size:13px;color:#555;margin-top:6px;">
-      This video is required before continuing to the corporate lodging application.
-      Please watch the full video. Skipping is not allowed.
+  <div class="video-box" style="max-width:600px; width:100%; background:#fff; padding:25px; border-radius:12px; box-shadow:0 8px 20px rgba(0,0,0,.12); text-align:left;">
+
+    <h1 style="font-size:20px; margin-bottom:15px; text-align:center;">⚠️ Mandatory Training</h1>
+    
+    <p style="font-size:13px; color:#555; margin-bottom:15px; text-align:center;">
+      All employees and contractors must watch this training and safety video before continuing.
     </p>
-  </section>
 
-  <!-- VIDEO -->
-  <section class="room-card" style="margin-top:16px;">
-    <video
-      id="trainingVideo"
-      width="100%"
-      controls
-      controlsList="nodownload noplaybackrate"
-      disablePictureInPicture
-      oncontextmenu="return false"
-      style="border-radius:12px;"
-    >
-      <source src="video.mp4" type="video/mp4">
-      Your browser does not support the video tag.
-    </video>
-  </section>
+    <ul style="font-size:12px; margin-bottom:10px; padding-left:16px;">
+      <li>Understand all safety procedures and required protective equipment.</li>
+      <li>Learn emergency protocols and evacuation procedures.</li>
+      <li>The video must be watched in full before continuing.</li>
+    </ul>
 
-  <!-- CONTINUE BUTTON (HIDDEN UNTIL COMPLETE) -->
-  <section id="continueSection" style="display:none;margin-top:22px;">
-    <a href="aplicacion.html" class="pay-btn">
-      Continue to Application
-    </a>
-  </section>
+    <!-- Watch Video Button -->
+    <div style="text-align:center; margin-top:20px;">
+      <a id="watchVideoBtn" href="YOUR_YOUTUBE_LINK" target="_blank"
+         class="pay-btn" style="display:inline-block; padding:12px 25px; font-size:14px; text-decoration:none;">
+         Watch Video
+      </a>
+    </div>
+
+    <!-- Continue Button, hidden until they return -->
+    <div id="continueBtnContainer" style="text-align:center; margin-top:20px; display:none;">
+      <a href="aplicacion.html" 
+         class="pay-btn" style="display:inline-block; padding:12px 25px; font-size:14px; text-decoration:none;">
+         Continue
+      </a>
+    </div>
+
+  </div>
 
 </main>
 
 <footer class="footer">
-  ©️ 2026 SunPower Corporation · Safety & Compliance Training
+  ©️ 2026 SunPower Corporation · Mandatory Safety & Training
 </footer>
 
 <script>
-  const video = document.getElementById("trainingVideo");
-  const continueSection = document.getElementById("continueSection");
+  // Track if video was clicked
+  const watchBtn = document.getElementById('watchVideoBtn');
+  const continueContainer = document.getElementById('continueBtnContainer');
 
-  // Check if already completed
-  if (localStorage.getItem("trainingCompleted") === "true") {
-    continueSection.style.display = "block";
-  }
-
-  // Disable skipping
-  let lastTime = 0;
-  video.addEventListener("timeupdate", () => {
-    if (!video.seeking) {
-      lastTime = video.currentTime;
-    }
+  watchBtn.addEventListener('click', () => {
+    sessionStorage.setItem('videoWatched', 'true');
   });
 
-  video.addEventListener("seeking", () => {
-    if (video.currentTime > lastTime + 0.01) {
-      video.currentTime = lastTime;
+  window.addEventListener('load', () => {
+    if(sessionStorage.getItem('videoWatched') === 'true') {
+      continueContainer.style.display = 'block';
+      watchBtn.style.display = 'none';
     }
-  });
-
-  // When video ends
-  video.addEventListener("ended", () => {
-    localStorage.setItem("trainingCompleted", "true");
-    continueSection.style.display = "block";
   });
 </script>
 
