@@ -20,28 +20,28 @@
 
   h1 {
     text-align: center;
-    margin-bottom: 30px;
+    margin-bottom: 40px;
   }
 
   .job-card {
     background: #fff;
-    border-radius: 16px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
-    padding: 30px;
+    border-radius: 14px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+    padding: 25px;
     margin-bottom: 30px;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    transition: transform 0.2s ease;
   }
 
   .job-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 14px 35px rgba(0,0,0,0.12);
+    transform: translateY(-3px);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.12);
   }
 
   .job-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
   }
 
   .job-header h2 {
@@ -55,8 +55,8 @@
   }
 
   .job-details ul {
-    margin: 12px 0;
-    padding-left: 20px;
+    margin: 10px 0;
+    padding-left: 18px;
     font-size: 14px;
     color: #555;
   }
@@ -68,24 +68,24 @@
   }
 
   .shift-select {
-    margin-top: 10px;
+    margin-top: 8px;
     padding: 10px;
     font-size: 14px;
-    border-radius: 8px;
+    border-radius: 6px;
     border: 1px solid #ccc;
     width: 100%;
-    max-width: 240px;
+    max-width: 220px;
   }
 
   .job-actions {
-    margin-top: 18px;
+    margin-top: 20px;
     text-align: right;
   }
 
   .pay-btn {
     display: inline-block;
-    padding: 14px 28px;
-    font-size: 15px;
+    padding: 12px 25px;
+    font-size: 14px;
     color: #fff;
     background: #0070f3;
     border-radius: 8px;
@@ -156,7 +156,7 @@
       </select>
 
       <div class="job-actions">
-        <a id="warehouseBtn" href="details.html" class="pay-btn">Continue</a>
+        <button id="warehouseBtn" class="pay-btn">Continue</button>
       </div>
     </div>
   </div>
@@ -183,7 +183,7 @@
       </select>
 
       <div class="job-actions">
-        <a id="installerBtn" href="details.html" class="pay-btn">Continue</a>
+        <button id="installerBtn" class="pay-btn">Continue</button>
       </div>
     </div>
   </div>
@@ -195,50 +195,35 @@
 </footer>
 
 <script>
-  // Elementos
+  // Guardar flujo interno para no volver al login
+  if(!sessionStorage.getItem('startedFlow')) {
+    sessionStorage.setItem('startedFlow', 'true');
+  }
+
+  // Función para redirigir al final del flujo
+  function goToDetails() {
+    window.location.href = 'details.html';
+  }
+
+  // Warehouse shift
   const warehouseShift = document.getElementById('warehouseShift');
   const warehouseBtn = document.getElementById('warehouseBtn');
+  warehouseShift.addEventListener('change', () => {
+    warehouseBtn.classList.toggle('active', warehouseShift.value !== '');
+  });
+  warehouseBtn.addEventListener('click', () => {
+    if(warehouseShift.value !== '') goToDetails();
+  });
+
+  // Installer shift
   const installerShift = document.getElementById('installerShift');
   const installerBtn = document.getElementById('installerBtn');
-
-  // Activar botones solo si hay turno seleccionado
-  warehouseShift.addEventListener('change', () => {
-    if(warehouseShift.value !== "") {
-      warehouseBtn.classList.add('active');
-      sessionStorage.setItem('selectedJob', JSON.stringify({job:"warehouse", shift: warehouseShift.value}));
-    } else {
-      warehouseBtn.classList.remove('active');
-      sessionStorage.removeItem('selectedJob');
-    }
-  });
-
   installerShift.addEventListener('change', () => {
-    if(installerShift.value !== "") {
-      installerBtn.classList.add('active');
-      sessionStorage.setItem('selectedJob', JSON.stringify({job:"installer", shift: installerShift.value}));
-    } else {
-      installerBtn.classList.remove('active');
-      sessionStorage.removeItem('selectedJob');
-    }
+    installerBtn.classList.toggle('active', installerShift.value !== '');
   });
-
-  // Prevenir que sigan si no eligieron turno
-  warehouseBtn.addEventListener('click', (e) => {
-    if(!warehouseBtn.classList.contains('active')) {
-      e.preventDefault();
-      alert("Please select a shift before continuing.");
-    }
+  installerBtn.addEventListener('click', () => {
+    if(installerShift.value !== '') goToDetails();
   });
-
-  installerBtn.addEventListener('click', (e) => {
-    if(!installerBtn.classList.contains('active')) {
-      e.preventDefault();
-      alert("Please select a shift before continuing.");
-    }
-  });
-
-  // Evitar que el login te bote al volver desde details
-  // Mantener datos en sessionStorage para flujo interno
 </script>
 
 </body>
