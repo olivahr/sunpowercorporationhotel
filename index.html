@@ -9,6 +9,14 @@
 
 <body class="login-page">
 
+<!-- 
+  🔹 Flujo interno del sistema (solo para la web, no visible al usuario):
+    1️⃣ index.html → login
+    2️⃣ video.html → video obligatorio de seguridad/capacitación
+    3️⃣ aplicacion.html → formulario de aplicación
+    4️⃣ details.html → reserva de habitaciones
+-->
+
 <header class="login-header">
   <img src="logo.jpg" alt="SunPower Logo">
 </header>
@@ -18,7 +26,7 @@
     <h1>Corporate Lodging Portal</h1>
     <p>Authorized Access Only</p>
 
-    <!-- LOGIN REDIRECTS TO video.html PRIMERO -->
+    <!-- Acción de login ahora apunta a video.html para mantener el flujo -->
     <form action="video.html">
       <input type="text" placeholder="Employee ID" required>
       <input type="password" placeholder="Access Code" required>
