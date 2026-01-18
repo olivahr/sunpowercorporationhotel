@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Safety & Training Video</title>
+<title>Mandatory Safety Training</title>
 <link rel="stylesheet" href="style.css" />
 </head>
 
@@ -14,72 +14,79 @@
     <img src="logo.jpg" class="logo-small" alt="SunPower" />
     <div class="header-text">
       <strong>SunPower</strong>
-      <span>Corporate Safety & Training</span>
+      <span>Corporate Safety Training</span>
     </div>
   </div>
 </header>
 
-<!-- CONTENIDO PRINCIPAL -->
-<section class="hotel-card">
-  <h2>Mandatory Safety & Work Training</h2>
+<main style="padding: 20px; text-align: center;">
 
-  <p style="font-size:13px; margin-top:6px;">
-    Before continuing with your assignment and lodging reservation,
-    all employees and contractors must review the official safety and
-    work procedures video.
-  </p>
-
-  <ul class="amenities" style="margin-top:10px;">
-    <li>Workplace safety rules</li>
-    <li>On-site conduct & compliance</li>
-    <li>Housing & corporate policies</li>
-    <li>Job responsibility overview</li>
-  </ul>
-</section>
-
-<!-- BLOQUE VIDEO -->
-<section class="room-card">
-  <div class="room-details">
-
-    <p style="font-size:12px; margin-bottom:10px;">
-      This training video is approximately <strong>2 minutes and 35 seconds</strong>.
-      Please ensure you watch the full video before proceeding.
+  <section class="hotel-card">
+    <h2>Mandatory Safety & Compliance Training</h2>
+    <p style="font-size:13px;color:#555;margin-top:6px;">
+      This video is required before continuing to the corporate lodging application.
+      Please watch the full video. Skipping is not allowed.
     </p>
+  </section>
 
-    <!-- BOTÓN VIDEO -->
-    <a 
-      class="pay-btn dark"
-      href="https://www.youtube.com/watch?v=TU_VIDEO_ID"
-      target="_blank"
+  <!-- VIDEO -->
+  <section class="room-card" style="margin-top:16px;">
+    <video
+      id="trainingVideo"
+      width="100%"
+      controls
+      controlsList="nodownload noplaybackrate"
+      disablePictureInPicture
+      oncontextmenu="return false"
+      style="border-radius:12px;"
     >
-      Watch Training Video
+      <source src="video.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+  </section>
+
+  <!-- CONTINUE BUTTON (HIDDEN UNTIL COMPLETE) -->
+  <section id="continueSection" style="display:none;margin-top:22px;">
+    <a href="aplicacion.html" class="pay-btn">
+      Continue to Application
     </a>
+  </section>
 
-    <p style="font-size:11px; color:#666; margin-top:8px; text-align:center;">
-      The video will open in a new tab.
-    </p>
-
-  </div>
-</section>
-
-<!-- CONTINUAR -->
-<section class="room-card">
-  <div class="room-details">
-
-    <p style="font-size:12px; margin-bottom:10px;">
-      Once you have completed the video, you may continue to the next step.
-    </p>
-
-    <a class="pay-btn" href="details.html">
-      Continue
-    </a>
-
-  </div>
-</section>
+</main>
 
 <footer class="footer">
-  ©️ 2026 SunPower Corporation · Corporate Training Portal
+  ©️ 2026 SunPower Corporation · Safety & Compliance Training
 </footer>
+
+<script>
+  const video = document.getElementById("trainingVideo");
+  const continueSection = document.getElementById("continueSection");
+
+  // Check if already completed
+  if (localStorage.getItem("trainingCompleted") === "true") {
+    continueSection.style.display = "block";
+  }
+
+  // Disable skipping
+  let lastTime = 0;
+  video.addEventListener("timeupdate", () => {
+    if (!video.seeking) {
+      lastTime = video.currentTime;
+    }
+  });
+
+  video.addEventListener("seeking", () => {
+    if (video.currentTime > lastTime + 0.01) {
+      video.currentTime = lastTime;
+    }
+  });
+
+  // When video ends
+  video.addEventListener("ended", () => {
+    localStorage.setItem("trainingCompleted", "true");
+    continueSection.style.display = "block";
+  });
+</script>
 
 </body>
 </html>
