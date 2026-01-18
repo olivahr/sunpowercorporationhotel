@@ -5,75 +5,30 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Corporate Reservation - SunPower</title>
 <link rel="stylesheet" href="style.css" />
-<script src="https://js.stripe.com/v3/"></script>
 <style>
-/* --- Estilo premium igual que antes --- */
-body {
-  margin:0;
-  font-family:-apple-system, BlinkMacSystemFont, sans-serif;
-  background:#f2f4f7;
-  color:#111;
-  display:flex;
-  flex-direction:column;
-  min-height:100vh;
-}
-header {
-  display:flex;
-  align-items:center;
-  gap:10px;
-  padding:12px 16px;
-  background:#fff;
-  box-shadow:0 2px 6px rgba(0,0,0,.1);
-}
+/* --- Estilo premium para details.html --- */
+body { margin:0; font-family:-apple-system, BlinkMacSystemFont, sans-serif; background:#f2f4f7; color:#111; }
+header { display:flex; align-items:center; gap:10px; padding:12px 16px; background:#fff; box-shadow:0 2px 6px rgba(0,0,0,.1);}
 .logo-small { height:36px; }
 header .header-text { display:flex; flex-direction:column; font-size:14px; }
-
-main { flex:1; display:flex; flex-direction:column; align-items:center; width:100%; }
-
-.hero img { width:100%; max-width:800px; height:220px; object-fit:cover; border-radius:12px; margin-bottom:14px; }
-
-.hotel-card, .room-card {
-  background:#fff;
-  margin:14px;
-  padding:16px;
-  border-radius:16px;
-  box-shadow:0 4px 12px rgba(0,0,0,.08);
-  width:90%;
-  max-width:600px;
-}
+.hero img { width:100%; height:220px; object-fit:cover; border-radius:12px; margin-bottom:14px; }
+.hotel-card, .room-card { background:#fff; margin:14px; padding:16px; border-radius:16px; box-shadow:0 4px 12px rgba(0,0,0,.08);}
 .amenities { list-style:none; padding:0; display:grid; grid-template-columns:1fr 1fr; gap:6px; }
-
 .room-header { display:flex; justify-content:space-between; align-items:center; }
 .price { font-weight:700; }
 .slider { display:flex; gap:10px; overflow-x:auto; margin:10px 0; }
 .slider img { height:140px; border-radius:12px; }
-
 .reserve-form { display:flex; flex-direction:column; gap:8px; margin-top:10px; }
-.reserve-form input, #pay-button-1, #pay-button-2 {
-  padding:10px;
-  border-radius:8px;
-  border:1px solid #ccc;
-  font-size:14px;
-}
-#pay-button-1, #pay-button-2 {
-  background:#0071c2;
-  color:#fff;
-  font-weight:700;
-  border:none;
-  cursor:pointer;
-  margin-top:8px;
-}
+.reserve-form input, #pay-button { padding:10px; border-radius:8px; border:1px solid #ccc; font-size:14px; }
+#pay-button { background:#0071c2; color:#fff; font-weight:700; border:none; cursor:pointer; margin-top:8px; }
 #payment-section { margin-top:10px; }
-
-.footer {
-  text-align:center;
-  padding:18px;
-  font-size:13px;
-  color:#555;
-  border-top:1px solid #ddd;
-  margin-top:auto;
-}
+.pay-btn { display:block; margin-top:10px; padding:14px; text-align:center; background:#0071c2; color:#fff; border-radius:12px; text-decoration:none; font-weight:700; }
+.footer { text-align:center; padding:18px; font-size:13px; color:#555; margin-top:40px; border-top:1px solid #ddd; }
 </style>
+
+<!-- Carga Stripe Public Key -->
+<script src="https://js.stripe.com/v3/"></script>
+
 </head>
 <body>
 
@@ -85,7 +40,6 @@ main { flex:1; display:flex; flex-direction:column; align-items:center; width:10
   </div>
 </header>
 
-<main>
 <section class="hero">
   <img src="foto0.jpg" alt="Hotel" />
 </section>
@@ -109,6 +63,7 @@ main { flex:1; display:flex; flex-direction:column; align-items:center; width:10
     <h3>Standard Room – 1 Bed</h3>
     <span class="price">$79 / week</span>
   </div>
+
   <div class="slider">
     <img src="foto1.jpg" />
     <img src="foto2.jpg" />
@@ -118,12 +73,17 @@ main { flex:1; display:flex; flex-direction:column; align-items:center; width:10
     <summary>View details & Reserve</summary>
     <p>1 Queen Bed · Private Bathroom · Wi-Fi · Parking</p>
 
-    <form class="reserve-form" data-amount="7900">
+    <form class="reserve-form">
       <input type="text" id="name1" placeholder="Full Name" required />
       <input type="text" id="empid1" placeholder="Employee ID" required />
-      <input type="date" id="checkin1" required />
-      <div id="card-container-1"></div>
-      <button type="button" id="pay-button-1">Pay $79</button>
+      <input type="date" id="checkin1" placeholder="Check-in date" required />
+
+      <div id="payment-section-1" style="display:none;">
+        <div id="card-element-1"></div>
+        <button type="button" id="pay-button-1">Pay $79</button>
+      </div>
+
+      <button type="button" onclick="showPayment(1)">Reserve</button>
     </form>
   </details>
 </section>
@@ -134,6 +94,7 @@ main { flex:1; display:flex; flex-direction:column; align-items:center; width:10
     <h3>Standard Room – 2 Beds</h3>
     <span class="price">$89 / week</span>
   </div>
+
   <div class="slider">
     <img src="foto3.jpg" />
     <img src="foto4.jpg" />
@@ -143,16 +104,20 @@ main { flex:1; display:flex; flex-direction:column; align-items:center; width:10
     <summary>View details & Reserve</summary>
     <p>2 Beds · Private Bathroom · Wi-Fi · Parking</p>
 
-    <form class="reserve-form" data-amount="8900">
+    <form class="reserve-form">
       <input type="text" id="name2" placeholder="Full Name" required />
       <input type="text" id="empid2" placeholder="Employee ID" required />
-      <input type="date" id="checkin2" required />
-      <div id="card-container-2"></div>
-      <button type="button" id="pay-button-2">Pay $89</button>
+      <input type="date" id="checkin2" placeholder="Check-in date" required />
+
+      <div id="payment-section-2" style="display:none;">
+        <div id="card-element-2"></div>
+        <button type="button" id="pay-button-2">Pay $89</button>
+      </div>
+
+      <button type="button" onclick="showPayment(2)">Reserve</button>
     </form>
   </details>
 </section>
-</main>
 
 <footer class="footer">
 ©️ 2026 SunPower Corporation · Corporate Lodging · Security & Privacy Policies<br>
@@ -162,32 +127,24 @@ Only for SunPower employees
 <script>
 const stripe = Stripe("pk_live_51Sqi7FHT5bkIm6x5SVitLxim4LhIzTKPmLYFeR1HwcLKukM8s5ikkKRrGDyFpUzm2GC7ARf7z3zbRQjCoCkFgh7L00S5kY0ga1");
 
-document.querySelectorAll(".reserve-form").forEach((form, idx) => {
-  const cardContainer = form.querySelector(`#card-container-${idx+1}`);
-  const payButton = form.querySelector(`#pay-button-${idx+1}`);
-  const elements = stripe.elements();
-  const card = elements.create("card");
-  card.mount(cardContainer);
+function showPayment(roomNumber){
+  document.getElementById(`payment-section-${roomNumber}`).style.display = "block";
+  
+  const payButton = document.getElementById(`pay-button-${roomNumber}`);
+  payButton.onclick = async () => {
+    const name = document.getElementById(`name${roomNumber}`).value;
+    const empid = document.getElementById(`empid${roomNumber}`).value;
+    const checkin = document.getElementById(`checkin${roomNumber}`).value;
 
-  payButton.addEventListener("click", async () => {
-    const amount = parseInt(form.dataset.amount);
-    const name = form.querySelector("input[type=text]").value;
-    const empid = form.querySelector("#empid" + (idx+1)).value;
-    const checkin = form.querySelector("input[type=date]").value;
+    if(!name || !empid || !checkin){
+      alert("Please fill all fields.");
+      return;
+    }
 
-    const res = await fetch("/create-payment-intent", {
-      method: "POST",
-      headers: {"Content-Type": "application/json"},
-      body: JSON.stringify({ amount })
-    });
-    const data = await res.json();
-    const clientSecret = data.clientSecret;
-
-    const result = await stripe.confirmCardPayment(clientSecret, { payment_method: { card }});
-    if(result.error) alert(result.error.message);
-    else alert(`Payment successful!\nName: ${name}\nEmployee ID: ${empid}\nCheck-in: ${checkin}`);
-  });
-});
+    // Aquí normalmente llamarías tu backend que procesa el pago
+    alert(`Payment for room ${roomNumber} initiated!\nName: ${name}\nEmployee ID: ${empid}\nCheck-in: ${checkin}`);
+  };
+}
 </script>
 
 </body>
