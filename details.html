@@ -9,8 +9,6 @@
 
 <body>
 
-<!-- 🟢 Flujo interno: esta página se carga después de video.html -->
-
 <header class="app-header">
   <div class="header-left">
     <img src="logo.jpg" class="logo-small" alt="SunPower" />
@@ -72,7 +70,7 @@
       </div>
 
       <a class="pay-btn" href="https://square.link/u/rQTpIlWx" target="_blank">
-        Reserve & Pay 
+        Reserve & Pay $79
       </a>
 
       <div class="secure-note">
@@ -119,7 +117,7 @@
       </div>
 
       <a class="pay-btn dark" href="https://square.link/u/WqXjxpmq" target="_blank">
-        Reserve & Pay 
+        Reserve & Pay $89
       </a>
 
       <div class="secure-note">
@@ -151,6 +149,14 @@
 <footer class="footer">
   ©️ 2026 SunPower Corporation · Corporate Lodging Agreement
 </footer>
+
+<!-- 🔐 CONTROL REAL DE FLUJO (NO VISIBLE) -->
+<script>
+  // Esta página SOLO puede cargarse después de aplicacion.html
+  if (localStorage.getItem("applicationCompleted") !== "true") {
+    window.location.href = "index.html";
+  }
+</script>
 
 </body>
 </html>
