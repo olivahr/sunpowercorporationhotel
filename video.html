@@ -5,6 +5,90 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Mandatory Training</title>
 <link rel="stylesheet" href="style.css">
+<style>
+  body.video-page {
+    background: #f2f4f7;
+    font-family: "Inter", sans-serif;
+    color: #333;
+  }
+
+  .video-main {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 40px 20px;
+  }
+
+  .video-box {
+    max-width: 650px;
+    width: 100%;
+    background: #fff;
+    padding: 30px;
+    border-radius: 14px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+    text-align: center;
+  }
+
+  .video-box h1 {
+    font-size: 22px;
+    margin-bottom: 18px;
+  }
+
+  .video-box p {
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 20px;
+  }
+
+  .video-box ul {
+    text-align: left;
+    padding-left: 20px;
+    margin-bottom: 25px;
+    font-size: 13px;
+    color: #444;
+  }
+
+  .pay-btn {
+    display: inline-block;
+    padding: 14px 28px;
+    font-size: 15px;
+    color: #fff;
+    background: #0070f3;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.25s ease;
+    box-shadow: 0 6px 12px rgba(0,0,0,0.12);
+  }
+
+  .pay-btn:hover {
+    background: #0059c1;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+  }
+
+  .next-card[aria-disabled="true"] {
+    pointer-events: none;
+    opacity: 0.6;
+  }
+
+  .next-card {
+    margin-top: 25px;
+    padding: 20px;
+    background: #f9f9f9;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    transition: all 0.25s ease;
+  }
+
+  footer.footer {
+    margin-top: 40px;
+    text-align: center;
+    font-size: 13px;
+    color: #888;
+    padding: 20px 0;
+    background: #f2f4f7;
+  }
+</style>
 </head>
 
 <body class="video-page">
@@ -19,40 +103,32 @@
   </div>
 </header>
 
-<main class="video-main" style="display:flex; justify-content:center; align-items:flex-start; flex-direction:column; padding: 20px;">
-
-  <div class="video-box" style="max-width:600px; width:100%; background:#fff; padding:25px; border-radius:12px; box-shadow:0 8px 20px rgba(0,0,0,.12); text-align:left;">
-
-    <h1 style="font-size:20px; margin-bottom:15px; text-align:center;">⚠️ Mandatory Training</h1>
-    
-    <p style="font-size:13px; color:#555; margin-bottom:15px; text-align:center;">
+<main class="video-main">
+  <div class="video-box">
+    <h1>⚠️ Mandatory Training</h1>
+    <p>
       All employees and contractors must watch this training and safety video before continuing.
     </p>
 
-    <ul style="font-size:12px; margin-bottom:10px; padding-left:16px;">
+    <ul>
       <li>Understand all safety procedures and required protective equipment.</li>
       <li>Learn emergency protocols and evacuation procedures.</li>
       <li>The video must be watched in full before continuing.</li>
     </ul>
 
     <!-- Watch Video Button -->
-    <div style="text-align:center; margin-top:20px;">
-      <a id="watchVideoBtn" href="YOUR_YOUTUBE_LINK" target="_blank"
-         class="pay-btn" style="display:inline-block; padding:12px 25px; font-size:14px; text-decoration:none;">
-         Watch Video
-      </a>
-    </div>
+    <a id="watchVideoBtn" href="https://youtube.com/playlist?list=RDX3iIZtDsm18&playnext=1&si=x_vMUj-NQfKMA471" target="_blank" class="pay-btn">
+      Watch Video
+    </a>
 
     <!-- Continue Button, hidden until they return -->
-    <div id="continueBtnContainer" style="text-align:center; margin-top:20px; display:none;">
-      <a href="aplicacion.html" 
-         class="pay-btn" style="display:inline-block; padding:12px 25px; font-size:14px; text-decoration:none;">
-         Continue
-      </a>
+    <div id="continueBtnContainer" class="next-card" aria-disabled="true" style="display:none;">
+      <a href="aplicacion.html" class="pay-btn">Continue</a>
+      <p style="margin-top:10px; font-size:13px; color:#555;">
+        Complete and submit the form to enable the next step.
+      </p>
     </div>
-
   </div>
-
 </main>
 
 <footer class="footer">
@@ -60,7 +136,6 @@
 </footer>
 
 <script>
-  // Track if video was clicked
   const watchBtn = document.getElementById('watchVideoBtn');
   const continueContainer = document.getElementById('continueBtnContainer');
 
@@ -72,6 +147,7 @@
     if(sessionStorage.getItem('videoWatched') === 'true') {
       continueContainer.style.display = 'block';
       watchBtn.style.display = 'none';
+      continueContainer.setAttribute('aria-disabled','false');
     }
   });
 </script>
