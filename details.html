@@ -5,24 +5,138 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Corporate Reservation</title>
 <link rel="stylesheet" href="style.css" />
+<style>
+  body {
+    background: #f2f4f7;
+    font-family: "Inter", sans-serif;
+    color: #333;
+  }
+
+  .app-header {
+    display: flex;
+    align-items: center;
+    padding: 15px 20px;
+    background: #fff;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  }
+
+  .logo-small {
+    width: 50px;
+    margin-right: 15px;
+  }
+
+  .header-text strong {
+    display: block;
+    font-size: 16px;
+  }
+
+  .header-text span {
+    font-size: 12px;
+    color: #555;
+  }
+
+  .hotel-card, .room-card, .policy-card {
+    background: #fff;
+    border-radius: 14px;
+    padding: 25px;
+    margin: 25px auto;
+    max-width: 700px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+  }
+
+  .hotel-card h2, .room-card h3, .policy-card h3 {
+    margin-top: 0;
+  }
+
+  .amenities, .policy-card ul {
+    padding-left: 18px;
+    font-size: 14px;
+    color: #555;
+    margin: 10px 0 0 0;
+  }
+
+  .slider-container {
+    margin: 15px 0;
+  }
+
+  .slider img {
+    width: 100%;
+    border-radius: 10px;
+    margin-bottom: 10px;
+  }
+
+  .room-details p {
+    font-size: 14px;
+    margin: 8px 0;
+  }
+
+  .reserve-form {
+    margin-top: 10px;
+  }
+
+  .reserve-form .form-group {
+    margin-bottom: 10px;
+  }
+
+  .reserve-form input, .reserve-form select {
+    width: 100%;
+    max-width: 220px;
+    padding: 8px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+  }
+
+  .pay-btn {
+    display: inline-block;
+    padding: 12px 25px;
+    margin-top: 10px;
+    font-size: 14px;
+    color: #fff;
+    background: #0070f3;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.25s ease;
+    box-shadow: 0 6px 12px rgba(0,0,0,0.12);
+  }
+
+  .pay-btn:hover {
+    background: #0059c1;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+  }
+
+  .secure-note {
+    font-size: 12px;
+    color: #555;
+    margin-top: 5px;
+  }
+
+  footer.footer {
+    margin-top: 40px;
+    text-align: center;
+    font-size: 13px;
+    color: #888;
+    padding: 20px 0;
+    background: #f2f4f7;
+  }
+</style>
 </head>
 
 <body>
 
 <header class="app-header">
-  <div class="header-left">
-    <img src="logo.jpg" class="logo-small" alt="SunPower" />
-    <div class="header-text">
-      <strong>SunPower</strong>
-      <span>by Executive Inn & Suites</span>
-    </div>
+  <img src="logo.jpg" class="logo-small" alt="SunPower" />
+  <div class="header-text">
+    <strong>SunPower</strong>
+    <span>by Executive Inn & Suites</span>
   </div>
 </header>
 
+<!-- Hotel Info -->
 <section class="hotel-card">
   <h2>Executive Inn & Suites</h2>
   <p>Approved corporate lodging for SunPower employees and contractors.</p>
-
   <ul class="amenities">
     <li>Free Parking</li>
     <li>High-Speed Wi-Fi</li>
@@ -33,7 +147,7 @@
   </ul>
 </section>
 
-<!-- ROOM 1 -->
+<!-- Room 1 -->
 <section class="room-card">
   <div class="room-header">
     <h3>Standard Room – 1 Bed</h3>
@@ -50,37 +164,16 @@
   <div class="room-details">
     <p>1 Queen Bed · Private Bathroom · Wi-Fi · Parking</p>
 
-    <form class="reserve-form">
-      <div class="form-group">
-        <input type="text" placeholder="Full Name" required />
-      </div>
-
-      <div class="form-group">
-        <input type="text" placeholder="Employee ID" required />
-      </div>
-
-      <div class="form-group">
-        <label>Check-in date</label>
-        <input type="date" required />
-      </div>
-
-      <div class="form-group">
-        <label>Check-out</label>
-        <input type="text" value="At the end of the job" disabled />
-      </div>
-
-      <a class="pay-btn" href="https://square.link/u/rQTpIlWx" target="_blank">
-        Reserve & Pay $79
-      </a>
-
-      <div class="secure-note">
-        🔒 Secure payment processed by Square
-      </div>
-    </form>
+    <a class="pay-btn" href="https://square.link/u/rQTpIlWx" target="_blank">
+      Reserve & Pay 
+    </a>
+    <div class="secure-note">
+      🔒 Secure payment processed by Square
+    </div>
   </div>
 </section>
 
-<!-- ROOM 2 -->
+<!-- Room 2 -->
 <section class="room-card">
   <div class="room-header">
     <h3>Standard Room – 2 Beds</h3>
@@ -97,63 +190,36 @@
   <div class="room-details">
     <p>2 Beds · Private Bathroom · Wi-Fi · Parking</p>
 
-    <form class="reserve-form">
-      <div class="form-group">
-        <input type="text" placeholder="Full Name" required />
-      </div>
-
-      <div class="form-group">
-        <input type="text" placeholder="Employee ID" required />
-      </div>
-
-      <div class="form-group">
-        <label>Check-in date</label>
-        <input type="date" required />
-      </div>
-
-      <div class="form-group">
-        <label>Check-out</label>
-        <input type="text" value="At the end of the job" disabled />
-      </div>
-
-      <a class="pay-btn dark" href="https://square.link/u/WqXjxpmq" target="_blank">
-        Reserve & Pay $89
-      </a>
-
-      <div class="secure-note">
-        🔒 Secure payment processed by Square
-      </div>
-    </form>
+    <a class="pay-btn" href="https://square.link/u/WqXjxpmq" target="_blank">
+      Reserve & Pay 
+    </a>
+    <div class="secure-note">
+      🔒 Secure payment processed by Square
+    </div>
   </div>
 </section>
 
-<!-- POLICIES -->
-<section class="security-policy">
-  <div class="policy-card">
-    <h3>Corporate Policies & Payment Security</h3>
-    <ul>
-      <li>Access limited to SunPower employees and authorized contractors.</li>
-      <li>Employee ID is required for all reservations.</li>
-      <li>Check-out occurs automatically at the end of the job assignment.</li>
-      <li>Payments are securely processed via Square.</li>
-      <li>No payment information is stored on this website.</li>
-      <li>All transactions are encrypted and PCI-compliant.</li>
-    </ul>
-    <p>
-      By proceeding, you confirm compliance with SunPower corporate lodging
-      policies.
-    </p>
-  </div>
+<!-- Policies -->
+<section class="policy-card">
+  <h3>Corporate Policies & Payment Security</h3>
+  <ul>
+    <li>Access limited to SunPower employees and authorized contractors.</li>
+    <li>Check-out occurs automatically at the end of the job assignment.</li>
+    <li>Payments are securely processed via Square.</li>
+    <li>No payment information is stored on this website.</li>
+    <li>All transactions are encrypted and PCI-compliant.</li>
+  </ul>
+  <p>By proceeding, you confirm compliance with SunPower corporate lodging policies.</p>
 </section>
 
 <footer class="footer">
   ©️ 2026 SunPower Corporation · Corporate Lodging Agreement
 </footer>
 
-<!-- 🔐 CONTROL REAL DE FLUJO (NO VISIBLE) -->
+<!-- 🔐 CONTROL DE FLUJO INTERNO -->
 <script>
-  // Esta página SOLO puede cargarse después de aplicacion.html
-  if (localStorage.getItem("applicationCompleted") !== "true") {
+  // Solo permite entrar si vienen de aplicacion.html
+  if(localStorage.getItem("applicationCompleted") !== "true") {
     window.location.href = "index.html";
   }
 </script>
