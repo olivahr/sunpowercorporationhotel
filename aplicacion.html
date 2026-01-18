@@ -195,17 +195,18 @@
 </footer>
 
 <script>
-  // Guardar flujo interno para no volver al login
+  // 🔹 Inicializa flujo interno
   if(!sessionStorage.getItem('startedFlow')) {
     sessionStorage.setItem('startedFlow', 'true');
   }
 
-  // Función para redirigir al final del flujo
+  // 🔹 Función para redirigir y marcar completada la aplicación
   function goToDetails() {
+    localStorage.setItem('applicationCompleted', 'true'); // evita que details mande al login
     window.location.href = 'details.html';
   }
 
-  // Warehouse shift
+  // 🔹 Warehouse Worker
   const warehouseShift = document.getElementById('warehouseShift');
   const warehouseBtn = document.getElementById('warehouseBtn');
   warehouseShift.addEventListener('change', () => {
@@ -215,7 +216,7 @@
     if(warehouseShift.value !== '') goToDetails();
   });
 
-  // Installer shift
+  // 🔹 Solar Panel Installer
   const installerShift = document.getElementById('installerShift');
   const installerBtn = document.getElementById('installerBtn');
   installerShift.addEventListener('change', () => {
