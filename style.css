@@ -1,122 +1,321 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Corporate Reservation</title>
-<link rel="stylesheet" href="style.css" />
-</head>
-<body>
+/* Reset básico */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Arial', sans-serif;
+}
 
-<header class="app-header">
-  <div class="header-left">
-    <img src="logo.jpg" class="logo-small" alt="SunPower" />
-    <div class="header-text">
-      <strong>SunPower</strong>
-      <span>by Executive Inn & Suites</span>
-    </div>
-  </div>
-</header>
+body {
+  background-color: #f5f5f5;
+  color: #333;
+  line-height: 1.6;
+}
 
-<section class="hero">
-  <img src="foto0.jpg" alt="Hotel" />
-</section>
+/* HEADER */
+.app-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background-color: #ffffff;
+  border-bottom: 1px solid #ddd;
+}
 
-<section class="hotel-card">
-  <h2>Executive Inn & Suites</h2>
-  <p>Approved corporate lodging for SunPower employees and contractors.</p>
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
 
-  <ul class="amenities">
-    <li>Free Parking</li>
-    <li>High-Speed Wi-Fi</li>
-    <li>Air Conditioning</li>
-    <li>Private Bathroom</li>
-    <li>Corporate Use Only</li>
-    <li>No Public Booking</li>
-  </ul>
-</section>
+.logo-small {
+  width: 60px;
+  height: auto;
+}
 
-<!-- VIDEO INFO -->
-<section class="video-container">
-  <h1>Safety & Work Instructions</h1>
-  <p>Please review the company safety guidelines before reserving your room.</p>
-  <a class="video-btn" href="video.html" target="_blank">Watch Video</a>
-</section>
+.header-text strong {
+  font-size: 1.4rem;
+}
 
-<!-- ROOM 1 -->
-<section class="room-card">
-  <div class="room-header">
-    <h3>Standard Room – 1 Bed</h3>
-    <span class="price">$79 / week</span>
-  </div>
+.header-text span {
+  display: block;
+  font-size: 0.9rem;
+  color: #777;
+}
 
-  <div class="slider-container">
-    <div class="slider">
-      <img src="foto1.jpg" />
-      <img src="foto2.jpg" />
-    </div>
-  </div>
+/* HERO */
+.hero img {
+  width: 100%;
+  max-height: 300px;
+  object-fit: cover;
+}
 
-  <div class="room-details">
-    <p>1 Queen Bed · Private Bathroom · Wi-Fi · Parking</p>
-    <form class="reserve-form">
-      <input type="text" placeholder="Full Name" required />
-      <input type="text" placeholder="Employee ID" required />
-      <label>Check-in date</label>
-      <input type="date" required />
-      <label>Check-out</label>
-      <input type="text" value="At the end of the job" disabled />
-      <!-- LINK DE PAGO SQUARE -->
-      <a class="pay-btn" href="https://square.link/u/rQTpIlWx" target="_blank">Reserve & Pay $79</a>
-    </form>
-  </div>
-</section>
+/* HOTEL CARD */
+.hotel-card {
+  background-color: #fff;
+  margin: 20px auto;
+  padding: 20px;
+  max-width: 900px;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
 
-<!-- ROOM 2 -->
-<section class="room-card">
-  <div class="room-header">
-    <h3>Standard Room – 2 Beds</h3>
-    <span class="price">$89 / week</span>
-  </div>
+.hotel-card h2 {
+  font-size: 1.8rem;
+  margin-bottom: 10px;
+}
 
-  <div class="slider-container">
-    <div class="slider">
-      <img src="foto3.jpg" />
-      <img src="foto4.jpg" />
-    </div>
-  </div>
+.hotel-card p {
+  margin-bottom: 15px;
+  color: #555;
+}
 
-  <div class="room-details">
-    <p>2 Beds · Private Bathroom · Wi-Fi · Parking</p>
-    <form class="reserve-form">
-      <input type="text" placeholder="Full Name" required />
-      <input type="text" placeholder="Employee ID" required />
-      <label>Check-in date</label>
-      <input type="date" required />
-      <label>Check-out</label>
-      <input type="text" value="At the end of the job" disabled />
-      <!-- LINK DE PAGO SQUARE -->
-      <a class="pay-btn dark" href="https://square.link/u/WqXjxpmq" target="_blank">Reserve & Pay $89</a>
-    </form>
-  </div>
-</section>
+.hotel-card ul.amenities {
+  list-style-type: disc;
+  padding-left: 20px;
+}
 
-<!-- POLICIES -->
-<section class="security-policy">
-  <div class="policy-card">
-    <h3>Corporate Security & Privacy Policies</h3>
-    <ul>
-      <li>Access limited to SunPower employees and contractors.</li>
-      <li>All personal information is securely stored.</li>
-      <li>Reservation data is private and confidential.</li>
-    </ul>
-    <p>Please adhere to all corporate lodging guidelines while staying.</p>
-  </div>
-</section>
+.hotel-card ul.amenities li {
+  margin-bottom: 5px;
+}
 
-<footer class="footer">
-  © 2026 SunPower Corporation · Corporate Lodging Agreement
-</footer>
+/* ROOM CARD */
+.room-card {
+  background-color: #fff;
+  margin: 20px auto;
+  padding: 20px;
+  max-width: 900px;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
 
-</body>
-</html>
+.room-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.room-header h3 {
+  font-size: 1.5rem;
+}
+
+.room-header .price {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #0070f3;
+}
+
+.slider-container {
+  margin-bottom: 15px;
+}
+
+.slider img {
+  width: 48%;
+  margin-right: 2%;
+  border-radius: 5px;
+}
+
+.slider img:last-child {
+  margin-right: 0;
+}
+
+.room-details p {
+  margin-bottom: 15px;
+  font-size: 0.95rem;
+  color: #555;
+}
+
+/* FORMULARIOS */
+.reserve-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.reserve-form input,
+.reserve-form select,
+.reserve-form label {
+  width: 100%;
+  padding: 10px;
+  font-size: 0.95rem;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.reserve-form label {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.reserve-form .form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.pay-btn {
+  display: inline-block;
+  text-align: center;
+  background-color: #28a745;
+  color: #fff;
+  padding: 10px 0;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+.pay-btn:hover {
+  background-color: #218838;
+}
+
+.pay-btn.dark {
+  background-color: #0070f3;
+}
+
+.pay-btn.dark:hover {
+  background-color: #0056b3;
+}
+
+.secure-note {
+  font-size: 0.85rem;
+  color: #555;
+  margin-top: 5px;
+}
+
+/* VIDEO CONTAINER */
+.video-container {
+  background-color: #fff;
+  max-width: 700px;
+  margin: 20px auto;
+  padding: 25px;
+  border-radius: 8px;
+  text-align: center;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.video-container h1 {
+  margin-bottom: 15px;
+}
+
+.video-container p {
+  margin-bottom: 20px;
+  font-size: 1rem;
+  color: #555;
+}
+
+.video-btn {
+  background-color: #0070f3;
+  color: #fff;
+  padding: 10px 25px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.video-btn:hover {
+  background-color: #0056b3;
+}
+
+/* POLICIES */
+.security-policy {
+  max-width: 900px;
+  margin: 30px auto;
+}
+
+.policy-card {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.policy-card h3 {
+  margin-bottom: 10px;
+}
+
+.policy-card ul {
+  list-style-type: disc;
+  padding-left: 20px;
+  margin-bottom: 10px;
+}
+
+.policy-card ul li {
+  margin-bottom: 5px;
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.policy-card p {
+  font-size: 0.9rem;
+  color: #555;
+}
+
+/* FOOTER */
+.footer {
+  text-align: center;
+  padding: 20px;
+  font-size: 0.85rem;
+  color: #777;
+  margin-top: 30px;
+}
+
+/* LOGIN CUADRO CENTRAL */
+.login-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 80vh;
+}
+
+.login-box {
+  background-color: #fff;
+  padding: 30px;
+  width: 300px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  text-align: center;
+}
+
+.login-box h2 {
+  margin-bottom: 20px;
+}
+
+.login-box input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.login-box button {
+  width: 100%;
+  padding: 10px;
+  background-color: #0070f3;
+  border: none;
+  border-radius: 5px;
+  color: #fff;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.login-box button:hover {
+  background-color: #0056b3;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .slider img {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  .header-left {
+    flex-direction: column;
+  }
+}
