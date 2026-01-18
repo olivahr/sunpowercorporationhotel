@@ -1,35 +1,45 @@
 import express from "express";
-import Stripe from "stripe";
 import cors from "cors";
+import dotenv from "dotenv";
+import Stripe from "stripe";
+
+dotenv.config();
 
 const app = express();
+const port = process.env.PORT || 3000;
 
-// Stripe secret key DESDE VARIABLE DE ENTORNO
+// Stripe secret key desde variable de entorno
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
 app.use(cors());
 app.use(express.json());
 
-// Crear PaymentIntent
+// Endpoint para crear PaymentIntent
 app.post("/create-payment-intent", async (req, res) => {
   try {
     const { amount } = req.body;
 
     const paymentIntent = await stripe.paymentIntents.create({
-      amount: amount,
+      amount: amount, // en centavos
       currency: "usd",
-      automatic_payment_methods: { enabled: true },
+      payment_method_types: ["card"],
     });
 
-    res.send({
-      clientSecret: paymentIntent.client_secret,
-    });
+    res.json({ clientSecret: paymentIntent.client_secret });
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    console.error(err);
+    res.status(500).json({ error: "Something went wrong" });
   }
 });
 
-// Servidor
-app.listen(3000, () => {
-  console.log("Stripe server running on port 3000");
+// Servir detalles y CSS directamente desde la raíz
+app.get("/", (req, res) => {
+  res.sendFile("details.html", { root: "." });
+});
+app.get("/style.css", (req, res) => {
+  res.sendFile("style.css", { root: "." });
+});
+
+app.listen(port, () => {
+  console.log(`Stripe server running on port ${port}`);
 });
