@@ -1,39 +1,141 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SunPower Corporate Access</title>
-<link rel="stylesheet" href="style.css">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Corporate Reservation</title>
+<link rel="stylesheet" href="style.css" />
+<script>
+// Bloquea las reservas hasta que hayan visto el video
+window.onload = function() {
+  // Revisamos si ya vieron el video
+  const watched = localStorage.getItem('videoWatched');
+  const reserveBtns = document.querySelectorAll('.pay-btn');
+
+  if (!watched) {
+    reserveBtns.forEach(btn => {
+      btn.style.pointerEvents = 'none';
+      btn.style.opacity = '0.5';
+    });
+
+    alert('Please watch the Safety Video first.');
+  }
+}
+
+function markVideoWatched() {
+  localStorage.setItem('videoWatched', 'true');
+}
+</script>
 </head>
+<body>
 
-<body class="login-page">
-
-<header class="login-header">
-  <img src="logo.jpg" alt="SunPower Logo">
+<header class="app-header">
+  <div class="header-left">
+    <img src="logo.jpg" class="logo-small" alt="SunPower" />
+    <div class="header-text">
+      <strong>SunPower</strong>
+      <span>by Executive Inn & Suites</span>
+    </div>
+  </div>
 </header>
 
-<main class="login-main">
-  <div class="login-box">
-    <h1>Corporate Lodging Portal</h1>
-    <p>Authorized Access Only</p>
+<section class="hero">
+  <img src="foto0.jpg" alt="Hotel" />
+</section>
 
-    <form action="details.html">
-      <input type="text" placeholder="Employee ID" required>
-      <input type="password" placeholder="Access Code" required>
-      <button type="submit">Login</button>
-    </form>
+<section class="hotel-card">
+  <h2>Executive Inn & Suites</h2>
+  <p>Approved corporate lodging for SunPower employees and contractors.</p>
 
-    <span class="login-note">
-      SunPower employees & contractors only
-    </span>
+  <ul class="amenities">
+    <li>Free Parking</li>
+    <li>High-Speed Wi-Fi</li>
+    <li>Air Conditioning</li>
+    <li>Private Bathroom</li>
+    <li>Corporate Use Only</li>
+    <li>No Public Booking</li>
+  </ul>
+</section>
+
+<!-- VIDEO INFO -->
+<section class="video-container">
+  <h1>Safety & Work Instructions</h1>
+  <p>Please review the company safety guidelines before reserving your room.</p>
+  <a class="video-btn" href="video.html" target="_blank" onclick="markVideoWatched()">Watch Video</a>
+</section>
+
+<!-- ROOM 1 -->
+<section class="room-card">
+  <div class="room-header">
+    <h3>Standard Room – 1 Bed</h3>
+    <span class="price">$79 / week</span>
   </div>
-</main>
 
-<footer class="login-footer">
-  © 2026 SunPower Corporation · All Rights Reserved
+  <div class="slider-container">
+    <div class="slider">
+      <img src="foto1.jpg" />
+      <img src="foto2.jpg" />
+    </div>
+  </div>
+
+  <div class="room-details">
+    <p>1 Queen Bed · Private Bathroom · Wi-Fi · Parking</p>
+    <form class="reserve-form">
+      <input type="text" placeholder="Full Name" required />
+      <input type="text" placeholder="Employee ID" required />
+      <label>Check-in date</label>
+      <input type="date" required />
+      <label>Check-out</label>
+      <input type="text" value="At the end of the job" disabled />
+      <a class="pay-btn" href="https://square.link/u/rQTpIlWx" target="_blank">Reserve & Pay $79</a>
+    </form>
+  </div>
+</section>
+
+<!-- ROOM 2 -->
+<section class="room-card">
+  <div class="room-header">
+    <h3>Standard Room – 2 Beds</h3>
+    <span class="price">$89 / week</span>
+  </div>
+
+  <div class="slider-container">
+    <div class="slider">
+      <img src="foto3.jpg" />
+      <img src="foto4.jpg" />
+    </div>
+  </div>
+
+  <div class="room-details">
+    <p>2 Beds · Private Bathroom · Wi-Fi · Parking</p>
+    <form class="reserve-form">
+      <input type="text" placeholder="Full Name" required />
+      <input type="text" placeholder="Employee ID" required />
+      <label>Check-in date</label>
+      <input type="date" required />
+      <label>Check-out</label>
+      <input type="text" value="At the end of the job" disabled />
+      <a class="pay-btn dark" href="https://square.link/u/WqXjxpmq" target="_blank">Reserve & Pay $89</a>
+    </form>
+  </div>
+</section>
+
+<!-- POLICIES -->
+<section class="security-policy">
+  <div class="policy-card">
+    <h3>Corporate Security & Privacy Policies</h3>
+    <ul>
+      <li>Access limited to SunPower employees and contractors.</li>
+      <li>All personal information is securely stored.</li>
+      <li>Reservation data is private and confidential.</li>
+    </ul>
+    <p>Please adhere to all corporate lodging guidelines while staying.</p>
+  </div>
+</section>
+
+<footer class="footer">
+  ©️ 2026 SunPower Corporation · Corporate Lodging Agreement
 </footer>
 
-<script src="app.js"></script>
 </body>
 </html>
