@@ -20,7 +20,7 @@
 
   h1 {
     text-align: center;
-    margin-bottom: 25px;
+    margin-bottom: 30px;
   }
 
   .job-card {
@@ -63,8 +63,18 @@
 
   .job-details p {
     margin: 8px 0;
-    font-size: 13px;
+    font-size: 14px;
     color: #555;
+  }
+
+  .shift-select {
+    margin-top: 8px;
+    padding: 8px;
+    font-size: 14px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    width: 100%;
+    max-width: 220px;
   }
 
   .job-actions {
@@ -83,6 +93,13 @@
     font-weight: 600;
     transition: all 0.25s ease;
     box-shadow: 0 6px 12px rgba(0,0,0,0.12);
+    pointer-events: none;
+    opacity: 0.6;
+  }
+
+  .pay-btn.active {
+    pointer-events: auto;
+    opacity: 1;
   }
 
   .pay-btn:hover {
@@ -117,73 +134,88 @@
 
   <h1>Available Positions</h1>
 
-  <!-- Job 1: Warehouse -->
-  <div class="job-card" data-internal-next="details.html">
+  <!-- Job 1: Warehouse Worker -->
+  <div class="job-card">
     <div class="job-header">
       <h2>Warehouse Worker</h2>
-      <span class="salary">$22 - $26 / hr</span>
+      <span class="salary">$22–$26 / hour</span>
     </div>
     <div class="job-details">
       <ul>
-        <li>Work in SunPower warehouse handling solar equipment.</li>
-        <li>Hours: 40-60 per week.</li>
-        <li>After 1 month, hotel provided. No additional per diem.</li>
+        <li>Work hours: 40–60 hours/week</li>
+        <li>First month: hotel self-paid, no per diem</li>
+        <li>After first month: hotel paid by company, no per diem</li>
+        <li>Tasks: warehouse management, inventory, shipping & receiving</li>
       </ul>
-      <p>Shift selection: 
-        <select>
-          <option>6AM - 2PM</option>
-          <option>2PM - 10PM</option>
-          <option>10PM - 6AM</option>
-        </select>
-      </p>
-    </div>
-    <div class="job-actions">
-      <a href="#" class="pay-btn continue-btn">Continue</a>
+
+      <label for="warehouseShift">Select Shift:</label>
+      <select id="warehouseShift" class="shift-select">
+        <option value="">Select shift</option>
+        <option value="6-18">6:00 AM – 6:00 PM</option>
+        <option value="18-6">6:00 PM – 6:00 AM</option>
+      </select>
+
+      <div class="job-actions">
+        <a id="warehouseBtn" href="details.html" class="pay-btn">Continue</a>
+      </div>
     </div>
   </div>
 
-  <!-- Job 2: Panel Installation -->
-  <div class="job-card" data-internal-next="details.html">
+  <!-- Job 2: Solar Panel Installer -->
+  <div class="job-card">
     <div class="job-header">
       <h2>Solar Panel Installer</h2>
-      <span class="salary">$34 - $40 / hr</span>
+      <span class="salary">$34–$40 / hour</span>
     </div>
     <div class="job-details">
       <ul>
-        <li>Install solar panels at customer sites.</li>
-        <li>Hours: 40-60 per week.</li>
-        <li>After 1 month, receive $280/week per diem. Hotel self-paid.</li>
+        <li>Work hours: 10-hour shifts outdoors</li>
+        <li>First month: hotel self-paid, per diem $0</li>
+        <li>After first month: per diem $280/week, hotel self-paid</li>
+        <li>Tasks: installation of solar panels on rooftops and ground mounts</li>
       </ul>
-      <p>Shift selection: 
-        <select>
-          <option>6AM - 2PM</option>
-          <option>2PM - 10PM</option>
-          <option>10AM - 6PM</option>
-        </select>
-      </p>
-    </div>
-    <div class="job-actions">
-      <a href="#" class="pay-btn continue-btn">Continue</a>
+
+      <label for="installerShift">Select Shift:</label>
+      <select id="installerShift" class="shift-select">
+        <option value="">Select shift</option>
+        <option value="6-16">6:00 AM – 4:00 PM</option>
+        <option value="16-2">4:00 PM – 2:00 AM</option>
+      </select>
+
+      <div class="job-actions">
+        <a id="installerBtn" href="details.html" class="pay-btn">Continue</a>
+      </div>
     </div>
   </div>
 
 </main>
 
 <footer class="footer">
-  ©️ 2026 SunPower Corporation
+  ©️ 2026 SunPower Corporation · Corporate Application
 </footer>
 
 <script>
-  // Maneja el "Continue" internamente
-  document.querySelectorAll('.continue-btn').forEach(btn => {
-    btn.addEventListener('click', (e) => {
-      e.preventDefault();
-      const parentCard = btn.closest('.job-card');
-      const nextInternal = parentCard.getAttribute('data-internal-next');
-      if(nextInternal) {
-        window.location.href = nextInternal; // Navegación interna
-      }
-    });
+  // Activar botón Continue solo si se selecciona un turno
+  const warehouseShift = document.getElementById('warehouseShift');
+  const warehouseBtn = document.getElementById('warehouseBtn');
+
+  const installerShift = document.getElementById('installerShift');
+  const installerBtn = document.getElementById('installerBtn');
+
+  warehouseShift.addEventListener('change', () => {
+    if(warehouseShift.value !== "") {
+      warehouseBtn.classList.add('active');
+    } else {
+      warehouseBtn.classList.remove('active');
+    }
+  });
+
+  installerShift.addEventListener('change', () => {
+    if(installerShift.value !== "") {
+      installerBtn.classList.add('active');
+    } else {
+      installerBtn.classList.remove('active');
+    }
   });
 </script>
 
