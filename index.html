@@ -3,44 +3,37 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SunPower Corporate Lodging</title>
+<title>SunPower Corporate Access</title>
 <link rel="stylesheet" href="style.css">
-<script src="app.js" defer></script>
 </head>
-<body>
 
-<div class="page-wrapper">
+<body class="login-page">
 
-  <!-- LOGIN Y LOGO -->
-  <div class="container">
+<header class="login-header">
+  <img src="logo.jpg" alt="SunPower Logo">
+</header>
 
-    <!-- LOGO ARRIBA -->
-    <div class="logo-container">
-      <img src="logo.jpg" alt="SunPower Logo" class="login-logo">
-    </div>
+<main class="login-main">
+  <div class="login-box">
+    <h1>Corporate Lodging Portal</h1>
+    <p>Authorized Access Only</p>
 
-    <!-- CARD DE LOGIN -->
-    <div class="login-card">
-      <h1>SunPower</h1>
-      <p class="subtitle">Corporate Lodging Portal</p>
+    <form action="details.html">
+      <input type="text" placeholder="Employee ID" required>
+      <input type="password" placeholder="Access Code" required>
+      <button type="submit">Login</button>
+    </form>
 
-      <input id="email" type="email" placeholder="empleados@company.com">
-      <input id="password" type="password" placeholder="Password">
-
-      <button onclick="login()">Sign In</button>
-    </div>
-
-    <!-- MENSAJITO EN INGLÉS -->
-    <p class="employee-note">Only for SunPower employees</p>
-
+    <span class="login-note">
+      SunPower employees & contractors only
+    </span>
   </div>
+</main>
 
-  <!-- FOOTER PEGADO AL FONDO -->
-  <footer class="footer">
-    © 2026 SunPower Corporation · All rights reserved
-  </footer>
+<footer class="login-footer">
+  © 2026 SunPower Corporation · All Rights Reserved
+</footer>
 
-</div>
-
+<script src="app.js"></script>
 </body>
 </html>
