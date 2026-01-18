@@ -1,45 +1,38 @@
 import express from "express";
-import cors from "cors";
-import dotenv from "dotenv";
 import Stripe from "stripe";
+import dotenv from "dotenv";
+import path from "path";
 
 dotenv.config();
 
 const app = express();
-const port = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3000;
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY); // La clave secreta va en Environment Variable
 
-// Stripe secret key desde variable de entorno
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
-
-app.use(cors());
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
-// Endpoint para crear PaymentIntent
-app.post("/create-payment-intent", async (req, res) => {
+// Servir archivos estáticos
+app.use(express.static(path.resolve('./')));
+
+// Endpoint para recibir pagos desde la web
+app.post("/pay", async (req, res) => {
+  const { token, amount, name, empid, checkin } = req.body;
+
   try {
-    const { amount } = req.body;
-
     const paymentIntent = await stripe.paymentIntents.create({
-      amount: amount, // en centavos
+      amount,
       currency: "usd",
-      payment_method_types: ["card"],
+      payment_method: token,
+      confirm: true,
+      description: `SunPower Hotel Booking - ${name} (${empid})`,
     });
-
-    res.json({ clientSecret: paymentIntent.client_secret });
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ error: "Something went wrong" });
+    res.json({ success: true, paymentIntent });
+  } catch (error) {
+    res.status(400).json({ success: false, error: error.message });
   }
 });
 
-// Servir detalles y CSS directamente desde la raíz
-app.get("/", (req, res) => {
-  res.sendFile("details.html", { root: "." });
-});
-app.get("/style.css", (req, res) => {
-  res.sendFile("style.css", { root: "." });
-});
-
-app.listen(port, () => {
-  console.log(`Stripe server running on port ${port}`);
+app.listen(PORT, () => {
+  console.log(`Stripe server running on port ${PORT}`);
 });
