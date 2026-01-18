@@ -59,11 +59,18 @@
     font-weight: 600;
     transition: all 0.25s ease;
     box-shadow: 0 6px 12px rgba(0,0,0,0.12);
+    margin-top: 15px;
   }
 
   .pay-btn:hover {
     background: #0059c1;
     box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+  }
+
+  .pay-btn.disabled {
+    background: #aaa;
+    pointer-events: none;
+    cursor: default;
   }
 
   .next-card[aria-disabled="true"] {
@@ -125,7 +132,7 @@
     <div id="continueBtnContainer" class="next-card" aria-disabled="true" style="display:none;">
       <a href="aplicacion.html" class="pay-btn">Continue</a>
       <p style="margin-top:10px; font-size:13px; color:#555;">
-        Complete and submit the form to enable the next step.
+        After watching the video, click continue to proceed to the next step.
       </p>
     </div>
   </div>
@@ -139,15 +146,28 @@
   const watchBtn = document.getElementById('watchVideoBtn');
   const continueContainer = document.getElementById('continueBtnContainer');
 
+  // Cuando hacen click en Watch Video
   watchBtn.addEventListener('click', () => {
     sessionStorage.setItem('videoWatched', 'true');
+    watchBtn.classList.add('disabled'); // Bloquea botón
   });
 
-  window.addEventListener('load', () => {
-    if(sessionStorage.getItem('videoWatched') === 'true') {
+  // Función para mostrar Continue si ya vieron el video
+  function checkVideoWatched() {
+    if (sessionStorage.getItem('videoWatched') === 'true') {
       continueContainer.style.display = 'block';
       watchBtn.style.display = 'none';
       continueContainer.setAttribute('aria-disabled','false');
+    }
+  }
+
+  // Detectar al cargar la página
+  window.addEventListener('load', checkVideoWatched);
+
+  // Detectar cuando regresan de YouTube o cambian de pestaña
+  document.addEventListener('visibilitychange', () => {
+    if (!document.hidden) {
+      checkVideoWatched();
     }
   });
 </script>
