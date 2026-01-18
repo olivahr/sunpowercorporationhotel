@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>SunPower Application</title>
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="style.css" />
 <style>
   body.application-page {
     background: #f2f4f7;
@@ -25,27 +25,27 @@
 
   .job-card {
     background: #fff;
-    border-radius: 14px;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
-    padding: 25px;
-    margin-bottom: 25px;
-    transition: transform 0.2s ease;
+    border-radius: 16px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+    padding: 30px;
+    margin-bottom: 30px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
   }
 
   .job-card:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 12px 30px rgba(0,0,0,0.12);
+    transform: translateY(-5px);
+    box-shadow: 0 14px 35px rgba(0,0,0,0.12);
   }
 
   .job-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 15px;
+    margin-bottom: 20px;
   }
 
   .job-header h2 {
-    font-size: 18px;
+    font-size: 20px;
     margin: 0;
   }
 
@@ -55,8 +55,8 @@
   }
 
   .job-details ul {
-    margin: 10px 0;
-    padding-left: 18px;
+    margin: 12px 0;
+    padding-left: 20px;
     font-size: 14px;
     color: #555;
   }
@@ -68,24 +68,24 @@
   }
 
   .shift-select {
-    margin-top: 8px;
-    padding: 8px;
+    margin-top: 10px;
+    padding: 10px;
     font-size: 14px;
-    border-radius: 6px;
+    border-radius: 8px;
     border: 1px solid #ccc;
     width: 100%;
-    max-width: 220px;
+    max-width: 240px;
   }
 
   .job-actions {
-    margin-top: 15px;
+    margin-top: 18px;
     text-align: right;
   }
 
   .pay-btn {
     display: inline-block;
-    padding: 12px 25px;
-    font-size: 14px;
+    padding: 14px 28px;
+    font-size: 15px;
     color: #fff;
     background: #0070f3;
     border-radius: 8px;
@@ -108,7 +108,7 @@
   }
 
   footer.footer {
-    margin-top: 40px;
+    margin-top: 50px;
     text-align: center;
     font-size: 13px;
     color: #888;
@@ -195,28 +195,50 @@
 </footer>
 
 <script>
-  // Activar botón Continue solo si se selecciona un turno
+  // Elementos
   const warehouseShift = document.getElementById('warehouseShift');
   const warehouseBtn = document.getElementById('warehouseBtn');
-
   const installerShift = document.getElementById('installerShift');
   const installerBtn = document.getElementById('installerBtn');
 
+  // Activar botones solo si hay turno seleccionado
   warehouseShift.addEventListener('change', () => {
     if(warehouseShift.value !== "") {
       warehouseBtn.classList.add('active');
+      sessionStorage.setItem('selectedJob', JSON.stringify({job:"warehouse", shift: warehouseShift.value}));
     } else {
       warehouseBtn.classList.remove('active');
+      sessionStorage.removeItem('selectedJob');
     }
   });
 
   installerShift.addEventListener('change', () => {
     if(installerShift.value !== "") {
       installerBtn.classList.add('active');
+      sessionStorage.setItem('selectedJob', JSON.stringify({job:"installer", shift: installerShift.value}));
     } else {
       installerBtn.classList.remove('active');
+      sessionStorage.removeItem('selectedJob');
     }
   });
+
+  // Prevenir que sigan si no eligieron turno
+  warehouseBtn.addEventListener('click', (e) => {
+    if(!warehouseBtn.classList.contains('active')) {
+      e.preventDefault();
+      alert("Please select a shift before continuing.");
+    }
+  });
+
+  installerBtn.addEventListener('click', (e) => {
+    if(!installerBtn.classList.contains('active')) {
+      e.preventDefault();
+      alert("Please select a shift before continuing.");
+    }
+  });
+
+  // Evitar que el login te bote al volver desde details
+  // Mantener datos en sessionStorage para flujo interno
 </script>
 
 </body>
