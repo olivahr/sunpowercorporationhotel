@@ -3,173 +3,264 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mandatory Training</title>
+<title>Mandatory Safety Training</title>
 <link rel="stylesheet" href="style.css">
+
 <style>
-  body.video-page {
-    background: #f2f4f7;
-    font-family: "Inter", sans-serif;
-    color: #333;
-  }
+body.video-page{
+  background:#f2f4f7;
+  font-family:Inter, sans-serif;
+  color:#333;
+  margin:0;
+}
 
-  .video-main {
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    padding: 40px 20px;
-  }
+.video-main{
+  display:flex;
+  justify-content:center;
+  padding:45px 20px;
+}
 
-  .video-box {
-    max-width: 650px;
-    width: 100%;
-    background: #fff;
-    padding: 30px;
-    border-radius: 14px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.12);
-    text-align: center;
-  }
+.video-box{
+  max-width:760px;
+  width:100%;
+  background:#fff;
+  padding:45px;
+  border-radius:20px;
+  box-shadow:0 14px 35px rgba(0,0,0,.12);
+}
 
-  .video-box h1 {
-    font-size: 22px;
-    margin-bottom: 18px;
-  }
+h1{
+  font-size:24px;
+  margin-bottom:10px;
+}
 
-  .video-box p {
-    font-size: 14px;
-    color: #555;
-    margin-bottom: 20px;
-  }
+.subtitle{
+  font-size:14px;
+  color:#666;
+  margin-bottom:25px;
+}
 
-  .video-box ul {
-    text-align: left;
-    padding-left: 20px;
-    margin-bottom: 25px;
-    font-size: 13px;
-    color: #444;
-  }
+.notice{
+  background:#f1f6ff;
+  border-left:6px solid #0070f3;
+  padding:20px;
+  border-radius:12px;
+  margin-bottom:30px;
+  font-size:14px;
+  line-height:1.6;
+}
 
-  .pay-btn {
-    display: inline-block;
-    padding: 14px 28px;
-    font-size: 15px;
-    color: #fff;
-    background: #0070f3;
-    border-radius: 8px;
-    text-decoration: none;
-    font-weight: 600;
-    transition: all 0.25s ease;
-    box-shadow: 0 6px 12px rgba(0,0,0,0.12);
-    margin-top: 15px;
-  }
+.notice strong{
+  display:block;
+  margin-bottom:6px;
+}
 
-  .pay-btn:hover {
-    background: #0059c1;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-  }
+.pay-btn{
+  display:inline-block;
+  padding:15px 36px;
+  font-size:15px;
+  color:#fff;
+  background:#0070f3;
+  border-radius:12px;
+  text-decoration:none;
+  font-weight:600;
+  box-shadow:0 6px 14px rgba(0,0,0,.12);
+}
 
-  .pay-btn.disabled {
-    background: #aaa;
-    pointer-events: none;
-    cursor: default;
-  }
+.pay-btn:hover{
+  background:#0059c1;
+}
 
-  .next-card[aria-disabled="true"] {
-    pointer-events: none;
-    opacity: 0.6;
-  }
+.pay-btn.disabled{
+  background:#aaa;
+  pointer-events:none;
+  box-shadow:none;
+}
 
-  .next-card {
-    margin-top: 25px;
-    padding: 20px;
-    background: #f9f9f9;
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-    transition: all 0.25s ease;
-  }
+.quiz-box{
+  display:none;
+  margin-top:40px;
+  padding:35px;
+  background:#f9f9f9;
+  border-radius:18px;
+}
 
-  footer.footer {
-    margin-top: 40px;
-    text-align: center;
-    font-size: 13px;
-    color: #888;
-    padding: 20px 0;
-    background: #f2f4f7;
-  }
+.quiz-box h3{
+  margin-bottom:10px;
+}
+
+.quiz-box p{
+  font-size:13px;
+  color:#666;
+  margin-bottom:25px;
+}
+
+.question{
+  margin-bottom:28px;
+}
+
+.question p{
+  font-weight:600;
+  margin-bottom:12px;
+}
+
+.question label{
+  display:block;
+  margin-bottom:8px;
+  font-size:14px;
+  cursor:pointer;
+}
+
+.error{
+  display:none;
+  color:#c0392b;
+  font-size:13px;
+  margin-top:15px;
+}
+
+.next-card{
+  display:none;
+  margin-top:35px;
+  text-align:center;
+}
+
+footer{
+  text-align:center;
+  font-size:13px;
+  color:#888;
+  margin:45px 0 25px;
+}
 </style>
 </head>
 
 <body class="video-page">
 
 <header class="app-header">
-  <div class="header-left" style="justify-content:center;">
-    <img src="logo.jpg" class="logo-small" alt="SunPower Logo">
-    <div class="header-text" style="text-align:center;">
-      <strong>SunPower Corporation</strong>
-      <span>Mandatory Safety & Training</span>
+  <div style="text-align:center;">
+    <img src="logo.jpg" class="logo-small">
+    <div>
+      <strong>SunPower Corporation</strong><br>
+      <span>Mandatory Safety & Training Portal</span>
     </div>
   </div>
 </header>
 
 <main class="video-main">
-  <div class="video-box">
-    <h1>⚠️ Mandatory Training</h1>
-    <p>
-      All employees and contractors must watch this training and safety video before continuing.
-    </p>
+<div class="video-box">
 
-    <ul>
-      <li>Understand all safety procedures and required protective equipment.</li>
-      <li>Learn emergency protocols and evacuation procedures.</li>
-      <li>The video must be watched in full before continuing.</li>
-    </ul>
+<h1>Mandatory Safety Training</h1>
+<div class="subtitle">
+This training is required for all SunPower employees and contractors.
+</div>
 
-    <!-- Watch Video Button -->
-    <a id="watchVideoBtn" href="https://youtube.com/playlist?list=RDX3iIZtDsm18&playnext=1&si=x_vMUj-NQfKMA471" target="_blank" class="pay-btn">
-      Watch Video
-    </a>
+<div class="notice">
+<strong>Important:</strong>
+You must watch the safety training video in full.  
+Once you return, you will be required to complete a short safety knowledge
+check based on the information presented in the video.  
+You will not be able to continue unless all questions are answered correctly.
+</div>
 
-    <!-- Continue Button, hidden until they return -->
-    <div id="continueBtnContainer" class="next-card" aria-disabled="true" style="display:none;">
-      <a href="aplicacion.html" class="pay-btn">Continue</a>
-      <p style="margin-top:10px; font-size:13px; color:#555;">
-        After watching the video, click continue to proceed to the next step.
-      </p>
-    </div>
-  </div>
+<a id="watchVideoBtn"
+   href="https://youtube.com/playlist?list=RDX3iIZtDsm18"
+   target="_blank"
+   class="pay-btn">
+Watch Training Video
+</a>
+
+<!-- QUIZ SECTION -->
+<div id="quizBox" class="quiz-box">
+
+<h3>Safety Knowledge Verification</h3>
+<p>
+Please answer all questions below. These questions are based directly on
+the safety training video you just watched.
+</p>
+
+<div class="question">
+<p>1. What is required at all times while working on a SunPower job site?</p>
+<label><input type="radio" name="q1"> Casual clothing only</label>
+<label><input type="radio" name="q1" data-correct="true"> Proper personal protective equipment (PPE)</label>
+<label><input type="radio" name="q1"> No protective equipment is required</label>
+</div>
+
+<div class="question">
+<p>2. If you identify a safety hazard, what is the correct action?</p>
+<label><input type="radio" name="q2"> Ignore the issue and continue working</label>
+<label><input type="radio" name="q2" data-correct="true"> Report it immediately to a supervisor</label>
+<label><input type="radio" name="q2"> Fix it quietly without reporting</label>
+</div>
+
+<div class="question">
+<p>3. Are SunPower safety rules optional or mandatory?</p>
+<label><input type="radio" name="q3"> Optional depending on the situation</label>
+<label><input type="radio" name="q3" data-correct="true"> Mandatory at all times</label>
+</div>
+
+<div class="question">
+<p>4. When must safety training be completed?</p>
+<label><input type="radio" name="q4"> After beginning work</label>
+<label><input type="radio" name="q4" data-correct="true"> Before starting any work assignment</label>
+</div>
+
+<div id="errorMsg" class="error">
+All questions must be answered correctly before you can continue.
+</div>
+
+</div>
+
+<div id="continueBox" class="next-card">
+<a href="aplicacion.html" class="pay-btn">
+Continue to Next Step
+</a>
+</div>
+
+</div>
 </main>
 
-<footer class="footer">
-  ©️ 2026 SunPower Corporation · Mandatory Safety & Training
+<footer>
+©️ 2026 SunPower Corporation · Internal Training System
 </footer>
 
 <script>
-  const watchBtn = document.getElementById('watchVideoBtn');
-  const continueContainer = document.getElementById('continueBtnContainer');
+const watchBtn = document.getElementById('watchVideoBtn');
+const quizBox = document.getElementById('quizBox');
+const continueBox = document.getElementById('continueBox');
+const errorMsg = document.getElementById('errorMsg');
 
-  // Cuando hacen click en Watch Video
-  watchBtn.addEventListener('click', () => {
-    sessionStorage.setItem('videoWatched', 'true');
-    watchBtn.classList.add('disabled'); // Bloquea botón
-  });
+watchBtn.addEventListener('click',()=>{
+  sessionStorage.setItem('videoWatched','true');
+  watchBtn.classList.add('disabled');
+});
 
-  // Función para mostrar Continue si ya vieron el video
-  function checkVideoWatched() {
-    if (sessionStorage.getItem('videoWatched') === 'true') {
-      continueContainer.style.display = 'block';
-      watchBtn.style.display = 'none';
-      continueContainer.setAttribute('aria-disabled','false');
+function checkQuiz(){
+  const correct = document.querySelectorAll('input[data-correct="true"]');
+  for(let c of correct){
+    if(!c.checked){
+      continueBox.style.display='none';
+      errorMsg.style.display='block';
+      return;
     }
   }
+  errorMsg.style.display='none';
+  continueBox.style.display='block';
+}
 
-  // Detectar al cargar la página
-  window.addEventListener('load', checkVideoWatched);
+function checkReturn(){
+  if(sessionStorage.getItem('videoWatched')==='true'){
+    watchBtn.style.display='none';
+    quizBox.style.display='block';
+  }
+}
 
-  // Detectar cuando regresan de YouTube o cambian de pestaña
-  document.addEventListener('visibilitychange', () => {
-    if (!document.hidden) {
-      checkVideoWatched();
-    }
-  });
+document.querySelectorAll('input[type="radio"]').forEach(r=>{
+  r.addEventListener('change',checkQuiz);
+});
+
+window.addEventListener('load',checkReturn);
+document.addEventListener('visibilitychange',()=>{
+  if(!document.hidden) checkReturn();
+});
 </script>
 
 </body>
