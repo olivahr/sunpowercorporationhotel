@@ -1,10 +1,35 @@
-function login() {
-  const email = document.getElementById("email").value.trim();
-  const pass = document.getElementById("password").value.trim();
+// ===============================
+// CREDENCIALES PERMITIDAS
+// ===============================
+const VALID_EMAIL = "empleados@sunpower.com";
+const VALID_PASSWORD = "Sunpower.2026";
 
-  if(email === "empleados@company.com" && pass === "SunPower2026") {
-    window.location.href = "details.html";
+// ===============================
+// ELEMENTOS
+// ===============================
+const form = document.getElementById("loginForm");
+const emailInput = document.getElementById("email");
+const passwordInput = document.getElementById("password");
+const errorMsg = document.getElementById("error");
+
+// ===============================
+// LOGIN
+// ===============================
+form.addEventListener("submit", function (e) {
+  e.preventDefault();
+
+  const email = emailInput.value.trim();
+  const password = passwordInput.value.trim();
+
+  if (email === VALID_EMAIL && password === VALID_PASSWORD) {
+    // ✔️ ACCESO PERMITIDO
+    sessionStorage.setItem("auth", "true"); // GUARDA SESIÓN
+    errorMsg.style.display = "none";
+    window.location.href = "video.html";
   } else {
-    alert("Invalid corporate credentials");
+    // ❌ ACCESO DENEGADO
+    errorMsg.textContent = "Credenciales incorrectas. Acceso denegado.";
+    errorMsg.style.display = "block";
+    passwordInput.value = "";
   }
-}
+});
