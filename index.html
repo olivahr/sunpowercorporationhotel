@@ -10,11 +10,11 @@
 <body class="login-page">
 
 <!-- 
-  🔹 Flujo interno del sistema (solo para la web, no visible al usuario):
+  🔹 Flujo interno del sistema:
     1️⃣ index.html → login
-    2️⃣ video.html → video obligatorio de seguridad/capacitación
-    3️⃣ aplicacion.html → formulario de aplicación
-    4️⃣ details.html → reserva de habitaciones
+    2️⃣ video.html → video obligatorio
+    3️⃣ aplicacion.html → formulario
+    4️⃣ details.html → reservas
 -->
 
 <header class="login-header">
@@ -26,11 +26,28 @@
     <h1>Corporate Lodging Portal</h1>
     <p>Authorized Access Only</p>
 
-    <!-- Acción de login ahora apunta a video.html para mantener el flujo -->
-    <form action="video.html">
-      <input type="text" placeholder="Employee ID" required>
-      <input type="password" placeholder="Access Code" required>
+    <!-- LOGIN REAL -->
+    <form id="loginForm">
+
+      <label for="email">Gmail de la empresa</label>
+      <input
+        type="email"
+        id="email"
+        placeholder="empleados@sunpower.com"
+        required
+      >
+
+      <label for="password">Password</label>
+      <input
+        type="password"
+        id="password"
+        placeholder="Sunpower.2026"
+        required
+      >
+
       <button type="submit">Login</button>
+
+      <p id="error" style="color:red; display:none; margin-top:10px;"></p>
     </form>
 
     <span class="login-note">
@@ -43,6 +60,8 @@
   ©️ 2026 SunPower Corporation · All Rights Reserved
 </footer>
 
+<!-- CONEXIÓN CON app.js -->
 <script src="app.js"></script>
+
 </body>
 </html>
