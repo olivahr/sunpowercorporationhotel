@@ -1,230 +1,312 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>SunPower Application</title>
-<link rel="stylesheet" href="style.css" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SunPower – Job Assignment Review</title>
+<link rel="stylesheet" href="style.css">
+
 <style>
-  body.application-page {
-    background: #f2f4f7;
-    font-family: "Inter", sans-serif;
-    color: #333;
-  }
+body{
+  background:#f2f4f7;
+  font-family:Inter, sans-serif;
+  color:#333;
+  margin:0;
+}
 
-  .application-main {
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 40px 20px;
-  }
+header{
+  background:#fff;
+  padding:20px;
+  text-align:center;
+  box-shadow:0 2px 8px rgba(0,0,0,.08);
+}
 
-  h1 {
-    text-align: center;
-    margin-bottom: 40px;
-  }
+header strong{ font-size:18px; }
+header span{ font-size:13px;color:#666; }
 
-  .job-card {
-    background: #fff;
-    border-radius: 14px;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
-    padding: 25px;
-    margin-bottom: 30px;
-    transition: transform 0.2s ease;
-  }
+.main{
+  max-width:1050px;
+  margin:0 auto;
+  padding:50px 20px;
+}
 
-  .job-card:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 12px 30px rgba(0,0,0,0.12);
-  }
+.section{
+  background:#fff;
+  border-radius:18px;
+  padding:35px;
+  margin-bottom:35px;
+  box-shadow:0 12px 30px rgba(0,0,0,.08);
+}
 
-  .job-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 15px;
-  }
+.section h2{
+  font-size:22px;
+  margin-bottom:12px;
+}
 
-  .job-header h2 {
-    font-size: 20px;
-    margin: 0;
-  }
+.section p{
+  font-size:15px;
+  color:#555;
+  line-height:1.7;
+}
 
-  .job-header .salary {
-    font-weight: 600;
-    color: #0070f3;
-  }
+ul{
+  margin-top:15px;
+  padding-left:20px;
+  font-size:15px;
+  color:#555;
+}
 
-  .job-details ul {
-    margin: 10px 0;
-    padding-left: 18px;
-    font-size: 14px;
-    color: #555;
-  }
+li{ margin-bottom:6px; }
 
-  .job-details p {
-    margin: 8px 0;
-    font-size: 14px;
-    color: #555;
-  }
+.divider{
+  height:1px;
+  background:#eee;
+  margin:35px 0;
+}
 
-  .shift-select {
-    margin-top: 8px;
-    padding: 10px;
-    font-size: 14px;
-    border-radius: 6px;
-    border: 1px solid #ccc;
-    width: 100%;
-    max-width: 220px;
-  }
+label{
+  font-weight:600;
+  font-size:15px;
+}
 
-  .job-actions {
-    margin-top: 20px;
-    text-align: right;
-  }
+select{
+  margin-top:10px;
+  padding:12px;
+  border-radius:8px;
+  border:1px solid #ccc;
+  width:100%;
+  max-width:300px;
+  font-size:15px;
+}
 
-  .pay-btn {
-    display: inline-block;
-    padding: 12px 25px;
-    font-size: 14px;
-    color: #fff;
-    background: #0070f3;
-    border-radius: 8px;
-    text-decoration: none;
-    font-weight: 600;
-    transition: all 0.25s ease;
-    box-shadow: 0 6px 12px rgba(0,0,0,0.12);
-    pointer-events: none;
-    opacity: 0.6;
-  }
+.check{
+  margin-top:14px;
+  font-size:15px;
+}
 
-  .pay-btn.active {
-    pointer-events: auto;
-    opacity: 1;
-  }
+button{
+  padding:18px 45px;
+  background:#0070f3;
+  color:#fff;
+  border:none;
+  border-radius:12px;
+  font-size:16px;
+  font-weight:700;
+  margin-top:25px;
+  opacity:.4;
+  pointer-events:none;
+}
 
-  .pay-btn:hover {
-    background: #0059c1;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-  }
+button.active{
+  opacity:1;
+  pointer-events:auto;
+}
 
-  footer.footer {
-    margin-top: 50px;
-    text-align: center;
-    font-size: 13px;
-    color: #888;
-    padding: 20px 0;
-    background: #f2f4f7;
-  }
+footer{
+  text-align:center;
+  font-size:13px;
+  color:#888;
+  padding:40px 0;
+}
 </style>
 </head>
 
-<body class="application-page">
+<body>
 
-<header class="app-header">
-  <div class="header-left" style="justify-content:center;">
-    <img src="logo.jpg" class="logo-small" alt="SunPower" />
-    <div class="header-text" style="text-align:center;">
-      <strong>SunPower Corporation</strong>
-      <span>Application</span>
-    </div>
-  </div>
+<header>
+  <strong>SunPower Corporation</strong><br>
+  <span>Official Job Assignment Review & Confirmation</span>
 </header>
 
-<main class="application-main">
+<main class="main">
 
-  <h1>Available Positions</h1>
+<!-- INTRO -->
+<section class="section">
+<h2>Welcome to Your Job Assignment Review</h2>
+<p>
+You have successfully advanced to the assignment confirmation stage.
+This step is required for all SunPower employees and contractors before
+final onboarding, training, and lodging coordination.
+</p>
+<p>
+Please review each section carefully. This page outlines job expectations,
+work conditions, compensation structure, and next steps.
+</p>
+</section>
 
-  <!-- Job 1: Warehouse Worker -->
-  <div class="job-card">
-    <div class="job-header">
-      <h2>Warehouse Worker</h2>
-      <span class="salary">$22–$26 / hour</span>
-    </div>
-    <div class="job-details">
-      <ul>
-        <li>Work hours: 40–60 hours/week</li>
-        <li>First month: hotel self-paid, no per diem</li>
-        <li>After first month: hotel paid by company, no per diem</li>
-        <li>Tasks: warehouse management, inventory, shipping & receiving</li>
-      </ul>
+<!-- PROJECT -->
+<section class="section">
+<h2>Project Overview</h2>
+<p>
+This assignment supports an active SunPower solar energy project in
+<strong>Nashville, Tennessee</strong>. The project includes logistics,
+warehouse operations, and solar panel installation.
+</p>
 
-      <label for="warehouseShift">Select Shift:</label>
-      <select id="warehouseShift" class="shift-select">
-        <option value="">Select shift</option>
-        <option value="6-18">6:00 AM – 6:00 PM</option>
-        <option value="18-6">6:00 PM – 6:00 AM</option>
-      </select>
+<ul>
+<li>Corporate-managed solar energy operations</li>
+<li>On-site supervision and safety compliance</li>
+<li>Defined schedules and assigned roles</li>
+<li>Temporary assignment with weekly compensation</li>
+</ul>
+</section>
 
-      <div class="job-actions">
-        <button id="warehouseBtn" class="pay-btn">Continue</button>
-      </div>
-    </div>
-  </div>
+<!-- POSITIONS -->
+<section class="section">
+<h2>Available Positions</h2>
 
-  <!-- Job 2: Solar Panel Installer -->
-  <div class="job-card">
-    <div class="job-header">
-      <h2>Solar Panel Installer</h2>
-      <span class="salary">$34–$40 / hour</span>
-    </div>
-    <div class="job-details">
-      <ul>
-        <li>Work hours: 10-hour shifts outdoors</li>
-        <li>First month: hotel self-paid, per diem $0</li>
-        <li>After first month: per diem $280/week, hotel self-paid</li>
-        <li>Tasks: installation of solar panels on rooftops and ground mounts</li>
-      </ul>
+<p>
+SunPower assigns workers based on operational needs and availability.
+Please review both positions carefully before continuing.
+</p>
 
-      <label for="installerShift">Select Shift:</label>
-      <select id="installerShift" class="shift-select">
-        <option value="">Select shift</option>
-        <option value="6-16">6:00 AM – 4:00 PM</option>
-        <option value="16-2">4:00 PM – 2:00 AM</option>
-      </select>
+<div class="divider"></div>
 
-      <div class="job-actions">
-        <button id="installerBtn" class="pay-btn">Continue</button>
-      </div>
-    </div>
-  </div>
+<h3>Warehouse Worker</h3>
+<p>
+This role supports inventory management, equipment handling, and
+logistics coordination in a controlled warehouse environment.
+</p>
+
+<ul>
+<li>12-hour shifts</li>
+<li>40–60 hours per week</li>
+<li>Hourly pay: $22–$26</li>
+<li>First month: lodging self-paid</li>
+<li>After first month: company-paid lodging</li>
+</ul>
+
+<label>Select warehouse shift</label>
+<select id="warehouse">
+<option value="">Select shift</option>
+<option value="day">6:00 AM – 6:00 PM</option>
+<option value="night">6:00 PM – 6:00 AM</option>
+</select>
+
+<div class="divider"></div>
+
+<h3>Solar Panel Installer</h3>
+<p>
+This role involves outdoor installation of solar panels at designated
+job sites. Physical endurance and safety awareness are required.
+</p>
+
+<ul>
+<li>10-hour shifts</li>
+<li>Hourly pay: $34–$40</li>
+<li>Outdoor work environment</li>
+<li>First month: lodging self-paid</li>
+<li>After first month: $280 weekly per diem</li>
+</ul>
+
+<label>Select installer shift</label>
+<select id="installer">
+<option value="">Select shift</option>
+<option value="morning">6:00 AM – 4:00 PM</option>
+<option value="evening">4:00 PM – 2:00 AM</option>
+</select>
+
+</section>
+
+<!-- EXPECTATIONS -->
+<section class="section">
+<h2>Work Expectations</h2>
+<p>
+All SunPower assignments require professionalism, reliability, and
+adherence to company and site policies.
+</p>
+
+<div class="check"><input type="checkbox" id="c1"> I can work extended shifts</div>
+<div class="check"><input type="checkbox" id="c2"> I meet physical job requirements</div>
+<div class="check"><input type="checkbox" id="c3"> I can work outdoors if required</div>
+</section>
+
+<!-- SAFETY -->
+<section class="section">
+<h2>Safety & Compliance</h2>
+<p>
+Completion of safety training is mandatory before beginning work.
+Failure to follow safety rules may result in removal from the project.
+</p>
+
+<div class="check"><input type="checkbox" id="c4"> I will follow all safety protocols</div>
+<div class="check"><input type="checkbox" id="c5"> I understand safety violations have consequences</div>
+</section>
+
+<!-- SCHEDULE -->
+<section class="section">
+<h2>Schedule & Availability</h2>
+<p>
+Project schedules may include overtime and weekend work based on demand.
+</p>
+
+<div class="check"><input type="checkbox" id="c6"> I am available for overtime</div>
+<div class="check"><input type="checkbox" id="c7"> I can work weekends if required</div>
+</section>
+
+<!-- PAY -->
+<section class="section">
+<h2>Compensation & Per Diem</h2>
+<p>
+Compensation varies by role. Per diem eligibility depends on assignment
+duration and position.
+</p>
+
+<div class="check"><input type="checkbox" id="c8"> I understand the pay structure</div>
+<div class="check"><input type="checkbox" id="c9"> I understand per diem and lodging policies</div>
+</section>
+
+<!-- LODGING -->
+<section class="section">
+<h2>Corporate Lodging Process</h2>
+<p>
+Due to project location, lodging is required. In the next step, you will
+complete your lodging process through the SunPower corporate system.
+</p>
+
+<div class="check"><input type="checkbox" id="c10"> I understand the lodging process</div>
+</section>
+
+<!-- FINAL -->
+<section class="section">
+<h2>Final Confirmation</h2>
+<p>
+By continuing, you confirm that all information has been reviewed and
+you are ready to proceed.
+</p>
+
+<button id="continueBtn">
+Continue to Lodging
+</button>
+</section>
 
 </main>
 
-<footer class="footer">
-  ©️ 2026 SunPower Corporation · Corporate Application
+<footer>
+©️ 2026 SunPower Corporation · Internal Assignment Portal
 </footer>
 
 <script>
-  // 🔹 Inicializa flujo interno
-  if(!sessionStorage.getItem('startedFlow')) {
-    sessionStorage.setItem('startedFlow', 'true');
-  }
+function validate(){
+  const shift =
+    document.getElementById('warehouse').value ||
+    document.getElementById('installer').value;
 
-  // 🔹 Función para redirigir y marcar completada la aplicación
-  function goToDetails() {
-    localStorage.setItem('applicationCompleted', 'true'); // evita que details mande al login
-    window.location.href = 'details.html';
-  }
+  const checks = [
+    'c1','c2','c3','c4','c5','c6','c7','c8','c9','c10'
+  ].every(id => document.getElementById(id).checked);
 
-  // 🔹 Warehouse Worker
-  const warehouseShift = document.getElementById('warehouseShift');
-  const warehouseBtn = document.getElementById('warehouseBtn');
-  warehouseShift.addEventListener('change', () => {
-    warehouseBtn.classList.toggle('active', warehouseShift.value !== '');
-  });
-  warehouseBtn.addEventListener('click', () => {
-    if(warehouseShift.value !== '') goToDetails();
-  });
+  document.getElementById('continueBtn')
+    .classList.toggle('active', shift && checks);
+}
 
-  // 🔹 Solar Panel Installer
-  const installerShift = document.getElementById('installerShift');
-  const installerBtn = document.getElementById('installerBtn');
-  installerShift.addEventListener('change', () => {
-    installerBtn.classList.toggle('active', installerShift.value !== '');
-  });
-  installerBtn.addEventListener('click', () => {
-    if(installerShift.value !== '') goToDetails();
-  });
+document.querySelectorAll('input,select')
+  .forEach(el => el.addEventListener('change', validate));
+
+document.getElementById('continueBtn').onclick = () => {
+  localStorage.setItem("applicationCompleted","true");
+  window.location.href = "details.html";
+};
 </script>
 
 </body>
