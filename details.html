@@ -37,15 +37,15 @@
   }
 
   .info-note {
-    max-width: 700px;
+    max-width: 720px;
     margin: 25px auto;
-    padding: 20px;
+    padding: 22px;
     background: #fff;
     border-left: 6px solid #0070f3;
-    border-radius: 10px;
+    border-radius: 12px;
     box-shadow: 0 6px 18px rgba(0,0,0,0.08);
     font-size: 14px;
-    line-height: 1.5;
+    line-height: 1.6;
   }
 
   .hotel-card, .room-card, .policy-card {
@@ -53,7 +53,7 @@
     border-radius: 14px;
     padding: 25px;
     margin: 25px auto;
-    max-width: 700px;
+    max-width: 720px;
     box-shadow: 0 8px 20px rgba(0,0,0,0.08);
   }
 
@@ -65,7 +65,7 @@
 
   .slider img {
     width: 100%;
-    border-radius: 10px;
+    border-radius: 12px;
     margin-bottom: 10px;
   }
 
@@ -76,11 +76,13 @@
   .reserve-form label {
     font-size: 14px;
     font-weight: 600;
+    display: block;
+    margin-bottom: 4px;
   }
 
   .reserve-form input {
     width: 100%;
-    max-width: 220px;
+    max-width: 260px;
     padding: 8px;
     border-radius: 6px;
     border: 1px solid #ccc;
@@ -90,7 +92,7 @@
   .pay-btn {
     display: inline-block;
     padding: 12px 25px;
-    margin-top: 10px;
+    margin-top: 12px;
     font-size: 14px;
     color: #fff;
     background: #0070f3;
@@ -107,6 +109,7 @@
   .secure-note {
     font-size: 12px;
     color: #555;
+    margin-top: 6px;
   }
 
   footer.footer {
@@ -121,7 +124,7 @@
 <body>
 
 <header class="app-header">
-  <img src="logo.jpg" class="logo-small" alt="SunPower" />
+  <img src="logo.jpg" class="logo-small" alt="SunPower logo" />
   <div class="header-text">
     <strong>SunPower Corporation</strong>
     <span>Corporate Lodging Reservation</span>
@@ -129,8 +132,10 @@
 </header>
 
 <div class="info-note">
-  This is the official SunPower corporate lodging portal.  
-  After completing this step, you will receive a confirmation email with hotel address, check-in instructions, and assignment details.
+  <strong>Official Corporate Lodging Step</strong><br><br>
+  This reservation is part of the SunPower onboarding process.
+  After completion, you will receive an official confirmation email
+  with hotel address, check-in instructions, and assignment details.
 </div>
 
 <section class="hotel-card">
@@ -143,74 +148,71 @@
   </ul>
 </section>
 
-<!-- ROOM 1 -->
 <section class="room-card">
   <h3>Standard Room – 1 Bed</h3>
-  <p>$79 / week</p>
+  <p><strong>$79 / week</strong></p>
+
+  <div class="slider">
+    <img src="foto1.jpg" alt="Room view 1">
+    <img src="foto2.jpg" alt="Room view 2">
+  </div>
 
   <form class="reserve-form">
     <div class="form-group">
       <label>Full Name</label>
-      <input type="text" required />
+      <input type="text" required>
     </div>
     <div class="form-group">
       <label>Employee ID</label>
-      <input type="text" required />
+      <input type="text" required>
     </div>
 
     <a class="pay-btn" href="https://square.link/u/rQTpIlWx" target="_blank">
       Reserve & Pay $79
     </a>
-    <div class="secure-note">Secure payment via Square</div>
+    <div class="secure-note">🔒 Secure payment via Square</div>
   </form>
 </section>
 
-<!-- ROOM 2 -->
 <section class="room-card">
   <h3>Standard Room – 2 Beds</h3>
-  <p>$89 / week</p>
+  <p><strong>$89 / week</strong></p>
 
-  <form class="reserve-form">
+  <div class="slider">
+    <img src="foto3.jpg" alt="Two bed room view 1">
+    <img src="foto4.jpg" alt="Two bed room view 2">
+  </div>
+
+  <form class="reserve-form" id="coForm">
     <div class="form-group">
       <label>Full Name</label>
-      <input type="text" required />
+      <input type="text" id="coName" required>
     </div>
     <div class="form-group">
       <label>Employee ID</label>
-      <input type="text" required />
+      <input type="text" id="coId" required>
     </div>
 
-    <!-- PAYMENT -->
     <a class="pay-btn" href="https://square.link/u/WqXjxpmq" target="_blank">
       Reserve & Pay $89
     </a>
 
-    <!-- CO-APPLICANT -->
-    <div style="margin-top:20px; padding:15px; border:1px dashed #ccc; border-radius:10px;">
-      <p style="font-size:13px;">
-        <strong>Co-Applicant Access</strong><br>
-        If you are sharing this room and already have a co-applicant code, enter it below.
-        Payment is not required.
+    <div style="margin-top:22px; padding:18px; border:1px dashed #ccc; border-radius:12px;">
+      <p style="font-size:13px; line-height:1.6;">
+        <strong>Co-Applicant Registration</strong><br><br>
+        Use this option only if you were provided an official co-applicant code.
+        Payment is not required for co-applicants.
       </p>
 
-      <input
-        type="text"
-        id="coCode"
-        placeholder="Enter co-applicant code"
-      />
+      <input type="text" id="coCode" placeholder="Enter co-applicant code">
 
-      <button
-        type="button"
-        id="finalizeBtn"
-        class="pay-btn final"
-        style="display:none;"
-      >
-        Finalize Reservation
+      <button type="button" id="finalizeBtn" class="pay-btn final" style="display:none;">
+        Finalize Registration
       </button>
     </div>
 
     <div class="secure-note">
-      Payments redirect to Square. All transactions are encrypted.
+      Square payments open in a new window. All transactions are encrypted.
     </div>
   </form>
 </section>
@@ -219,7 +221,7 @@
   <h3>Corporate Policies</h3>
   <ul>
     <li>Check-in at job start · Check-out at job completion</li>
-    <li>Corporate use only</li>
+    <li>Employee ID required</li>
     <li>PCI-compliant secure payments</li>
   </ul>
 </section>
@@ -229,24 +231,32 @@
 </footer>
 
 <script>
-  // 🔐 FLOW CONTROL
   if (localStorage.getItem("applicationCompleted") !== "true") {
     window.location.href = "index.html";
   }
 
-  // 🔑 CO-APPLICANT CODE LOGIC
   const coCode = document.getElementById("coCode");
   const finalizeBtn = document.getElementById("finalizeBtn");
+  const coName = document.getElementById("coName");
+  const coId = document.getElementById("coId");
 
   coCode.addEventListener("input", () => {
-    finalizeBtn.style.display = (coCode.value === "45786") ? "inline-block" : "none";
+    if (
+      coCode.value === "45786" &&
+      coName.value.trim() !== "" &&
+      coId.value.trim() !== ""
+    ) {
+      finalizeBtn.style.display = "inline-block";
+    } else {
+      finalizeBtn.style.display = "none";
+    }
   });
 
   finalizeBtn.addEventListener("click", () => {
     document.body.innerHTML = `
-      <div style="min-height:100vh; display:flex; align-items:center; justify-content:center;">
-        <div style="background:#fff; padding:40px; border-radius:14px; text-align:center;">
-          <h2>Reservation Completed</h2>
+      <div style="min-height:100vh;display:flex;align-items:center;justify-content:center;">
+        <div style="background:#fff;padding:40px;border-radius:14px;text-align:center;max-width:420px;">
+          <h2>Registration Completed</h2>
           <p>You will receive a confirmation email shortly.</p>
         </div>
       </div>
@@ -256,6 +266,3 @@
 
 </body>
 </html>
-
- 
-   
