@@ -33,14 +33,19 @@ header span{ font-size:13px;color:#666; }
 .section{
   background:#fff;
   border-radius:18px;
-  padding:35px;
-  margin-bottom:35px;
+  padding:40px;
+  margin-bottom:40px;
   box-shadow:0 12px 30px rgba(0,0,0,.08);
 }
 
 .section h2{
   font-size:22px;
   margin-bottom:12px;
+}
+
+.section h3{
+  margin-top:30px;
+  font-size:18px;
 }
 
 .section p{
@@ -67,6 +72,8 @@ li{ margin-bottom:6px; }
 label{
   font-weight:600;
   font-size:15px;
+  display:block;
+  margin-top:15px;
 }
 
 select{
@@ -75,7 +82,7 @@ select{
   border-radius:8px;
   border:1px solid #ccc;
   width:100%;
-  max-width:300px;
+  max-width:320px;
   font-size:15px;
 }
 
@@ -85,14 +92,14 @@ select{
 }
 
 button{
-  padding:18px 45px;
+  padding:18px 55px;
   background:#0070f3;
   color:#fff;
   border:none;
-  border-radius:12px;
+  border-radius:14px;
   font-size:16px;
   font-weight:700;
-  margin-top:25px;
+  margin-top:30px;
   opacity:.4;
   pointer-events:none;
 }
@@ -120,164 +127,158 @@ footer{
 
 <main class="main">
 
-<!-- INTRO -->
 <section class="section">
 <h2>Welcome to Your Job Assignment Review</h2>
 <p>
 You have successfully advanced to the assignment confirmation stage.
 This step is required for all SunPower employees and contractors before
-final onboarding, training, and lodging coordination.
+final onboarding, safety training, and lodging coordination.
 </p>
 <p>
-Please review each section carefully. This page outlines job expectations,
-work conditions, compensation structure, and next steps.
+This page provides a clear overview of your role, expectations, schedules,
+and next steps. Please review everything carefully before continuing.
 </p>
 </section>
 
-<!-- PROJECT -->
 <section class="section">
 <h2>Project Overview</h2>
 <p>
-This assignment supports an active SunPower solar energy project in
-<strong>Nashville, Tennessee</strong>. The project includes logistics,
-warehouse operations, and solar panel installation.
+This assignment supports an active SunPower solar energy project located in
+<strong>Nashville, Tennessee</strong>. The project includes warehouse logistics,
+material coordination, and field installation operations.
 </p>
 
 <ul>
-<li>Corporate-managed solar energy operations</li>
-<li>On-site supervision and safety compliance</li>
-<li>Defined schedules and assigned roles</li>
+<li>Corporate-managed solar energy project</li>
+<li>Structured schedules with on-site supervision</li>
+<li>Defined roles and safety oversight</li>
 <li>Temporary assignment with weekly compensation</li>
 </ul>
 </section>
 
-<!-- POSITIONS -->
 <section class="section">
 <h2>Available Positions</h2>
 
 <p>
-SunPower assigns workers based on operational needs and availability.
-Please review both positions carefully before continuing.
+Assignments are based on operational needs, project timelines, and shift
+availability. Please review each role carefully before selecting.
 </p>
 
 <div class="divider"></div>
 
-<h3>Warehouse Worker</h3>
+<h3>Warehouse Worker – Logistics Operations</h3>
 <p>
-This role supports inventory management, equipment handling, and
-logistics coordination in a controlled warehouse environment.
+This role supports daily warehouse operations, including inventory control,
+equipment handling, and outbound logistics in a structured indoor environment.
 </p>
 
 <ul>
-<li>12-hour shifts</li>
-<li>40–60 hours per week</li>
-<li>Hourly pay: $22–$26</li>
-<li>First month: lodging self-paid</li>
-<li>After first month: company-paid lodging</li>
+<li>Combination of 12-hour and 10-hour shifts</li>
+<li>40–60 hours per week depending on demand</li>
+<li>Hourly pay range: $22–$26</li>
+<li>Initial onboarding period requires self-managed lodging</li>
+<li>Longer-term assignments include company-coordinated lodging</li>
 </ul>
 
 <label>Select warehouse shift</label>
 <select id="warehouse">
 <option value="">Select shift</option>
-<option value="day">6:00 AM – 6:00 PM</option>
-<option value="night">6:00 PM – 6:00 AM</option>
+<option value="w1">6:00 AM – 6:00 PM (12-hour)</option>
+<option value="w2">6:00 PM – 6:00 AM (12-hour)</option>
+<option value="w3">7:00 AM – 5:00 PM (10-hour)</option>
+<option value="w4">5:00 PM – 3:00 AM (10-hour)</option>
 </select>
 
 <div class="divider"></div>
 
-<h3>Solar Panel Installer</h3>
+<h3>Solar Panel Installer – Field Installation</h3>
 <p>
-This role involves outdoor installation of solar panels at designated
-job sites. Physical endurance and safety awareness are required.
+This role focuses on hands-on solar panel installation at designated project
+sites. Work is performed outdoors and requires physical endurance and teamwork.
 </p>
 
 <ul>
-<li>10-hour shifts</li>
-<li>Hourly pay: $34–$40</li>
-<li>Outdoor work environment</li>
-<li>First month: lodging self-paid</li>
-<li>After first month: $280 weekly per diem</li>
+<li>Daytime shifts only</li>
+<li>10-hour and extended 12-hour schedules</li>
+<li>Hourly pay range: $34–$40</li>
+<li>Initial onboarding period requires self-managed lodging</li>
+<li>Extended assignments include weekly per diem support</li>
 </ul>
 
 <label>Select installer shift</label>
 <select id="installer">
 <option value="">Select shift</option>
-<option value="morning">6:00 AM – 4:00 PM</option>
-<option value="evening">4:00 PM – 2:00 AM</option>
+<option value="i1">6:00 AM – 4:00 PM (10-hour)</option>
+<option value="i2">7:00 AM – 5:00 PM (10-hour)</option>
+<option value="i3">6:00 AM – 6:00 PM (12-hour)</option>
+<option value="i4">7:00 AM – 7:00 PM (12-hour)</option>
 </select>
 
 </section>
 
-<!-- EXPECTATIONS -->
 <section class="section">
 <h2>Work Expectations</h2>
 <p>
-All SunPower assignments require professionalism, reliability, and
-adherence to company and site policies.
+All SunPower assignments require professionalism, punctuality, and adherence
+to site and company policies.
 </p>
 
-<div class="check"><input type="checkbox" id="c1"> I can work extended shifts</div>
-<div class="check"><input type="checkbox" id="c2"> I meet physical job requirements</div>
-<div class="check"><input type="checkbox" id="c3"> I can work outdoors if required</div>
+<div class="check"><input type="checkbox" id="c1"> I am able to work extended shifts if scheduled</div>
+<div class="check"><input type="checkbox" id="c2"> I meet the physical requirements of the role</div>
+<div class="check"><input type="checkbox" id="c3"> I understand this is an active job site environment</div>
 </section>
 
-<!-- SAFETY -->
 <section class="section">
 <h2>Safety & Compliance</h2>
 <p>
-Completion of safety training is mandatory before beginning work.
-Failure to follow safety rules may result in removal from the project.
+Completion of safety training is mandatory prior to beginning work.
+Safety compliance is strictly enforced on all SunPower projects.
 </p>
 
-<div class="check"><input type="checkbox" id="c4"> I will follow all safety protocols</div>
-<div class="check"><input type="checkbox" id="c5"> I understand safety violations have consequences</div>
+<div class="check"><input type="checkbox" id="c4"> I will complete all required safety training</div>
+<div class="check"><input type="checkbox" id="c5"> I understand violations may result in removal from the project</div>
 </section>
 
-<!-- SCHEDULE -->
 <section class="section">
 <h2>Schedule & Availability</h2>
 <p>
-Project schedules may include overtime and weekend work based on demand.
+Project schedules may include overtime or weekend work depending on
+operational needs and deadlines.
 </p>
 
-<div class="check"><input type="checkbox" id="c6"> I am available for overtime</div>
-<div class="check"><input type="checkbox" id="c7"> I can work weekends if required</div>
+<div class="check"><input type="checkbox" id="c6"> I am available for overtime if required</div>
+<div class="check"><input type="checkbox" id="c7"> I can work weekends if scheduled</div>
 </section>
 
-<!-- PAY -->
 <section class="section">
 <h2>Compensation & Per Diem</h2>
 <p>
-Compensation varies by role. Per diem eligibility depends on assignment
-duration and position.
+Compensation is hourly and varies by role. Per diem eligibility depends
+on assignment duration and position.
 </p>
 
-<div class="check"><input type="checkbox" id="c8"> I understand the pay structure</div>
+<div class="check"><input type="checkbox" id="c8"> I understand the compensation structure</div>
 <div class="check"><input type="checkbox" id="c9"> I understand per diem and lodging policies</div>
 </section>
 
-<!-- LODGING -->
 <section class="section">
 <h2>Corporate Lodging Process</h2>
 <p>
 Due to project location, lodging is required. In the next step, you will
-complete your lodging process through the SunPower corporate system.
+complete lodging arrangements through the SunPower corporate lodging system.
 </p>
 
 <div class="check"><input type="checkbox" id="c10"> I understand the lodging process</div>
 </section>
 
-<!-- FINAL -->
 <section class="section">
 <h2>Final Confirmation</h2>
 <p>
-By continuing, you confirm that all information has been reviewed and
-you are ready to proceed.
+By continuing, you confirm that all information has been reviewed and you are
+ready to proceed to the lodging step.
 </p>
 
-<button id="continueBtn">
-Continue to Lodging
-</button>
+<button id="continueBtn">Continue to Lodging</button>
 </section>
 
 </main>
@@ -287,23 +288,39 @@ Continue to Lodging
 </footer>
 
 <script>
-function validate(){
-  const shift =
-    document.getElementById('warehouse').value ||
-    document.getElementById('installer').value;
+const warehouse = document.getElementById('warehouse');
+const installer = document.getElementById('installer');
+const continueBtn = document.getElementById('continueBtn');
 
-  const checks = [
+function validate(){
+
+  // 🔒 bloqueo cruzado
+  if (warehouse.value !== "") {
+    installer.disabled = true;
+  } else {
+    installer.disabled = false;
+  }
+
+  if (installer.value !== "") {
+    warehouse.disabled = true;
+  } else {
+    warehouse.disabled = false;
+  }
+
+  const shiftSelected = warehouse.value || installer.value;
+
+  const checksOk = [
     'c1','c2','c3','c4','c5','c6','c7','c8','c9','c10'
   ].every(id => document.getElementById(id).checked);
 
-  document.getElementById('continueBtn')
-    .classList.toggle('active', shift && checks);
+  continueBtn.classList.toggle('active', shiftSelected && checksOk);
 }
 
 document.querySelectorAll('input,select')
   .forEach(el => el.addEventListener('change', validate));
 
-document.getElementById('continueBtn').onclick = () => {
+continueBtn.onclick = () => {
+  if (!continueBtn.classList.contains('active')) return;
   localStorage.setItem("applicationCompleted","true");
   window.location.href = "details.html";
 };
