@@ -280,7 +280,52 @@ finalizeBtn.addEventListener("click", () => {
     </div>
   `;
 });
+<script>
+document.querySelectorAll(".reserve-form").forEach(form => {
+  const inputs = form.querySelectorAll("input[type='text']");
+  const payBtn = form.querySelector(".pay-btn");
+
+  function validateForm() {
+    let valid = true;
+    inputs.forEach(input => {
+      if (input.value.trim() === "") {
+        valid = false;
+      }
+    });
+
+    if (!valid) {
+      payBtn.classList.add("disabled");
+      payBtn.style.pointerEvents = "none";
+      payBtn.style.opacity = "0.6";
+    } else {
+      payBtn.classList.remove("disabled");
+      payBtn.style.pointerEvents = "auto";
+      payBtn.style.opacity = "1";
+    }
+  }
+
+  // Validar mientras escriben
+  inputs.forEach(input => {
+    input.addEventListener("input", validateForm);
+  });
+
+  // Bloquear click si no está válido (extra seguro)
+  payBtn.addEventListener("click", e => {
+    let valid = true;
+    inputs.forEach(input => {
+      if (input.value.trim() === "") valid = false;
+    });
+    if (!valid) {
+      e.preventDefault();
+      alert("Please enter your full name and employee ID before continuing.");
+    }
+  });
+
+  // Estado inicial
+  validateForm();
+});
 </script>
 
 </body>
 </html>
+
