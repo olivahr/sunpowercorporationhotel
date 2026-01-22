@@ -189,7 +189,7 @@ footer.footer {
   </form>
 </section>
 
-<!-- ROOM 2 -->
+<!-- ROOM 2 (CO-APPLICANT FLOW RESTORED) -->
 <section class="room-card">
   <h3>Standard Room – 2 Beds</h3>
   <p><strong>$89.99 / week</strong></p>
@@ -199,16 +199,16 @@ footer.footer {
     <img src="foto4.jpg">
   </div>
 
-  <form class="reserve-form">
+  <form class="reserve-form" id="coForm">
 
     <div class="form-group">
       <label>Full Name</label>
-      <input type="text">
+      <input type="text" id="coName">
     </div>
 
     <div class="form-group">
       <label>Employee ID</label>
-      <input type="text">
+      <input type="text" id="coId">
     </div>
 
     <a class="pay-btn"
@@ -216,6 +216,24 @@ footer.footer {
        target="_blank">
       Reserve & Pay
     </a>
+
+    <div class="co-box">
+      <p style="font-size:14px;line-height:1.6;">
+        <strong>Co-Applicant Instructions</strong><br><br>
+        If you are sharing this room and were provided an official co-applicant code,
+        enter the code below. Payment is not required.
+        You must still enter your full name and employee ID above.
+      </p>
+
+      <div class="form-group">
+        <label>Co-Applicant Code</label>
+        <input type="text" id="coCode" placeholder="Enter co-applicant code">
+      </div>
+
+      <button type="button" id="finalizeBtn" class="pay-btn final">
+        Finalize Reservation
+      </button>
+    </div>
 
     <div class="secure-note">
       Secure checkout · Encrypted payment processing
@@ -233,9 +251,36 @@ footer.footer {
 </section>
 
 <footer class="footer">
-  ©️ 2026 SunPower Corporation ·
+  © 2026 SunPower Corporation ·
   <a href="mailto:hr@sunpowerc.energy">hr@sunpowerc.energy</a>
 </footer>
+
+<script>
+const coCode = document.getElementById("coCode");
+const finalizeBtn = document.getElementById("finalizeBtn");
+const coName = document.getElementById("coName");
+const coId = document.getElementById("coId");
+
+coCode.addEventListener("input", () => {
+  finalizeBtn.style.display = (coCode.value === "45786") ? "inline-block" : "none";
+});
+
+finalizeBtn.addEventListener("click", () => {
+  if (!coName.value || !coId.value) {
+    alert("Please enter your full name and employee ID.");
+    return;
+  }
+
+  document.body.innerHTML = `
+    <div style="min-height:100vh;display:flex;align-items:center;justify-content:center;">
+      <div style="background:#fff;padding:40px;border-radius:14px;text-align:center;">
+        <h2>Reservation Completed</h2>
+        <p>You will receive a confirmation email shortly.</p>
+      </div>
+    </div>
+  `;
+});
+</script>
 
 </body>
 </html>
