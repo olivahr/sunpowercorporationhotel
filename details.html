@@ -4,129 +4,129 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Corporate Reservation</title>
-<link rel="stylesheet" href="style.css" />
+
 <style>
-  body {
-    background: #f2f4f7;
-    font-family: "Inter", sans-serif;
-    color: #333;
-    margin: 0;
-  }
+body {
+  background: #f2f4f7;
+  font-family: "Inter", sans-serif;
+  color: #333;
+  margin: 0;
+}
 
-  .app-header {
-    display: flex;
-    align-items: center;
-    padding: 15px 20px;
-    background: #fff;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-  }
+.app-header {
+  display: flex;
+  align-items: center;
+  padding: 15px 20px;
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
 
-  .logo-small {
-    width: 50px;
-    margin-right: 15px;
-  }
+.logo-small {
+  width: 50px;
+  margin-right: 15px;
+}
 
-  .header-text strong {
-    display: block;
-    font-size: 16px;
-  }
+.header-text strong {
+  display: block;
+  font-size: 16px;
+}
 
-  .header-text span {
-    font-size: 12px;
-    color: #555;
-  }
+.header-text span {
+  font-size: 12px;
+  color: #555;
+}
 
-  .info-note {
-    max-width: 700px;
-    margin: 25px auto;
-    padding: 20px;
-    background: #fff;
-    border-left: 6px solid #0070f3;
-    border-radius: 10px;
-    box-shadow: 0 6px 18px rgba(0,0,0,0.08);
-    font-size: 14px;
-    line-height: 1.6;
-  }
+.info-note {
+  max-width: 700px;
+  margin: 25px auto;
+  padding: 20px;
+  background: #fff;
+  border-left: 6px solid #0070f3;
+  border-radius: 10px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+  font-size: 14px;
+  line-height: 1.6;
+}
 
-  .hotel-card, .room-card, .policy-card {
-    background: #fff;
-    border-radius: 14px;
-    padding: 25px;
-    margin: 25px auto;
-    max-width: 700px;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
-  }
+.hotel-card, .room-card, .policy-card {
+  background: #fff;
+  border-radius: 14px;
+  padding: 25px;
+  margin: 25px auto;
+  max-width: 700px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+}
 
-  .amenities, .policy-card ul {
-    padding-left: 18px;
-    font-size: 14px;
-    color: #555;
-  }
+.amenities, .policy-card ul {
+  padding-left: 18px;
+  font-size: 14px;
+  color: #555;
+}
 
-  .slider img {
-    width: 100%;
-    border-radius: 10px;
-    margin-bottom: 10px;
-  }
+.slider img {
+  width: 100%;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
 
-  .reserve-form .form-group {
-    margin-bottom: 12px;
-  }
+.reserve-form .form-group {
+  margin-bottom: 12px;
+}
 
-  .reserve-form label {
-    display: block;
-    font-size: 14px;
-    font-weight: 600;
-    margin-bottom: 4px;
-  }
+.reserve-form label {
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
 
-  .reserve-form input {
-    width: 100%;
-    max-width: 240px;
-    padding: 8px;
-    border-radius: 6px;
-    border: 1px solid #ccc;
-    font-size: 14px;
-  }
+.reserve-form input {
+  width: 100%;
+  max-width: 240px;
+  padding: 8px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+}
 
-  .pay-btn {
-    display: inline-block;
-    padding: 12px 25px;
-    margin-top: 10px;
-    font-size: 14px;
-    color: #fff;
-    background: #0070f3;
-    border-radius: 8px;
-    text-decoration: none;
-    font-weight: 600;
-    cursor: pointer;
-  }
+.pay-btn {
+  display: inline-block;
+  padding: 12px 25px;
+  margin-top: 10px;
+  font-size: 14px;
+  color: #fff;
+  background: #0070f3;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  cursor: pointer;
+}
 
-  .pay-btn.final {
-    background: #2ecc71;
-    display: none;
-  }
+.pay-btn.final {
+  background: #2ecc71;
+  display: none;
+}
 
-  .secure-note {
-    font-size: 12px;
-    color: #555;
-    margin-top: 6px;
-  }
+.secure-note {
+  font-size: 12px;
+  color: #555;
+  margin-top: 6px;
+}
 
-  .co-box {
-    margin-top: 22px;
-    padding: 18px;
-    border: 1px dashed #bbb;
-    border-radius: 12px;
-    background: #fafafa;
-  }
+.co-box {
+  margin-top: 22px;
+  padding: 18px;
+  border: 1px dashed #bbb;
+  border-radius: 12px;
+  background: #fafafa;
+}
 
-  footer.footer {
-    margin: 40px 0;
-    text-align: center;
-    font-size: 13px;
-    color: #888;
-  }
+footer.footer {
+  margin: 40px 0;
+  text-align: center;
+  font-size: 13px;
+  color: #888;
+}
 </style>
 </head>
 
@@ -141,7 +141,7 @@
 </header>
 
 <div class="info-note">
-  Welcome to the SunPower Corporate Lodging System.  
+  Welcome to the SunPower Corporate Lodging System.<br>
   After completing this reservation, you will receive an official email with hotel address,
   check-in instructions, and assignment details.
 </div>
@@ -159,7 +159,7 @@
 <!-- ROOM 1 -->
 <section class="room-card">
   <h3>Standard Room – 1 Bed</h3>
-  <p><strong>$79 / week</strong></p>
+  <p><strong>$79.99 / week</strong></p>
 
   <div class="slider">
     <img src="foto1.jpg">
@@ -171,13 +171,14 @@
       <label>Full Name</label>
       <input type="text" required>
     </div>
+
     <div class="form-group">
       <label>Employee ID</label>
       <input type="text" required>
     </div>
 
     <a class="pay-btn"
-       href="https://checkout.sunpowerc.energy/80841081074/invoices/045eab609bc677b5f8919ed8a57d2080"
+       href="https://checkout.sunpowerc.energy/80841081074/invoices/e22d3c8723c666478d2e9c4cc59452c7"
        target="_blank">
       Reserve & Pay
     </a>
@@ -191,48 +192,30 @@
 <!-- ROOM 2 -->
 <section class="room-card">
   <h3>Standard Room – 2 Beds</h3>
-  <p><strong>$89 / week</strong></p>
+  <p><strong>$89.99 / week</strong></p>
 
   <div class="slider">
     <img src="foto3.jpg">
     <img src="foto4.jpg">
   </div>
 
-  <form class="reserve-form" id="coForm">
+  <form class="reserve-form">
 
     <div class="form-group">
       <label>Full Name</label>
-      <input type="text" id="coName">
+      <input type="text">
     </div>
 
     <div class="form-group">
       <label>Employee ID</label>
-      <input type="text" id="coId">
+      <input type="text">
     </div>
 
     <a class="pay-btn"
-       href="https://checkout.sunpowerc.energy/checkouts/do/045eab609bc677b5f8919ed8a57d2080/en-us"
+       href="https://checkout.sunpowerc.energy/80841081074/invoices/045eab609bc677b5f8919ed8a57d2080"
        target="_blank">
       Reserve & Pay
     </a>
-
-    <div class="co-box">
-      <p style="font-size:14px;line-height:1.6;">
-        <strong>Co-Applicant Instructions</strong><br><br>
-        If you are sharing this room and were provided an official co-applicant code,
-        enter the code below. Payment is not required.
-        You must still enter your full name and employee ID above.
-      </p>
-
-      <div class="form-group">
-        <label>Co-Applicant Code</label>
-        <input type="text" id="coCode" placeholder="Enter co-applicant code">
-      </div>
-
-      <button type="button" id="finalizeBtn" class="pay-btn final">
-        Finalize Reservation
-      </button>
-    </div>
 
     <div class="secure-note">
       Secure checkout · Encrypted payment processing
@@ -250,40 +233,9 @@
 </section>
 
 <footer class="footer">
-  ©️ 2026 SunPower Corporation · 
+  ©️ 2026 SunPower Corporation ·
   <a href="mailto:hr@sunpowerc.energy">hr@sunpowerc.energy</a>
 </footer>
-
-<script>
-  if (localStorage.getItem("applicationCompleted") !== "true") {
-    window.location.href = "index.html";
-  }
-
-  const coCode = document.getElementById("coCode");
-  const finalizeBtn = document.getElementById("finalizeBtn");
-  const coName = document.getElementById("coName");
-  const coId = document.getElementById("coId");
-
-  coCode.addEventListener("input", () => {
-    finalizeBtn.style.display = (coCode.value === "45786") ? "inline-block" : "none";
-  });
-
-  finalizeBtn.addEventListener("click", () => {
-    if (!coName.value || !coId.value) {
-      alert("Please enter your full name and employee ID.");
-      return;
-    }
-
-    document.body.innerHTML = `
-      <div style="min-height:100vh;display:flex;align-items:center;justify-content:center;">
-        <div style="background:#fff;padding:40px;border-radius:14px;text-align:center;">
-          <h2>Reservation Completed</h2>
-          <p>You will receive a confirmation email shortly.</p>
-        </div>
-      </div>
-    `;
-  });
-</script>
 
 </body>
 </html>
