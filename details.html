@@ -189,7 +189,7 @@ footer.footer {
   </form>
 </section>
 
-<!-- ROOM 2 (CO-APPLICANT FLOW RESTORED) -->
+<!-- ROOM 2 -->
 <section class="room-card">
   <h3>Standard Room – 2 Beds</h3>
   <p><strong>$89.99 / week</strong></p>
@@ -251,10 +251,11 @@ footer.footer {
 </section>
 
 <footer class="footer">
-  © 2026 SunPower Corporation ·
+  ©️ 2026 SunPower Corporation ·
   <a href="mailto:hr@sunpowerc.energy">hr@sunpowerc.energy</a>
 </footer>
 
+<!-- SCRIPT 1: CO-APPLICANT -->
 <script>
 const coCode = document.getElementById("coCode");
 const finalizeBtn = document.getElementById("finalizeBtn");
@@ -280,6 +281,9 @@ finalizeBtn.addEventListener("click", () => {
     </div>
   `;
 });
+</script>
+
+<!-- SCRIPT 2: VALIDACIÓN NAME + ID -->
 <script>
 document.querySelectorAll(".reserve-form").forEach(form => {
   const inputs = form.querySelectorAll("input[type='text']");
@@ -288,28 +292,22 @@ document.querySelectorAll(".reserve-form").forEach(form => {
   function validateForm() {
     let valid = true;
     inputs.forEach(input => {
-      if (input.value.trim() === "") {
-        valid = false;
-      }
+      if (input.value.trim() === "") valid = false;
     });
 
     if (!valid) {
-      payBtn.classList.add("disabled");
       payBtn.style.pointerEvents = "none";
       payBtn.style.opacity = "0.6";
     } else {
-      payBtn.classList.remove("disabled");
       payBtn.style.pointerEvents = "auto";
       payBtn.style.opacity = "1";
     }
   }
 
-  // Validar mientras escriben
   inputs.forEach(input => {
     input.addEventListener("input", validateForm);
   });
 
-  // Bloquear click si no está válido (extra seguro)
   payBtn.addEventListener("click", e => {
     let valid = true;
     inputs.forEach(input => {
@@ -321,11 +319,9 @@ document.querySelectorAll(".reserve-form").forEach(form => {
     }
   });
 
-  // Estado inicial
   validateForm();
 });
 </script>
 
 </body>
 </html>
-
