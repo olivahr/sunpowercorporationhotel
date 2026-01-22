@@ -177,7 +177,6 @@ footer.footer {
       <input type="text" required>
     </div>
 
-    <!-- NUEVO LINK 79.99 -->
     <a class="pay-btn"
        href="https://checkout.sunpowerc.energy/cart/48682318463218:1?checkout[skip_cart]=true"
        target="_blank">
@@ -212,7 +211,6 @@ footer.footer {
       <input type="text" id="coId">
     </div>
 
-    <!-- NUEVO LINK 89.00 -->
     <a class="pay-btn"
        href="https://checkout.sunpowerc.energy/cart/48682320953586:1?checkout[skip_cart]=true"
        target="_blank">
@@ -285,10 +283,12 @@ finalizeBtn.addEventListener("click", () => {
 });
 </script>
 
-<!-- SCRIPT 2: VALIDACIÓN NAME + ID -->
+<!-- SCRIPT 2: VALIDACIÓN CORREGIDA -->
 <script>
 document.querySelectorAll(".reserve-form").forEach(form => {
-  const inputs = form.querySelectorAll("input[type='text']");
+  const inputs = form.querySelectorAll(
+    "input[type='text']:not(#coCode)"
+  );
   const payBtn = form.querySelector(".pay-btn");
 
   function validateForm() {
@@ -297,13 +297,8 @@ document.querySelectorAll(".reserve-form").forEach(form => {
       if (input.value.trim() === "") valid = false;
     });
 
-    if (!valid) {
-      payBtn.style.pointerEvents = "none";
-      payBtn.style.opacity = "0.6";
-    } else {
-      payBtn.style.pointerEvents = "auto";
-      payBtn.style.opacity = "1";
-    }
+    payBtn.style.pointerEvents = valid ? "auto" : "none";
+    payBtn.style.opacity = valid ? "1" : "0.6";
   }
 
   inputs.forEach(input => {
