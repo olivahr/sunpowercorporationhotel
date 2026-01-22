@@ -1,7 +1,7 @@
 // ===============================
 // CREDENCIALES PERMITIDAS
 // ===============================
-const VALID_EMAIL = "empleados@sunpower.energy";
+const VALID_EMAIL = "empleados@sunpowerc.energy";
 const VALID_PASSWORD = "Sunpower";
 
 // ===============================
@@ -33,5 +33,6 @@ form.addEventListener("submit", function (e) {
     passwordInput.value = "";
   }
 });
+
 
 
