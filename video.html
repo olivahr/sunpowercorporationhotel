@@ -4,46 +4,164 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Mandatory Safety Training</title>
+
 <link rel="stylesheet" href="style.css">
 
 <style>
-/* ===== EXISTENTE ===== */
 body.video-page{
   background:#f2f4f7;
   font-family:Inter, sans-serif;
-  color:#333;
   margin:0;
+  color:#333;
 }
 
-/* ===== MODAL VIDEO ===== */
+.app-header{
+  background:#fff;
+  padding:20px;
+  text-align:center;
+  box-shadow:0 2px 10px rgba(0,0,0,.08);
+}
+
+.app-header img{
+  width:70px;
+}
+
+.video-main{
+  display:flex;
+  justify-content:center;
+  padding:45px 20px;
+}
+
+.video-box{
+  max-width:780px;
+  width:100%;
+  background:#fff;
+  padding:45px;
+  border-radius:20px;
+  box-shadow:0 14px 35px rgba(0,0,0,.12);
+}
+
+h1{
+  font-size:24px;
+  margin-bottom:8px;
+}
+
+.subtitle{
+  font-size:14px;
+  color:#666;
+  margin-bottom:25px;
+}
+
+.notice{
+  background:#f1f6ff;
+  border-left:6px solid #0070f3;
+  padding:20px;
+  border-radius:12px;
+  margin-bottom:30px;
+  font-size:14px;
+  line-height:1.6;
+}
+
+.pay-btn{
+  display:inline-block;
+  padding:15px 36px;
+  font-size:15px;
+  color:#fff;
+  background:#0070f3;
+  border-radius:12px;
+  text-decoration:none;
+  font-weight:600;
+  box-shadow:0 6px 14px rgba(0,0,0,.12);
+  cursor:pointer;
+}
+
+.pay-btn:hover{
+  background:#0059c1;
+}
+
+.pay-btn.disabled{
+  background:#aaa;
+  pointer-events:none;
+}
+
 .video-modal{
   position:fixed;
   inset:0;
-  background:rgba(0,0,0,.75);
+  background:rgba(0,0,0,.85);
   display:none;
   align-items:center;
   justify-content:center;
   z-index:9999;
 }
 
-.video-frame{
+.video-container{
   width:90%;
-  max-width:860px;
+  max-width:900px;
+  aspect-ratio:16/9;
   background:#000;
-  border-radius:14px;
+  border-radius:16px;
   overflow:hidden;
-  box-shadow:0 25px 60px rgba(0,0,0,.4);
+  box-shadow:0 30px 70px rgba(0,0,0,.5);
 }
 
-.video-frame iframe{
+.video-container iframe{
   width:100%;
-  height:480px;
+  height:100%;
   border:0;
 }
 
-/* ===== DESHABILITAR SCROLL ===== */
-body.no-scroll{
-  overflow:hidden;
+.quiz-box{
+  display:none;
+  margin-top:40px;
+  padding:35px;
+  background:#f9f9f9;
+  border-radius:18px;
+}
+
+.quiz-box h3{
+  margin-bottom:10px;
+}
+
+.quiz-box p{
+  font-size:13px;
+  color:#666;
+  margin-bottom:25px;
+}
+
+.question{
+  margin-bottom:28px;
+}
+
+.question p{
+  font-weight:600;
+  margin-bottom:12px;
+}
+
+.question label{
+  display:block;
+  margin-bottom:8px;
+  font-size:14px;
+  cursor:pointer;
+}
+
+.error{
+  display:none;
+  color:#c0392b;
+  font-size:13px;
+  margin-top:15px;
+}
+
+.next-card{
+  display:none;
+  margin-top:35px;
+  text-align:center;
+}
+
+footer{
+  text-align:center;
+  font-size:13px;
+  color:#888;
+  margin:45px 0 25px;
 }
 </style>
 </head>
@@ -51,12 +169,10 @@ body.no-scroll{
 <body class="video-page">
 
 <header class="app-header">
-  <div style="text-align:center;">
-    <img src="logo.jpg" class="logo-small">
-    <div>
-      <strong>SunPower Corporation</strong><br>
-      <span>Mandatory Safety & Training Portal</span>
-    </div>
+  <img src="logo.jpg" alt="SunPower">
+  <div>
+    <strong>SunPower Corporation</strong><br>
+    <span>Mandatory Safety & Training Portal</span>
   </div>
 </header>
 
@@ -64,34 +180,31 @@ body.no-scroll{
 <div class="video-box">
 
 <h1>Mandatory Safety Training</h1>
-
 <div class="subtitle">
 This training is required for all SunPower employees and contractors.
 </div>
 
 <div class="notice">
 <strong>Important:</strong>
-You must watch the safety training video in full.  
-Once completed, a safety knowledge verification will appear.
+You must watch the full safety training video before completing the knowledge verification.
 </div>
 
 <a id="watchVideoBtn" class="pay-btn">
 Watch Training Video
 </a>
 
-<!-- ===== MODAL VIDEO ===== -->
+<!-- MODAL VIDEO -->
 <div id="videoModal" class="video-modal">
-  <div class="video-frame">
+  <div class="video-container">
     <iframe
-      id="ytPlayer"
-      src=""
-      allow="autoplay; encrypted-media"
+      id="trainingVideo"
+      allow="autoplay; encrypted-media; fullscreen"
       allowfullscreen>
     </iframe>
   </div>
 </div>
 
-<!-- ===== QUIZ ===== -->
+<!-- QUIZ -->
 <div id="quizBox" class="quiz-box">
 
 <h3>Safety Knowledge Verification</h3>
@@ -124,7 +237,7 @@ Watch Training Video
 </div>
 
 <div id="errorMsg" class="error">
-All questions must be answered correctly.
+All questions must be answered correctly before continuing.
 </div>
 
 </div>
@@ -143,51 +256,31 @@ Continue to Next Step
 <a href="mailto:hr@sunpowerc.energy">hr@sunpowerc.energy</a>
 </footer>
 
-<!-- ===== YOUTUBE API ===== -->
-<script src="https://www.youtube.com/iframe_api"></script>
-
 <script>
-let player;
 const watchBtn = document.getElementById("watchVideoBtn");
 const modal = document.getElementById("videoModal");
+const iframe = document.getElementById("trainingVideo");
 const quizBox = document.getElementById("quizBox");
 const continueBox = document.getElementById("continueBox");
 const errorMsg = document.getElementById("errorMsg");
 
-// ===== OPEN VIDEO =====
 watchBtn.addEventListener("click", () => {
-  document.body.classList.add("no-scroll");
   modal.style.display = "flex";
+  iframe.src =
+    "https://www.youtube.com/embed/Ui7fWANUDOY" +
+    "?autoplay=1&rel=0&modestbranding=1&playsinline=1";
 
-  player = new YT.Player("ytPlayer", {
-    videoId: "Ui7fWANUDOY",
-    playerVars: {
-      autoplay: 1,
-      controls: 0,
-      rel: 0,
-      disablekb: 1,
-      modestbranding: 1
-    },
-    events: {
-      onStateChange: onPlayerStateChange
-    }
-  });
-});
-
-// ===== VIDEO FINISHED =====
-function onPlayerStateChange(event){
-  if(event.data === YT.PlayerState.ENDED){
+  // ⏱️ Tiempo EXACTO del video: 2:04 = 124 segundos
+  setTimeout(() => {
     modal.style.display = "none";
-    document.body.classList.remove("no-scroll");
-    sessionStorage.setItem("videoWatched","true");
+    iframe.src = "";
     quizBox.style.display = "block";
     watchBtn.style.display = "none";
-  }
-}
+  }, 124000);
+});
 
-// ===== QUIZ CHECK =====
 function checkQuiz(){
-  const correct = document.querySelectorAll('input[data-correct="true"]');
+  const correct = document.querySelectorAll("input[data-correct='true']");
   for(let c of correct){
     if(!c.checked){
       errorMsg.style.display="block";
